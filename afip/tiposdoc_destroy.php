@@ -1,8 +1,6 @@
 <?php
 include_once '../lib/connections/conn.php';
 include_once '../lib/utils.php';
-
-
 $id = isset($_REQUEST["id"])? $_REQUEST["id"] :""; 
 
 
