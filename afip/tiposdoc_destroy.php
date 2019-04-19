@@ -1,6 +1,4 @@
 <?php
-
-
 include_once '../lib/connections/conn.php';
 include_once '../lib/utils.php';
 
