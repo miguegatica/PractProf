@@ -43,15 +43,14 @@ $tipodocumento_id = isset($_REQUEST["tipodocumento_id"]) ? $_REQUEST["tipodocume
 
 $conn = null;
 if (crearConexion($conn)){
-    $query = "INSERT INTO cliente (num_cliente, apellido, nombre, nro_afip, nro_documento, tipodocumento_id) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_afip', '$nro_documento', '$tipodocumento_id')";
+    $query = "INSERT INTO cliente (num_cliente, apellido, nombre, nro_documento, tipodocumento_id) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_documento', '$tipodocumento_id')";
     
     if(!$resultQuery = $conn->query($query)){ 
-        $result[]= array('isError'=>true, 'msg'=>$resultQuery->error ); 
-        exit(json_encode($result));    
+        //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
+        exit(json_response($conn->error,422));
     }
-    $resultQuery->close();
+
     $conn->close();
-    $result[]= array('isError'=>false );
-    exit(json_encode($result));
+    exit(json_response("",200));
 }
 

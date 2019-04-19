@@ -21,11 +21,9 @@ function json_response($message = null, $code = 200)
     // return the encoded json   ----------- devuelve el json codificado 
     return json_encode(array(
         'status' => $code < 300, // success or not?
-        'message' => $message
+        'errorMsg' => $message
         ));
 }
-
-
 
 
 

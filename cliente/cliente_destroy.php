@@ -1,6 +1,4 @@
 <?php
-
-
 include_once '../lib/connections/conn.php';
 include_once '../lib/utils.php';
 
@@ -26,13 +24,12 @@ if (crearConexion($conn)){
 //                break;
 //
 //        }
-        exit(json_response($mensajeError,422));
+        exit(json_response($conn->error,422));
         
     }
 
     $conn->close();
-    $result[]= array('isError'=>false );
-    exit(json_encode($result));
+    exit(json_response("",200));
 }
 
 
