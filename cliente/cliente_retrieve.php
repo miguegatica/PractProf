@@ -19,7 +19,7 @@ if (isset($_POST['rows'])==true){
 }       
 
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
-$query = " select SQL_CALC_FOUND_ROWS cliente.* from cliente ";
+$query = " select SQL_CALC_FOUND_ROWS cliente.*, (select CONCAT(descripcion,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=cliente.tipodocumento_id) as tipodoc_descripcion from cliente ";
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
     
 

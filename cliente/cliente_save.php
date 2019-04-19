@@ -47,7 +47,15 @@ if (crearConexion($conn)){
     
     if(!$resultQuery = $conn->query($query)){ 
         //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
-        exit(json_response($conn->error,422));
+        
+        switch ($conn->errno) {
+            case 1452:
+
+                exit(json_response("El tipo de documento NO existe",422));
+                break;
+            default:
+                exit(json_response($conn->error,422));
+        }
     }
 
     $conn->close();

@@ -16,7 +16,7 @@ $sigla = isset($_REQUEST["sigla"]) ? $_REQUEST["sigla"] : "";
 
 
 
-//////////////////// PARA VALIDAR DESDE EL FRONT /////////////////////////
+//////////////////// PARA VALIDAR DESDE EL back /////////////////////////
 
 
 //empty = vacio
@@ -35,6 +35,10 @@ if(empty($descripcion)){
 
 if(empty($sigla)){
     exit(json_response('Sigla Afip Obligatorio',422));
+}
+
+if(!is_string($sigla)){
+    exit(json_response('Sigla Debe ser alfabetico',422));
 }
 
 /////////////////////////////////////////////////////////////////////////////

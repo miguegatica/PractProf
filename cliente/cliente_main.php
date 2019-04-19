@@ -16,7 +16,8 @@
                 <th field="apellido" width="50">Apellido</th>
                 <th field="nombre" width="50">Nombre</th>
                 <th field="nro_documento" width="50">Numero documento</th>
-                <th field="tipodocumento_id" width="50">Tipo documento</th>
+                <th field="tipodocumento_id" width="50" hidden="true">Tipo documento</th>
+                <th field="tipodoc_descripcion" width="50" >Tipo documento</th>
                
    
             </tr>
@@ -41,7 +42,7 @@
                 <input name="nombre" class="easyui-textbox" required="true" label="Nombres:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="tipodocumento_id" class="easyui-textbox" required="true"  label="Tipo Doc:" style="width:100%">
+                <input name="tipodocumento_id" id="tipodocumento_id" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input name="nro_documento" class="easyui-textbox" required="true" label="Nro Doc:" style="width:100%">
@@ -51,12 +52,14 @@
         </form>
     </div>
     <div id="dlgCliente-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">Save</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCliente').dialog('close')" style="width:90px">Cancel</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">Guardar</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCliente').dialog('close')" style="width:90px">Cancelar</a>
     </div>
     <script type="text/javascript">
         var url;
+        var urlTiposDoc = 'cliente/utils.php?metodo=tiposdoclist';
         function nuevoCliente(){
+            $('#tipodocumento_id').combobox('reload', urlTiposDoc);
             $('#dlgCliente').dialog('open').dialog('center').dialog('setTitle','New Cliente');
             $('#fmCliente').form('clear');
             url = 'cliente/cliente_save.php';
@@ -108,6 +111,15 @@
                 });
             }
         }
+        
+    
+    $('#tipodocumento_id').combobox({
+        url:urlTiposDoc,
+        valueField:'id',
+        textField:'text',
+        required:true,
+        label:'Tipo Doc:'
+    });
     </script>
 </body>
 </html>
