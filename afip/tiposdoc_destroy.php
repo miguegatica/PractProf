@@ -14,22 +14,19 @@ if (crearConexion($conn)){
     $query = "DELETE FROM tipodocumento  WHERE id='$id' ";
     
     if(!$resultQuery = $conn->query($query)){
-        $mensajeError = "Error Data Base";
-        switch ($conn->errno) {
+ 
+     switch ($conn->errno) {
             case 1451:
 
                 $mensajeError = "Hay clientes con el codigo de eliminar.";
                 break;
-
         }
-        $conn->close();
-        exit(json_response($mensajeError,422));
+        exit(json_response($conn->error,422));
         
     }
 
     $conn->close();
-    $result[]= array('isError'=>false );
-    exit(json_encode($result));
+    exit(json_response("",200));
 }
 
 

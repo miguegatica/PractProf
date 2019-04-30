@@ -21,21 +21,21 @@ $tipodocumento_id = isset($_REQUEST["tipodocumento_id"]) ? $_REQUEST["tipodocume
 //////////////////// PARA VALIDAR DESDE EL FRONT /////////////////////////
 
 
-//if(empty($nro_afip)){
-//    exit(json_response('Nro Afip Obligatorio',422));
-//}
-//
-//if(!is_numeric($nro_afip)){
-//    exit(json_response('Nro Afip Debe ser un numero',422));
-//}
-//
-//if(empty($descripcion)){
-//    exit(json_response('Descripcion Afip Obligatorio',422));
-//}
-//
-//if(empty($sigla)){
-//    exit(json_response('Sigla Afip Obligatorio',422));
-//}
+if(empty($nro_afip)){
+    exit(json_response('Nro Afip Obligatorio',422));
+}
+
+if(!is_numeric($nro_afip)){
+    exit(json_response('Nro Afip Debe ser un numero',422));
+}
+
+if(empty($descripcion)){
+    exit(json_response('Descripcion Afip Obligatorio',422));
+}
+
+if(empty($sigla)){
+    exit(json_response('Sigla Afip Obligatorio',422));
+}
 
 
 //////////////////////// CREAMOS LA CONEXION //////////////////////////////////
