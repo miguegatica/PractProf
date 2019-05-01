@@ -38,20 +38,24 @@
                 saveUrl: 'afip/tiposdoc_save.php',
                 updateUrl: 'afip/tiposdoc_update.php',
                 destroyUrl: 'afip/tiposdoc_destroy.php',
-                onError: function(index,row){
-                    
-                    var result  = eval('('+row.jqXHR.responseText+')');
-                    $.messager.alert("Error" , result['message'] ,'error');
+               
+               
+  //Aquí hay un JavaScript en el cliente, utilizando una llamada AJAX para solicitar el archivo PHP    
+            onError: function(index,row){
+              var result  = eval('('+row.jqXHR.responseText+')');//aca le doy al datagrid los datos??
+                    $.messager.alert("Error" , result['errorMsg'] ,'error');
                     $('#dgTiposDocAfip').datagrid('reload');
+                    
+   //https://translate.google.com/translate?hl=es&sl=en&u=https://www.w3schools.com/js/js_json_php.asp&prev=search
                     
                 }
             });
         });
-        
-        
-        
     </script>
     
 </body>
+
 </html>
+
+
 

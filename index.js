@@ -21,6 +21,9 @@ function agregarTabTiposDocs(){
     }
 }
 
+
+
+
 function agregarTabCliente(){
     
     var exist='Clientes'; 

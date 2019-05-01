@@ -81,9 +81,15 @@ $result["rows"] = $items;
 echo json_encode($result);  
 
 
+/*
+Desde el PHP se convierte la solicitud en un objeto, usando la función PHP json_decode ()
 
+Acceda a la base de datos y complete una matriz con los datos solicitados.
+ 
+Agregue la matriz a un objeto y devuelva el objeto como JSON utilizando la función json_encode ()  
+  
 
-
+*/
 
 
 

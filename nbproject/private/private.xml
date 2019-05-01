@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/migue/cliente/cliente_main.php</file>
             <file>file:/C:/xampp/htdocs/migue/afip/tiposdoc_main.php</file>
             <file>file:/C:/xampp/htdocs/migue/afip/tiposdoc_destroy.php</file>
-            <file>file:/C:/xampp/htdocs/migue/afip/tiposdoc_save.php</file>
+            <file>file:/C:/xampp/htdocs/migue/lib/utils.php</file>
         </group>
     </open-files>
 </project-private>
