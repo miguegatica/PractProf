@@ -34,15 +34,28 @@
         $(function(){
             $('#dgTiposDocAfip').edatagrid({ 
                 toolbar:'#toolbarTiposDoc',
+               
                 url: 'afip/tiposdoc_retrieve.php',
                 saveUrl: 'afip/tiposdoc_save.php',
                 updateUrl: 'afip/tiposdoc_update.php',
                 destroyUrl: 'afip/tiposdoc_destroy.php',
                
                
-  //Aquí hay un JavaScript en el cliente, utilizando una llamada AJAX para solicitar el archivo PHP    
+  //Aquí hay un JavaScript en el cliente, utilizando una llamada AJAX para solicitar el archivo PHP   
+  
+// ****  código del lado del cliente ****
+   
+// $ ('# dg'). edatagrid ({
+//	 onError: función (índice, fila) {
+//		 alerta (row.msg);
+//	 }
+// })
+  
+  
+  
+  
             onError: function(index,row){
-              var result  = eval('('+row.jqXHR.responseText+')');//aca le doy al datagrid los datos??
+              var result  = eval('('+row.jqXHR.responseText+')');
                     $.messager.alert("Error" , result['errorMsg'] ,'error');
                     $('#dgTiposDocAfip').datagrid('reload');
                     
