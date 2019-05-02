@@ -114,7 +114,7 @@
         
     
     $('#tipodocumento_id').combobox({
-        url:urlTiposDoc,
+        url:urlTiposDoc, //esto es un reload que creamos / ver linea 62
         valueField:'id',
         textField:'text',
         required:true,
