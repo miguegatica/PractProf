@@ -65,12 +65,10 @@ Fny<?php
   
 
     <script type="text/javascript">
+
         var url;
         var urlTiposDoc = 'cliente/utils.php?metodo=tiposdoclist';//desde el front estoy mandando los datos al backend por el metodo get
-       
-    
-    
-    
+
         function nuevoCliente(){
             $('#tipodocumento_id').combobox('reload', urlTiposDoc); //cada vez que agrega un nuevo cliente recarga los datos 
             $('#dlgCliente').dialog('open').dialog('center').dialog('setTitle','Nuevo Cliente');

@@ -34,36 +34,22 @@
         $(function(){
             $('#dgTiposDocAfip').edatagrid({ 
                 toolbar:'#toolbarTiposDoc',
-               
                 url: 'afip/tiposdoc_retrieve.php',
                 saveUrl: 'afip/tiposdoc_save.php',
                 updateUrl: 'afip/tiposdoc_update.php',
                 destroyUrl: 'afip/tiposdoc_destroy.php',
+                
                
-               
-  //Aquí hay un JavaScript en el cliente, utilizando una llamada AJAX para solicitar el archivo PHP   
-  
-// ****  código del lado del cliente ****
-   
-// $ ('# dg'). edatagrid ({
-//	 onError: función (índice, fila) {
-//		 alerta (row.msg);
-//	 }
-// })
-  
-  
-  
-  
-            onError: function(index,row){
-              var result  = eval('('+row.jqXHR.responseText+')');
-                    $.messager.alert("Error" , result['errorMsg'] ,'error');
-                    $('#dgTiposDocAfip').datagrid('reload');
-                    
-   //https://translate.google.com/translate?hl=es&sl=en&u=https://www.w3schools.com/js/js_json_php.asp&prev=search
-                    
-                }
-            });
-        });
+                onError: function(index,row){
+                var result  = eval('('+row.jqXHR.responseText+')');
+                        $.messager.alert("Error" , result['errorMsg'] ,'error');
+                        $('#dgTiposDocAfip').datagrid('reload'); //ACA SOLO RECARGA LOS DATOS SI HAY UN ERROR ? 
+                } //onError
+
+            });      
+        }
+         
+        );
     </script>
     
 </body>
@@ -71,4 +57,16 @@
 </html>
 
 
+<!--
+Aquí hay un JavaScript en el cliente, utilizando una llamada AJAX para solicitar el archivo PHP   
+  
+ ****  código del lado del cliente ****
+   
+$ ('# dg'). edatagrid ({
+   onError: función (índice, fila) {
+   alerta (row.msg);
+  }
+})
 
+https://translate.google.com/translate?hl=es&sl=en&u=https://www.w3schools.com/js/js_json_php.asp&prev=search
+  -->
