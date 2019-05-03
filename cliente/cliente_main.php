@@ -5,27 +5,27 @@ Fny<?php
 <html>
 <body>
     
-    <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:250px"
+<!--    <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:250px"  -->
+    <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:300px"
             url="cliente/cliente_retrieve.php"
-            toolbar="#toolbar" pagination="true"
+            toolbar="#toolbarClientes" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
                 <th field="id" width="50" hidden=true>ID</th>
-                <th field="num_cliente" width="50" >Nro Cliente</th>
+                <th field="num_cliente" width="35" >Nro Cliente</th>
                 <th field="apellido" width="50">Apellido</th>
                 <th field="nombre" width="50">Nombre</th>
                 <th field="nro_documento" width="50">Numero documento</th>
                 <th field="tipodocumento_id" width="50" hidden="true">Tipo documento</th>
 <!--                nueva columna agregada. Ir a cliente_retrieve.php-->
                 <th field="tipodoc_descripcion" width="50" >Tipo documento</th> 
-                
-               
-   
+
             </tr>
         </thead>
     </table>
-    <div id="toolbar">
+  
+    <div id="toolbarClientes">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoCliente()">Nuevo Cliente</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarCliente()">Editar Cliente</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarCliente()">Eliminar Cliente</a>

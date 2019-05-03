@@ -24,7 +24,7 @@
         <br>
         <br>
         <br>
-        <div id="maintab" class="easyui-tabs" data-options="fit:true,border:true,plain:true" style="height: 500px;">
+        <div id="maintab" class="easyui-tabs" data-options="fit:false,border:true,plain:true" style="height: 500px;">
             
         </div>
   </div> 
