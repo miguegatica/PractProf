@@ -1,72 +1,137 @@
-<?php 
+Fny<?php 
 
 
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
-
 <body>
-    <br>
-    <h2>Documento identificatorio del comprador</h2>
-
-    <table id="dgTiposDocAfip" title="Documentos" style="width:auto;height:250px"
-            toolbar="#toolbar" pagination="true" idField="id"
+    
+    <table id="dgDocumentos" title="Documentos" class="easyui-datagrid" style="width:700px;height:300px"
+            url="afip/tiposdoc_retrieve.php"
+            toolbar="#toolbarDocumentos" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
                 <th field="id" width="50" hidden=true>ID</th>
-                <th field="nro_afip" width="50" editor="{type:'validatebox',options:{required:true}}">Nro AFIP</th>
-                <th field="descripcion" width="50" editor="{type:'validatebox',options:{required:true}}">Descripcion</th>
-                <th field="sigla" width="50" editor="{type:'validatebox',options:{required:true}}">Sigla</th>
-   
-            </tr>
+                <th field="nro_afip" width="50">Nro AFIP</th>
+                <th field="sigla" width="50">Sigla</th>
+                <th field="descripcion" width="80">Descripcion</th>
+               
+                
+          </tr>
         </thead>
     </table>
+
     
-    <div id="toolbarTiposDoc">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dgTiposDocAfip').edatagrid('addRow')">Nuevo</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dgTiposDocAfip').edatagrid('destroyRow')">Eliminar</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dgTiposDocAfip').edatagrid('saveRow')">Guardar</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dgTiposDocAfip').edatagrid('cancelRow')">Cancelar</a>
+    <div id="toolbarDocumentos">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoDocumento()">Nuevo Documento</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarDocumento()">Editar Documento</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarDocumento()">Eliminar Documento</a>
     </div>
     
-    <script type="text/javascript">
-        $(function(){
-            $('#dgTiposDocAfip').edatagrid({ 
-                toolbar:'#toolbarTiposDoc',
-                url: 'afip/tiposdoc_retrieve.php',
-                saveUrl: 'afip/tiposdoc_save.php',
-                updateUrl: 'afip/tiposdoc_update.php',
-                destroyUrl: 'afip/tiposdoc_destroy.php',
-                
-               
-                onError: function(index,row){
-                var result  = eval('('+row.jqXHR.responseText+')');
-                        $.messager.alert("Error" , result['errorMsg'] ,'error');
-                        $('#dgTiposDocAfip').datagrid('reload'); //ACA SOLO RECARGA LOS DATOS SI HAY UN ERROR ? 
-                } //onError
-
-            });      
-        }
-         
-        );
-    </script>
-    
-</body>
-
-</html>
-
-
-<!--
-Aquí hay un JavaScript en el cliente, utilizando una llamada AJAX para solicitar el archivo PHP   
   
- ****  código del lado del cliente ****
+  
+    <div id="dlgDocumentos" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgDocumentos-buttons'">
+        <form id="fmDocumento" method="post" novalidate style="margin:0;padding:20px 50px" style=>
+            <h3>Tipos de documentos</h3>
+            <div style="margin-bottom:10px">
+                <input name="nro_afip" class="easyui-textbox" required="true" label="numero afip:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="descripcion" class="easyui-textbox" required="true" label="descripcion:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="sigla" class="easyui-textbox" required="true" label="sigla:" style="width:100%">
+            </div>
+        </form>
+    </div>
+        
+        
    
-$ ('# dg'). edatagrid ({
-   onError: función (índice, fila) {
-   alerta (row.msg);
-  }
-})
+<!--    no entiendo este div de a continuacion     -->
+    </div> 
+     <div id="dlgDocumentos-buttons">
+            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveDocumento()" style="width:90px">Guardar</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgDocumentos').dialog('close')" style="width:90px">Cancelar</a>
+     </div>
+  
 
-https://translate.google.com/translate?hl=es&sl=en&u=https://www.w3schools.com/js/js_json_php.asp&prev=search
-  -->
+   
+
+      
+     <script type="text/javascript">  
+     var url;
+     
+      function nuevoDocumento(){
+          //  $('#tipodocumento_id').combobox('reload', urlTiposDoc); //cada vez que agrega un nuevo cliente recarga los datos 
+            $('#dlgDocumentos').dialog('open').dialog('center').dialog('setTitle','Nuevo Documento');
+            $('#fmDocumento').form('clear');
+            url = 'afip/tiposdoc_save.php';
+        }
+ 
+        function editarDocumento(){
+            //row va a ser un objeto de javascript que va a contener el registro del cliente
+            var row = $('#dgDocumentos').datagrid('getSelected');
+            //if eligio una fila, abro el dialog de cliente, lo centra, seteo el titulo y le doy 'Editar Cliente'
+            if (row){
+                $('#dlgDocumentos').dialog('open').dialog('center').dialog('setTitle','Editar Documento');
+                //...y en el formulario hago un load(cargar) ese registro o fila. Se autocompletan los campos 
+                $('#fmDocumento').form('load',row);
+                //...ahora la url va a ser esa ruta, donde le voy a mandar por GET el id 
+                url = 'afip/tiposdoc_update.php?id='+row.id;
+            }
+        }
+    
+        function saveDocumento(){
+            $('#fmDocumento').form('submit',{
+                url: url,
+                onSubmit: function(){
+                    return $(this).form('validate');
+                },
+                success: function(result){
+                    var result = eval('('+result+')');
+                    if (result.errorMsg){
+                        $.messager.show({
+                            title: 'Error',
+                            msg: result.errorMsg
+                        });
+                    } else {
+                        $('#dlgDocumentos').dialog('close');        // close the dialog
+                        $('#dgDocumentos').datagrid('reload');    // reload the cliente data
+                    }
+                }
+            });
+        }
+        function eliminarDocumento(){
+            var row = $('#dgDocumentos').datagrid('getSelected');
+            if (row){
+                $.messager.confirm('Confirmar','Esta seguro de que desea eliminar?',function(r){
+                    if (r){
+                        //le estoy mandando el id por POST
+                        $.post('afip/tiposdoc_destroy.php',{id:row.id},function(result){
+                            if (result.errorMsg){
+                                $.messager.show({
+                                    title: 'Error',
+                                    msg: result.errorMsg
+                                });
+                            } else {
+                                $('#dgDocumentos').datagrid('reload');    // reload the cliente data
+                            }
+                        },'json');
+                    }
+                });
+            }
+        }
+        
+    //jquery yo quiero que mi input sea una combobox, que se despliegue..anda a buscarlo en la url
+//    $('#tipodocumento_id').combobox({
+//        url:urlTiposDoc, //va a traer los datos de esa url para mostrar los campos Id y el Text(concatenado)
+//        valueField:'id', //LO QUE VA A MANDAR AL SERVIDOR: lo que va a guardar 
+//        textField:'text',//VISUAL: el concatenado
+//        required:true, //que sea requerido, lo pone en rojo 
+//        label:'Tipo Doc:'
+//    });
+    
+    
+    </script>
+</body>
+</html>
