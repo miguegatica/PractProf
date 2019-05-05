@@ -30,7 +30,7 @@ $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
 
 ///////////////////////////////// 2) REALIZAR QUERY PARA RECUPERAR LOS TIPOS DOCUMENTOS /////////////////////////////////////////
 
-$query = " select SQL_CALC_FOUND_ROWS tipodocumento.* from tipodocumento ";
+$query = " select SQL_CALC_FOUND_ROWS tipodocumento.* from tipodocumento ORDER BY tipodocumento.nro_afip ASC";
 
 
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
