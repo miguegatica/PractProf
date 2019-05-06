@@ -23,17 +23,36 @@ if (isset($_POST['rows'])==true){
     $cantidad_a_ver = 10;
 }       
 
-
-
+//$cuantos_saltearse = 0
+//$cantidad_a_ver = 10
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
 
 
 ///////////////////////////////// 2) REALIZAR QUERY PARA RECUPERAR LOS TIPOS DOCUMENTOS /////////////////////////////////////////
 
-$query = " select SQL_CALC_FOUND_ROWS tipodocumento.* from tipodocumento ORDER BY tipodocumento.nro_afip ASC";
+$query = " select SQL_CALC_FOUND_ROWS tipodocumento.* from tipodocumento ";
 
+if (isset($_POST['sort'])){
+    $sort=$_POST['sort'];//Columna
+    $order=$_POST['order']; //Asc o DESC 
+    
+    switch ($sort) {
+        case 'nro_afip':
+            $query.="order by CAST(nro_afip as unsigned) $order ";
+            break;
+        default:
+            $query.=" order by $sort  $order ";
+            break;
+    }
+}else{
+    $query .= "order by CAST(nro_afip as unsigned) ASC ";
+}
 
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
+
+//$query .=" ORDER BY tipodocumento.nro_afip ASC";
+
+
     
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

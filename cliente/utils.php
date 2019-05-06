@@ -13,10 +13,13 @@ switch ($metodo) {
 
         $query = " select id, CONCAT(sigla,' (',nro_afip,')') as text from tipodocumento ";
         break;
+    case 'zonasVentas':
 
+        $query = " select id, CONCAT(descripcion,' (',num_zona,')') as text from zonaventa ";
     default:
         break;
 }
+
 
 $conn = null;
 

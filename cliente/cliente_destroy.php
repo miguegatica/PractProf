@@ -6,9 +6,9 @@ include_once '../lib/utils.php';
 $id = isset($_REQUEST["id"])? $_REQUEST["id"] :""; 
 
 
-if(empty($id)){
-    exit(json_response('ID Obligatorio',422));
-}
+//if(empty($id)){
+//    exit(json_response('ID Obligatorio',422));
+//}
 
 
 $conn = null;

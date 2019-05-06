@@ -7,16 +7,15 @@ Fny<?php
     
     <table id="dgDocumentos" title="Documentos" class="easyui-datagrid" style="width:700px;height:300px"
             url="afip/tiposdoc_retrieve.php"
-            toolbar="#toolbarDocumentos" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            toolbar="#toolbarDocumentos" pagination="true" 
+            rownumbers="true" fitColumns="true" singleSelect="true" sortName="sigla"
+            sortOrder="asc">
         <thead>
             <tr>
-                <th field="id" width="50" hidden=true>ID</th>
-                <th field="nro_afip" width="50">Nro AFIP</th>
-                <th field="sigla" width="50">Sigla</th>
-                <th field="descripcion" width="80">Descripcion</th>
-               
-                
+                <th field="id" width="50" hidden=true sortable="true">ID</th>
+                <th field="nro_afip" width="50" sortable="true">Nro AFIP</th>
+                <th field="sigla" width="50"sortable="true">Sigla</th>
+                <th field="descripcion" width="80" sortable="true">Descripcion</th>
           </tr>
         </thead>
     </table>
@@ -101,6 +100,7 @@ Fny<?php
                 }
             });
         }
+        
         function eliminarDocumento(){
             var row = $('#dgDocumentos').datagrid('getSelected');
             if (row){
@@ -114,13 +114,21 @@ Fny<?php
                                     msg: result.errorMsg
                                 });
                             } else {
-                                $('#dgDocumentos').datagrid('reload');    // reload the cliente data
+                                $('#dgDocumentos').datagrid('reload');   
                             }
-                        },'json');
+                        //desde aca es otro tipo de error, falla de fk en mysql
+                        },'json').fail(function(xhr, status, error) {
+                            //console.log(xhr);
+                            var result  = eval('('+xhr.responseText+')');
+                            $.messager.alert("Error" , result['errorMsg'] ,'error');
+                            //$('#dgTiposDocAfip').datagrid('reload'); //ACA SOLO RECARGA LOS DATOS SI HAY UN ERROR ? 
+                        });;
+     
                     }
                 });
             }
         }
+        
         
     //jquery yo quiero que mi input sea una combobox, que se despliegue..anda a buscarlo en la url
 //    $('#tipodocumento_id').combobox({

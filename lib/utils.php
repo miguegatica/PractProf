@@ -24,8 +24,8 @@ function json_response($message = null, $code = 200)
     header('Status: '.$status[$code]);
     // return the encoded json   ----------- devuelve el json codificado 
     return json_encode(array(
-        'status' => $code < 300, // success or not?
-        'errorMsg' => $message
+        'status' => $code < 300, // si el error es menor a 300 va a ponerlo en "true" (no hubo un error http)
+        'errorMsg' => $message   // ..., sino va a mostrar este mensaje 
         ));
 }
 
