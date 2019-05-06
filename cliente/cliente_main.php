@@ -149,7 +149,7 @@ Fny<?php
             function eliminarCliente() {
                 var row = $('#dgClientes').datagrid('getSelected');
                 if (row) {
-                    $.messager.confirm('Confirmar', 'Esta seguro de que desea eliminar?', function (r) {
+                    $.messager.confirm('Confirmar', '¿Està seguro que desea eliminar?', function (r) {
                         if (r) {
                             //le estoy mandando el id por POST
                             $.post('cliente/cliente_destroy.php', {id: row.id}, function (result) {

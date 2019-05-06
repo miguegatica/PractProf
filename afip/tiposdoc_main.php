@@ -104,7 +104,7 @@ Fny<?php
         function eliminarDocumento(){
             var row = $('#dgDocumentos').datagrid('getSelected');
             if (row){
-                $.messager.confirm('Confirmar','Esta seguro de que desea eliminar?',function(r){
+                $.messager.confirm('Confirmar','¿Està seguro que desea eliminar?',function(r){
                     if (r){
                         //le estoy mandando el id por POST
                         $.post('afip/tiposdoc_destroy.php',{id:row.id},function(result){

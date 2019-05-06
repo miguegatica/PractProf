@@ -57,8 +57,13 @@ if (crearConexion($conn)){
 
                 exit(json_response("El tipo de documento NO existe",422));
                 break;
-            default:
-                exit(json_response($conn->error,422));
+            case 1062:
+                exit(json_response("Esta intentando cargar un dato duplicado. (Revisar Nro Doc o Nro Cliente.)",422));
+               break;
+           
+           
+           default:
+                exit(json_response($conn->errno,422));
         }
     }
 
