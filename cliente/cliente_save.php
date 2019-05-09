@@ -19,7 +19,7 @@ $nombre = isset($_REQUEST["nombre"]) ? $_REQUEST["nombre"] : "";
 $nro_afip = isset($_REQUEST["nro_afip"]) ? $_REQUEST["nro_afip"] : ""; 
 $nro_documento = isset($_REQUEST["nro_documento"]) ? $_REQUEST["nro_documento"] : ""; 
 $tipodocumento_id = isset($_REQUEST["tipodocumento_id"]) ? $_REQUEST["tipodocumento_id"] : ""; 
-$zonaventa_id = "1";
+$zonaventa_id = isset($_REQUEST["zonaventa_id"]) ? $_REQUEST["zonaventa_id"] : "";
 
 
 //////////////////// PARA VALIDAR DESDE EL FRONT /////////////////////////

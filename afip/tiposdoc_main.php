@@ -31,7 +31,7 @@ Fny<?php
   
     <div id="dlgDocumentos" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgDocumentos-buttons'">
         <form id="fmDocumento" method="post" novalidate style="margin:0;padding:20px 50px" style=>
-            <h3>Tipos de documentos</h3>
+            <h3>Datos del documento</h3>
             <div style="margin-bottom:10px">
                 <input name="nro_afip" class="easyui-textbox" required="true" label="numero afip:" style="width:100%">
             </div>
