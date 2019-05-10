@@ -37,22 +37,22 @@ if(empty($sigla)){
 $conn = null;
 if (crearConexion($conn)){
     $query = "UPDATE tipodocumento SET nro_afip = '$nro_afip', descripcion = '$descripcion', sigla = '$sigla'  WHERE id='$id' ";
-    
-    if(!$resultQuery = $conn->query($query)){
-        exit(json_response($conn->error,422));
+
+
+ if(!$resultQuery = $conn->query($query)){ 
+        //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
+        
+        switch ($conn->errno) {
+            case 1062:
+
+                exit(json_response("El documento ingresado ya existe",422));
+                break;
+            default:
+            exit(json_response($conn->errno,422));
+        }
+             
     }
 
     $conn->close();
-    $result[]= array('isError'=>false );
-    exit(json_encode($result));
+    exit(json_response("",200));
 }
-
-
-//// NO ENTIENDO ///// //si no va a modificar el id si no se ve ?  
-
-/* 
-Cuando edita solo lo hace sobre el datagrid.., entonces en la query dice where id = $id..., pero si nunca
-le pasamos el id para editar..., 
-¿O sera que cuando apreta el update (o sobre la grilla para editar)
-esta llamando la id? ..., no entiendo ! 
- */
