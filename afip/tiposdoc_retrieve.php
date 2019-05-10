@@ -23,8 +23,8 @@ if (isset($_POST['rows'])==true){
     $cantidad_a_ver = 10;
 }       
 
-
-
+//$cuantos_saltearse = 0
+//$cantidad_a_ver = 10
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
 
 
@@ -32,8 +32,27 @@ $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
 
 $query = " select SQL_CALC_FOUND_ROWS tipodocumento.* from tipodocumento ";
 
+if (isset($_POST['sort'])){
+    $sort=$_POST['sort'];//Columna
+    $order=$_POST['order']; //Asc o DESC 
+    
+    switch ($sort) {
+        case 'nro_afip':
+            $query.="order by CAST(nro_afip as unsigned) $order ";
+            break;
+        default:
+            $query.=" order by $sort  $order ";
+            break;
+    }
+}else{
+    $query .= "order by CAST(nro_afip as unsigned) ASC ";
+}
 
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
+
+//$query .=" ORDER BY tipodocumento.nro_afip ASC";
+
+
     
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,9 +100,15 @@ $result["rows"] = $items;
 echo json_encode($result);  
 
 
+/*
+Desde el PHP se convierte la solicitud en un objeto, usando la función PHP json_decode ()
 
+Acceda a la base de datos y complete una matriz con los datos solicitados.
+ 
+Agregue la matriz a un objeto y devuelva el objeto como JSON utilizando la función json_encode ()  
+  
 
-
+*/
 
 
 

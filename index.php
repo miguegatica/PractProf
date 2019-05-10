@@ -18,13 +18,13 @@
    <body>
     <div>  
       <nav style="padding:10px 0px;border:1px solid #ddd;position: fixed;top: 0;left: 0;z-index: 1050;width: 100%;" >
-            <a onclick="agregarTabTiposDocs()" href="#" class="easyui-linkbutton" data-options="plain:true">Tipos DOC</a>
+            <a onclick="agregarTabTiposDocs()" href="#" class="easyui-linkbutton" data-options="plain:true">Tipos Documentos</a>
             <a onclick="agregarTabCliente()" href="#" class="easyui-linkbutton" data-options="plain:true">Clientes</a>
         </nav>
         <br>
         <br>
         <br>
-        <div id="maintab" class="easyui-tabs" data-options="fit:true,border:true,plain:true" style="height: 500px;">
+        <div id="maintab" class="easyui-tabs" data-options="fit:false,border:true,plain:true" style="height: 500px;">
             
         </div>
   </div> 

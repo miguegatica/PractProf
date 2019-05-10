@@ -12,7 +12,7 @@
 $server="127.0.0.1"; //es la IP
 $user="root"; //es el que te pone xampp por defecto
 $pass="";
-$database="proyecto"; 
+$database="proyectoPP1"; 
 $port="3306"; //es el puerto virtual que viene por defecto  
 
 

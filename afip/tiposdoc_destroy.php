@@ -1,6 +1,8 @@
 <?php
 include_once '../lib/connections/conn.php';
 include_once '../lib/utils.php';
+
+
 $id = isset($_REQUEST["id"])? $_REQUEST["id"] :""; 
 
 
@@ -17,19 +19,26 @@ if (crearConexion($conn)){
         $mensajeError = "Error Data Base";
         switch ($conn->errno) {
             case 1451:
-
-                $mensajeError = "Hay clientes con el codigo de eliminar.";
+                exit(json_response("Hay clientes con el codigo de documento a eliminar.",422));
                 break;
-
+             default:
+                exit(json_response($conn->errno,422));
         }
-        $conn->close();
-        exit(json_response($mensajeError,422));
+        exit(json_response($conn->error,422));
         
     }
 
     $conn->close();
-    $result[]= array('isError'=>false );
-    exit(json_encode($result));
+    exit(json_response("",200));
 }
+
+
+
+//function json_response($message = null, $code = 200){
+// return json_encode(array(
+//        'status' => $code < 300, // si el error es menor a 300 va a ponerlo en "true" (no hubo un error http)
+//        'errorMsg' => $message   // ..., sino va a mostrar este mensaje 
+//        ));
+// }
 
 

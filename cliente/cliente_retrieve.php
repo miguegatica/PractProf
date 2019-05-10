@@ -19,7 +19,27 @@ if (isset($_POST['rows'])==true){
 }       
 
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
-$query = " select SQL_CALC_FOUND_ROWS cliente.*, (select CONCAT(descripcion,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=cliente.tipodocumento_id) as tipodoc_descripcion from cliente ";
+$query = " select cliente.*, 
+(select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=cliente.tipodocumento_id) as tipodoc_descripcion, 
+(select CONCAT(descripcion,'(',num_zona,')')  from zonaventa where zonaventa.id=cliente.zonaventa_id) as zonaventa_descripcion
+from cliente ";       
+
+if (isset($_POST['sort'])){
+    $sort=$_POST['sort'];//Columna
+    $order=$_POST['order']; //Asc o DESC 
+    
+    switch ($sort) {
+        case 'nro_documento':
+            $query.="order by CAST(nro_documento as unsigned) $order ";
+            break;
+        default:
+            $query.=" order by $sort  $order ";
+            break;
+    }
+}else{
+    $query .= "order by CAST(num_cliente as unsigned) ASC ";
+}
+
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
     
 

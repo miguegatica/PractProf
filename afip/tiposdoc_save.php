@@ -6,7 +6,8 @@
 include_once '../lib/connections/conn.php';
 
 include_once '../lib/utils.php'; //no entender utils.php
-
+// isset = "establecido"
+// empty = "vacío"
 
 //IF de 1 sola linea... analizar_booleano ? true : false
 $nro_afip = isset($_REQUEST["nro_afip"]) ? $_REQUEST["nro_afip"] : ""; 
@@ -19,11 +20,11 @@ $sigla = isset($_REQUEST["sigla"]) ? $_REQUEST["sigla"] : "";
 //////////////////// PARA VALIDAR DESDE EL back /////////////////////////
 
 
-//empty = vacio
-//empty me devuelve true cuando la variable esta vacia
-if(empty($nro_afip)){
-    exit(json_response('Nro Afip Obligatorio',422));
-}
+// TUVE QUE IDENTAR PARA QUE ME DEJE INGRESAR EL CERO, PORQUE EMPTY LO TOMA COMO VACIO 
+
+//if(isset($nro_afip)){
+//    exit(json_response('Nro Afip Obligatorio',422));
+//}
 
 if(!is_numeric($nro_afip)){
     exit(json_response('Nro Afip Debe ser un numero',422));
@@ -41,11 +42,6 @@ if(!is_string($sigla)){
     exit(json_response('Sigla Debe ser alfabetico',422));
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 
 //////////////////////// CREAMOS LA CONEXION //////////////////////////////////
@@ -62,58 +58,20 @@ $conn = null;
 if (crearConexion($conn)){
     $query = "INSERT INTO tipodocumento (nro_afip, descripcion, sigla) VALUES ('$nro_afip', '$descripcion', '$sigla')";
     
-    if(!$resultQuery = $conn->query($query)){ //SI NO SE DA LA QUERY ...., SINO SALE Y CIERRA 
-        $result[]= array('isError'=>true, 'msg'=>$resultQuery->error ); // warning? 
-        $conn->close();
-        exit(json_encode($result));    
+     if(!$resultQuery = $conn->query($query)){ 
+        //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
+        
+        switch ($conn->errno) {
+            case 1062:
+
+                exit(json_response("El documento ingresado ya existe",422));
+                break;
+            default:
+            exit(json_response($conn->errno,422));
+        }
+             
     }
+
     $conn->close();
-    $result[]= array('isError'=>false );
-    exit(json_encode($result));
+    exit(json_response("",200));
 }
-
-
-
-// Hay 3 tipos de validacion:
-// ... en el front  -------------------- "LO MEJOR ES QUE LA VALIDACION SE HAGA DEL FRENTE, no con cartelito " 
-// ... en el php
-// ... en el mysql
-
-//¿SE VALIDA ALGUNAS COSAS EN EL FOMT Y ALGUNAS EN EL BACK?
-//¿LO QUE SE VALIDA EN EL FRONT.., NO SE VALIDA EN EL BACK?
-
-
-
-// Si el tipo te dice ¿Lo validastes en el servidor?
-//..., entonces en tiposdoc_main .php cambia true por false
-
-//<thead>
-//    <tr>
-//        <th field="id" width="50" hidden=true>ID</th>
-//        <th field="nro_afip" width="50" editor="{type:'validatebox',options:{required:FALSE}}">Nro AFIP</th>
-//        <th field="descripcion" width="50" editor="{type:'validatebox',options:{required:FALSE}}">Descripcion</th>
-//        <th field="sigla" width="50" editor="{type:'validatebox',options:{required:FALSE}}">Sigla</th>
-//    </tr>
-//</thead>
-
-
-
-
-
-// audio 5:47     validando el el front que sea numerico el nro_afip 
-
-
-
-////////////////  VER //////////////////////
-
-/*
-Hizo una validacion en el back (cosa que en el front es redificil hacer) ..., en donde cargo todos los numeros 
-de afip correctos, cosa que si pone 700 le salte un cartel que no existe 
- 
-Despues borro la validacion, donde guardaba en el array todos los nro_Afip posible
-porque si yo me muero como programador y despues quieren agregar un num_afip nuevo que no existe .....
-
-Igual quisiera saber como lo hizo (minuto 5:57 ) 
-  
- 
- */

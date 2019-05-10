@@ -1,5 +1,9 @@
 <?php
 
+
+
+
+
 function json_response($message = null, $code = 200)
 {
     // clear the old headers  ----- borrar los encabezados antiguos 
@@ -12,16 +16,16 @@ function json_response($message = null, $code = 200)
     header('Content-Type: application/json');
     $status = array(
         200 => '200 OK',
-        400 => '400 Bad Request',
-        422 => 'Unprocessable Entity',
-        500 => '500 Internal Server Error'
+        400 => '400 Bad Request', //Solicitud incorrecta
+        422 => 'Unprocessable Entity',//Entidad no procesable
+        500 => '500 Internal Server Error'//error de servidor interno
         );
     // ok, validation error, or failure -------- ok, error de validación, o falla 
     header('Status: '.$status[$code]);
     // return the encoded json   ----------- devuelve el json codificado 
     return json_encode(array(
-        'status' => $code < 300, // success or not?
-        'errorMsg' => $message
+        'status' => $code < 300, // si el error es menor a 300 va a ponerlo en "true" (no hubo un error http)
+        'errorMsg' => $message   // ..., sino va a mostrar este mensaje 
         ));
 }
 
