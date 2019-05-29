@@ -23,14 +23,30 @@ $passPost = empty($_POST['passPost']) ? exit() : $_POST['passPost'];
 
 
 
+$conn = null;
+$row_cnt = 0; 
+if (crearConexion($conn)){
+    
+     $query = "Select * from usuario where nick='$userPost' and contrasenia='$passPost'";
+      if(!$resultQuery = $conn->query($query)){ 
+           exit(json_response($conn->errno,422));
+      }
+     else {
+           $row_cnt = $resultQuery->num_rows;  
+     }
+     
+    $resultQuery->close();  
+    $conn->close();
+}     
 
 
+    if ($row_cnt>0){
+     $existeEnLaBD = true;
+    }
+     else {
+        $existeEnLaBD = false;
+    }
 
-//SI EXISTE ESOS DATOS DE LOGUEO, ES TRUE
-//else
-$existeEnLaBD = true;
-
-////////////////////////////////////////////////
 
 if($existeEnLaBD){
     $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
