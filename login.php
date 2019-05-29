@@ -29,16 +29,16 @@ $_SESSION['usuario'] = "";
   <h2>Login</h2>
     <p>Ingrese sus datos</p>
     <div style="margin:20px 0;"></div>
-    <div class="easyui-panel" title="New Topic" style="width:100%;max-width:400px;padding:30px 60px;">
+    <div class="easyui-panel" title="Iniciar sesión" style="width:100%;max-width:400px;padding:30px 60px;">
      
       
         <form id="ff" method="post" action="login/acceso.php">
             <div style="margin-bottom:20px">
-                <input class="easyui-textbox" name="user" style="width:100%" data-options="label:'User:',required:true" required>
+                <input class="easyui-textbox" name="user" style="width:100%" data-options="label:'Usuario:',required:true" required>
             </div>
           
             <div style="margin-bottom:20px">
-                <input class="easyui-passwordbox" prompt="Password" name="pass" style="width:100%" data-options="label:'Password:',required:true" required>
+                <input class="easyui-passwordbox" prompt="Contraseña" name="pass" style="width:100%" data-options="label:'Constraseña:',required:true" required>
             </div>
        
             
