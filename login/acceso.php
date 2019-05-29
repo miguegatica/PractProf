@@ -34,21 +34,10 @@ $pass = empty($_POST['pass']) ? exit() : $_POST['pass'];
 ///////////////////// Anlizando si existe en la base de datos ////////////////////////
 // B) ///////////////////////////////////////////////////////////////////////////////
 
-$conn = null;
-if (crearConexion($conn)){
-    $query = "UPDATE cliente SET num_cliente = '$num_cliente', apellido = '$apellido', nombre= '$nombre', nro_documento = '$nro_documento', tipodocumento_id = '$tipodocumento_id', zonaventa_id = '$zonaventa_id' WHERE id='$id' ";
-    
-    if(!$resultQuery = $conn->query($query)){ 
-        //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
-        exit(json_response($conn->error,422));
-    }
-
-    $conn->close();
-    exit(json_response("",200));
-}
 
 
-//SI EXISTE ESOS DATOS DE LOGEO, ES TRUE
+
+//SI EXISTE ESOS DATOS DE LOGUEO, ES TRUE
 //else
 $existeEnLaBD = true;
 
