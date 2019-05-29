@@ -1,6 +1,6 @@
 
 <?php
-
+include_once(dirname(__FILE__).'/../login/loginok.php');
 
 
 include_once '../lib/connections/conn.php';

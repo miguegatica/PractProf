@@ -1,5 +1,15 @@
 <?php 
 
+//Lo siguiente es para que no entre en el index poniendo en la url /index.php 
+//Lo que trae el include es la funcion que dice:
+// if no esta la sesion iniciada, que la inicie
+// if no esta iniciada que lo mande al login 
+
+
+include_once(dirname(__FILE__).'/login/loginok.php');
+
+//Con simplemente agregar la linea anterior en todos los archivos, ya seabemos si existe o no existe
+//Si tienes dos pestañas abiertas del mismo navegador, no deja hacer amb si en algunas de las pesatañas cerre sesion 
 
 
 ?>
@@ -20,6 +30,7 @@
       <nav style="padding:10px 0px;border:1px solid #ddd;position: fixed;top: 0;left: 0;z-index: 1050;width: 100%;" >
             <a onclick="agregarTabTiposDocs()" href="#" class="easyui-linkbutton" data-options="plain:true">Tipos Documentos</a>
             <a onclick="agregarTabCliente()" href="#" class="easyui-linkbutton" data-options="plain:true">Clientes</a>
+            <a href="login.php" class="easyui-linkbutton" data-options="plain:true">Salir</a>
         </nav>
         <br>
         <br>

@@ -1,4 +1,6 @@
-Fny<?php
+<?php
+include_once(dirname(__FILE__).'/../login/loginok.php');
+
 ?><!DOCTYPE html>
 <html>
     <body>
