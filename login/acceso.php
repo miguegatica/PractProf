@@ -20,6 +20,9 @@ if(empty($_POST['userPost']) or empty($_POST['passPost']) ){//si esta la sesion 
 
 $userPost = empty($_POST['userPost']) ? exit() : $_POST['userPost'];
 $passPost = empty($_POST['passPost']) ? exit() : $_POST['passPost'];
+$perfilPost= empty($_POST['perfilPost']) ? exit() : $_POST['perfilPost']; 
+
+
 
 
 
@@ -61,6 +64,46 @@ exit();
 
 
 
+
+
+
+
+
+//$conn = null;
+//$row_cnt = 0; 
+//if (crearConexion($conn)){
+//    
+//     $query = "Select * from usuario where nick='$userPost' and contrasenia='$passPost'";
+//      if(!$resultQuery = $conn->query($query)){ 
+//           exit(json_response($conn->errno,422));
+//      }
+//     else {
+//           $row_cnt = $resultQuery->num_rows;  
+//     }
+//     
+//    $resultQuery->close();  
+//    $conn->close();
+//}     
+//
+//
+//    if ($row_cnt>0){
+//     $existeEnLaBD = true;
+//    }
+//     else {
+//        $existeEnLaBD = false;
+//    }
+//
+//
+//if($existeEnLaBD){
+//    $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
+//    header("Location: ../index.php");
+//    exit();
+//}
+//header("location: ../login.php");
+//exit();
+//
+//
+//
 
 
 

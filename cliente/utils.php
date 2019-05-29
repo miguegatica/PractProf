@@ -18,6 +18,12 @@ switch ($metodo) {
         $query = " select id, CONCAT(descripcion,' (',num_zona,')') as text from zonaventa ";
     default:
         break;
+    
+    case 'tipoPerfil':
+
+        $query = " select id, CONCAT(descripcion,' (',num_zona,')') as text from zonaventa ";
+    default:
+        break;
 }
 
 
