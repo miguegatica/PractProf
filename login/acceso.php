@@ -1,61 +1,31 @@
 <?php
 include_once(dirname(__FILE__).'/../lib/utils.php');
 
-//A) //////////////////////////////////////////////////
 include_once '../lib/connections/conn.php';
 include_once '../lib/utils.php'; 
 
-////////////////////////////////////////////////////////
 
 
 if(is_session_started() == false){
-    //Si esta apagada la session la enscendemos
     session_start();
 }
 
-if(empty($_POST['user']) or empty($_POST['pass']) ){//si esta la sesion vacia lo redirige a login 
+if(empty($_POST['userPost']) or empty($_POST['passPost']) ){//si esta la sesion vacia lo redirige a login 
     header("location: ../login.php");
     exit();
 }
 
-$user = empty($_POST['user']) ? exit() : $_POST['user'];
-$pass = empty($_POST['pass']) ? exit() : $_POST['pass'];
-
-
-//Si llego a este punto es porque EXISTE   ..., llegaron los datos en el logeo  
+$userPost = empty($_POST['userPost']) ? exit() : $_POST['userPost'];
+$passPost = empty($_POST['passPost']) ? exit() : $_POST['passPost'];
 
 
 
-
-
-//Aca en este punto analizar si existe en la BD
-
-
-///////////////////// Anlizando si existe en la base de datos ////////////////////////
-// B) ///////////////////////////////////////////////////////////////////////////////
-
-$conn = null;
-if (crearConexion($conn)){
-    $query = "UPDATE cliente SET num_cliente = '$num_cliente', apellido = '$apellido', nombre= '$nombre', nro_documento = '$nro_documento', tipodocumento_id = '$tipodocumento_id', zonaventa_id = '$zonaventa_id' WHERE id='$id' ";
-    
-    if(!$resultQuery = $conn->query($query)){ 
-        //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
-        exit(json_response($conn->error,422));
-    }
-
-    $conn->close();
-    exit(json_response("",200));
-}
-
-
-//SI EXISTE ESOS DATOS DE LOGEO, ES TRUE
-//else
 $existeEnLaBD = true;
 
-////////////////////////////////////////////////
+
 
 if($existeEnLaBD){
-    $_SESSION['usuario'] = $user; // gracias a esta linea el usuario puede usar el sistema 
+    $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
     header("Location: ../index.php");
     exit();
 }
