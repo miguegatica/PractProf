@@ -20,7 +20,7 @@ if(empty($_POST['userPost']) or empty($_POST['passPost']) ){//si esta la sesion 
 
 $userPost = empty($_POST['userPost']) ? exit() : $_POST['userPost'];
 $passPost = empty($_POST['passPost']) ? exit() : $_POST['passPost'];
-$perfilPost= empty($_POST['perfilPost']) ? exit() : $_POST['perfilPost']; 
+//$perfilPost= empty($_POST['perfilPost']) ? exit() : $_POST['perfilPost']; 
 
 
 
