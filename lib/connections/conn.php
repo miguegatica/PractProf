@@ -1,9 +1,25 @@
 <?php
 
 
-
-
 include_once '../lib/connections/config.php';
+
+
+function crearConexion(&$conn){ 
+    
+    global $server,$user,$pass, $database, $port; //estoy usando las variables de config.php
+   
+    $conn = new mysqli($server,$user,$pass, $database, $port);
+    
+    if($conn->connect_error){ 
+      
+        $conn = 'Error en la conexion : '.$conn->connect_errno.'-'.$conn->connect_error;
+
+        return false;
+    }
+   
+    return true;
+}
+
 
 
 
@@ -22,24 +38,3 @@ include_once '../lib/connections/config.php';
 //# Si falla el intento...en conn, en vez en de enviar el objeto de conexion, enviamos un string con el error.., Y devolvemos false
 
  //# Retornamos true...porque no hubo error en el intento
-
-
-
-function crearConexion(&$conn){ 
-    
-    global $server,$user,$pass, $database, $port; //global, significa que salga afuera y busques estas variables 
-   
-    $conn = new mysqli($server,$user,$pass, $database, $port);
-    
-    if($conn->connect_error){ 
-      
-        $conn = 'Error en la conexion : '.$conn->connect_errno.'-'.$conn->connect_error;
-
-        return false;
-    }
-   
-    return true;
-}
-
-
-// ME VOY A tiposdoc_retrieve.php a CREAR LA CONEXION 
