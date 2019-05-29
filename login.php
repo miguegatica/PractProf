@@ -34,11 +34,11 @@ $_SESSION['usuario'] = "";
       
         <form id="ff" method="post" action="login/acceso.php">
             <div style="margin-bottom:20px">
-                <input class="easyui-textbox" name="user" style="width:100%" data-options="label:'Usuario:',required:true" required>
+                <input class="easyui-textbox" name="userPost" style="width:100%" data-options="label:'Usuario:',required:true" required>
             </div>
           
             <div style="margin-bottom:20px">
-                <input class="easyui-passwordbox" prompt="Contraseña" name="pass" style="width:100%" data-options="label:'Constraseña:',required:true" required>
+                <input class="easyui-passwordbox" prompt="Password" name="passPost" style="width:100%" data-options="label:'Contraseña:',required:true" required>
             </div>
        
             
@@ -51,6 +51,13 @@ $_SESSION['usuario'] = "";
     
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 <!-- imput type="submit" me manda todos los datos del formulario al direcctioro de action = ""-->
