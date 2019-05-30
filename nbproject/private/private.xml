@@ -5,13 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/migue/login/acceso.php</file>
             <file>file:/C:/xampp/htdocs/migue/index.js</file>
-            <file>file:/C:/xampp/htdocs/migue/afip/tiposdoc_main.php</file>
-            <file>file:/C:/xampp/htdocs/migue/cliente/cliente_update.php</file>
             <file>file:/C:/xampp/htdocs/migue/index.php</file>
             <file>file:/C:/xampp/htdocs/migue/login.php</file>
-            <file>file:/C:/xampp/htdocs/migue/login/loginok.php</file>
-            <file>file:/C:/xampp/htdocs/migue/afip/tiposdoc_destroy.php</file>
-            <file>file:/C:/xampp/htdocs/migue/lib/connections/config.php</file>
         </group>
     </open-files>
 </project-private>
