@@ -9,16 +9,14 @@ $query = "";
 $items = array();
 
 switch ($metodo) {
-    case 'tiposdoclist':
+    
+    case 'tipoPerfil':
 
-        $query = " select id, CONCAT(sigla,' (',nro_afip,')') as text from tipodocumento ";
-        break;
-    case 'zonasVentas':
-
-        $query = " select id, CONCAT(descripcion,' (',num_zona,')') as text from zonaventa ";
+        $query = " select perfil as text from perfilusuario ";
     default:
         break;
 }
+
 
 
 $conn = null;

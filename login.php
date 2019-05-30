@@ -61,7 +61,7 @@ $_SESSION['usuario'] = "";
    <script type="text/javascript">
        
        
-        var urlTiposPerfil = '../cliente/utils.php?metodo=tipoPerfil';
+        var urlTiposPerfil = 'login/utils.php?metodo=tipoPerfil';
       
         function desplegarPerfiles() {
                 $('#tipoPerfil').combobox('reload', urlTiposPerfil); //cada vez que agrega un nuevo cliente recarga los datos 
@@ -72,9 +72,9 @@ $_SESSION['usuario'] = "";
 
          $('#tipoPerfil').combobox({
                 url: urlTiposPerfil, 
-                valueField: 'id', //LO QUE VA A MANDAR AL SERVIDOR: lo que va a guardar 
-                textField: 'text', //VISUAL: el concatenado
-                required: true, //que sea requerido, lo pone en rojo 
+                valueField: 'text', //LO QUE VA A MANDAR AL SERVIDOR: lo que va a guardar 
+                textField: 'text', //VISUAL
+                required: true, 
                 label: 'Tipo Perfil',
                 onChange: myKeyUpDoc
                         //keyHandler: myKeyHandler
@@ -91,7 +91,6 @@ $_SESSION['usuario'] = "";
                 if (difVisiblesOcultos == 0) {
                     $('#tipoPerfil').combobox('panel').find('div:hidden').css('display', 'block');
                 }
-
             }
 
             var tipoPerfil = $('#tipoPerfil').combobox('textbox');
@@ -106,10 +105,6 @@ $_SESSION['usuario'] = "";
                 }
 
             });
-
-
-
-
 
 
     </script>

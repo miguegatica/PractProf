@@ -2,7 +2,9 @@
 
 include_once(dirname(__FILE__).'/../login/loginok.php');
 
-?><!DOCTYPE html>
+?>
+
+<!DOCTYPE html>
 <html>
 <body>
     
