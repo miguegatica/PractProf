@@ -28,6 +28,8 @@ include_once(dirname(__FILE__).'/login/loginok.php');
    <body>
     <div>  
       <nav style="padding:10px 0px;border:1px solid #ddd;position: fixed;top: 0;left: 0;z-index: 1050;width: 100%;" >
+          
+            <a onclick="agregarTabLogin()" href="#" class="easyui-linkbutton" data-options="plain:true">Login User</a>
             <a onclick="agregarTabTiposDocs()" href="#" class="easyui-linkbutton" data-options="plain:true">Tipos Documentos</a>
             <a onclick="agregarTabCliente()" href="#" class="easyui-linkbutton" data-options="plain:true">Clientes</a>
             <a href="login.php" class="easyui-linkbutton" data-options="plain:true">Salir</a>
@@ -39,11 +41,11 @@ include_once(dirname(__FILE__).'/login/loginok.php');
             
         </div>
   </div> 
-    
+  <script src="index.js"></script>   
 </body>
 </html>
 
-<script src="index.js"></script> 
+
 
 
 

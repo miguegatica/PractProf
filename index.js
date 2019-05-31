@@ -45,24 +45,24 @@ function agregarTabCliente(){
 }
 
 
-//
-//function agregarTabLogin(){
-//    
-//    var exist='Login'; 
-//    
-//    
-//    if ($('#maintab').tabs('exists', exist)){ 
-//        $('#maintab').tabs('select',exist); 
-//    }else{
-//        $('#maintab').tabs('add',{ 
-//                id:'Login',
-//                title:'Login',  
-//                closable:true,
-//                href: 'superLogin/form.php' 
-//        });
-//            
-//    }
-//}
+
+function agregarTabLogin(){
+    
+    var exist='Login'; 
+    
+    
+    if ($('#maintab').tabs('exists', exist)){ 
+        $('#maintab').tabs('select',exist); 
+    }else{
+        $('#maintab').tabs('add',{ 
+                id:'Login',
+                title:'Login',  
+                closable:true,
+                href: 'superLogin/form.php' 
+        });
+            
+    }
+}
 
 
 
