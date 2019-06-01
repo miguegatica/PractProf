@@ -42,10 +42,10 @@ $_SESSION['usuario'] = "";
                 <input class="easyui-passwordbox" prompt="Password" name="passPost" style="width:100%" data-options="label:'Contraseña:',required:true" required>
             </div>
        
-            <div style="margin-bottom:20px">
+<!--            <div style="margin-bottom:20px">
                 <input name="perfilPost" id="tipoPerfil" style="width:100%">
-            </div><!--
-            -->
+            </div>-->
+            
             <div style="text-align:center;padding:5px 0">
                 <input type="submit" class="easyui-linkbutton c6" value="Login" style="width:30%;height:40px;">
             </div>     
@@ -54,7 +54,7 @@ $_SESSION['usuario'] = "";
     </div>
     
    
-    
+<!--    
    <script type="text/javascript">
        
        
@@ -104,7 +104,7 @@ $_SESSION['usuario'] = "";
             });
 
 
-    </script>
+    </script>-->
     
     
     
