@@ -20,24 +20,24 @@ if (isset($_POST['rows'])==true){
 }       
 
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
-$query = " select cliente.*, 
-(select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=cliente.tipodocumento_id) as tipodoc_descripcion
-from cliente ";       
+$query = " select usuario.*, 
+(select perfil from perfilusuario where perfilusuario.id=usuario.id_perfilUsuario) as perfil
+from usuario ";       
 
 if (isset($_POST['sort'])){
     $sort=$_POST['sort'];//Columna
     $order=$_POST['order']; //Asc o DESC 
     
     switch ($sort) {
-        case 'nro_documento':
-            $query.="order by CAST(nro_documento as unsigned) $order ";
+        case 'perfil':
+            $query.="order by CAST(perfil as unsigned) $order ";
             break;
         default:
             $query.=" order by $sort  $order ";
             break;
     }
 }else{
-    $query .= "order by CAST(num_cliente as unsigned) ASC ";
+    $query .= "order by CAST(perfil as unsigned) ASC ";
 }
 
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";

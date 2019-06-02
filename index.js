@@ -46,19 +46,20 @@ function agregarTabCliente(){
 
 
 
-function agregarTabLogin(){
+
+function agregarTabUsuario(){
     
-    var exist='Login'; 
+    var exist='Usuarios'; 
     
     
     if ($('#maintab').tabs('exists', exist)){ 
         $('#maintab').tabs('select',exist); 
     }else{
         $('#maintab').tabs('add',{ 
-                id:'Login',
-                title:'Login',  
+                id:'Usuarios',
+                title:'Usuarios',  
                 closable:true,
-                href: 'supervisor/loginUser/login_main.php'  
+                href: 'usuarios/usuario_main.php' 
         });
             
     }
@@ -79,9 +80,12 @@ function agregarTabPermisos(){
                 id:'Permisos',
                 title:'Permisos',  
                 closable:true,
-                href: 'supervisor/permisos/permisos_main.php'  
+                href: 'supervisor/permisos_main.php'  
         });
             
     }
 }
+
+
+
 

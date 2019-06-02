@@ -5,7 +5,6 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 <html>
     <body>
 
-<!--    <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:250px"  -->
         <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:300px"
                url="cliente/cliente_retrieve.php"
                toolbar="#toolbarClientes" pagination="true"
@@ -17,7 +16,6 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
                     <th field="apellido" width="50" sortable="true">Apellido</th>
                     <th field="nombre" width="50"sortable="true">Nombre</th>
                     <th field="nro_documento" width="50" sortable="true">Numero documento</th>
-
                     <th field="tipodocumento_id" width="50" hidden="true" sortable="true">Tipo documento</th>
                     <th field="tipodoc_descripcion" width="50" sortable="true" >Tipo documento</th> 
 

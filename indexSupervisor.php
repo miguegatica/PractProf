@@ -28,8 +28,7 @@ include_once(dirname(__FILE__).'/login/loginok.php');
    <body>
     <div>  
       <nav style="padding:10px 0px;border:1px solid #ddd;position: fixed;top: 0;left: 0;z-index: 1050;width: 100%;" >
-          
-            <a onclick="agregarTabLogin()" href="#" class="easyui-linkbutton" data-options="plain:true">Crear Usuario</a>
+            <a onclick="agregarTabUsuario()" href="#" class="easyui-linkbutton" data-options="plain:true">Usuarios</a>
             <a onclick="agregarTabPermisos()" href="#" class="easyui-linkbutton" data-options="plain:true">Permisos</a>
             <a onclick="agregarTabTiposDocs()" href="#" class="easyui-linkbutton" data-options="plain:true">Tipos Documentos</a>
             <a onclick="agregarTabCliente()" href="#" class="easyui-linkbutton" data-options="plain:true">Clientes</a>

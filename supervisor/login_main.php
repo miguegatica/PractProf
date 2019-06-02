@@ -17,14 +17,14 @@
     
     <div class="easyui-panel" title="Datos Usuario" style="width:100%;max-width:500px;padding:30px 60px;">
      
-        <form id="ff" method="post" action="supervisor/loginUser/usuario_save.php">
+        <form id="ff" method="post" action="../usuarios/usuario_save.php">
             
-            <div style="margin-bottom:20px">
-                <input class="easyui-textbox" prompt="Apellido" name="surnamePost" style="width:100%;height:34px;padding:10px" data-options="label:'Apellido:',required:true" required>
+             <div style="margin-bottom:20px">
+                <input class="easyui-textbox" prompt="Nombre" name="namePost" style="width:100%;height:34px;padding:10px" data-options="label:'Nombre:',required:true" required>
             </div>
             
             <div style="margin-bottom:20px">
-                <input class="easyui-textbox" prompt="Nombre" name="namePost" style="width:100%;height:34px;padding:10px" data-options="label:'Nombre:',required:true" required>
+                <input class="easyui-textbox" prompt="Apellido" name="surnamePost" style="width:100%;height:34px;padding:10px" data-options="label:'Apellido:',required:true" required>
             </div>
             
             <div style="margin-bottom:20px">
@@ -59,12 +59,11 @@
        
         var urlTiposPerfil = 'login/utils.php?metodo=tipoPerfil';
       
+      
+      
         function desplegarPerfiles() {
                 $('#tipoPerfil').combobox('reload', urlTiposPerfil); //cada vez que agrega un nuevo cliente recarga los datos 
             }
-
-
-
 
          $('#tipoPerfil').combobox({
                 url: urlTiposPerfil, 

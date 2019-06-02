@@ -19,7 +19,7 @@ $nombre = isset($_REQUEST["nombre"]) ? $_REQUEST["nombre"] : "";
 $nro_afip = isset($_REQUEST["nro_afip"]) ? $_REQUEST["nro_afip"] : ""; 
 $nro_documento = isset($_REQUEST["nro_documento"]) ? $_REQUEST["nro_documento"] : ""; 
 $tipodocumento_id = isset($_REQUEST["tipodocumento_id"]) ? $_REQUEST["tipodocumento_id"] : ""; 
-$zonaventa_id = "1";
+//$zonaventa_id = "1";
 
 
 //////////////////// PARA VALIDAR DESDE EL FRONT /////////////////////////
@@ -47,7 +47,7 @@ $zonaventa_id = "1";
 
 $conn = null;
 if (crearConexion($conn)){
-    $query = "INSERT INTO cliente (num_cliente, apellido, nombre, nro_documento, tipodocumento_id, zonaventa_id) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_documento', '$tipodocumento_id', '$zonaventa_id')";
+    $query = "INSERT INTO cliente (num_cliente, apellido, nombre, nro_documento, tipodocumento_id) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_documento', '$tipodocumento_id')";
 
     
     
