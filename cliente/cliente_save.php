@@ -48,6 +48,8 @@ $zonaventa_id = "1";
 $conn = null;
 if (crearConexion($conn)){
     $query = "INSERT INTO cliente (num_cliente, apellido, nombre, nro_documento, tipodocumento_id, zonaventa_id) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_documento', '$tipodocumento_id', '$zonaventa_id')";
+
+    
     
     if(!$resultQuery = $conn->query($query)){ 
         //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
