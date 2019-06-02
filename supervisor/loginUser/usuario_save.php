@@ -57,33 +57,3 @@ if (crearConexion($conn)){
     $conn->close();
 }     
 
-
-    if ($row_cnt>0){
-     $existeEnLaBD = true;
-    }
-     else {
-        $existeEnLaBD = false;
-    }
-
-
-if($existeEnLaBD){
-    
-    switch ($perfilPost) {
-        case 'usuario':
-                $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
-                header("Location: ../index.php");
-                exit();
-            break;
-        case 'supervisor':
-                $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
-                header("Location: ../indexSupervisor.php");
-                exit();
-            break;
-    }
-    
-    
-}
-header("location: ../login.php");
-exit();
-
-

@@ -58,7 +58,7 @@ function agregarTabLogin(){
                 id:'Login',
                 title:'Login',  
                 closable:true,
-                href: 'superLogin/form.php' 
+                href: 'supervisor/loginUser/login_main.php'  
         });
             
     }
@@ -67,13 +67,21 @@ function agregarTabLogin(){
 
 
 
-
-
-
-
-
-
-
-
-
+function agregarTabPermisos(){
+    
+    var exist='Permisos'; 
+    
+    
+    if ($('#maintab').tabs('exists', exist)){ 
+        $('#maintab').tabs('select',exist); 
+    }else{
+        $('#maintab').tabs('add',{ 
+                id:'Permisos',
+                title:'Permisos',  
+                closable:true,
+                href: 'supervisor/permisos/permisos_main.php'  
+        });
+            
+    }
+}
 
