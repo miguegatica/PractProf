@@ -31,8 +31,8 @@
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarUsuario()">Eliminar Usuario</a>
         </div>
 
+        
         <div id="dlgUsuario" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgUsuario-buttons'">
-
 
             <form id="fmUsuario" method="post" novalidate style="margin:0;padding:20px 50px">
                 <h3>Información de Usuario</h3>
@@ -49,9 +49,10 @@
                 <div style="margin-bottom:10px">
                     <input name="nick" class="easyui-textbox" required="true" label="Nick:" style="width:100%">
                 </div>
+        
                 
                 <div style="margin-bottom:10px">
-                    <input name="contrasenia" class="easyui-textbox" required="true" label="Contraseña:" style="width:100%">
+                    <input name="contrasenia" class="easyui-passwordbox" required="true" label="Contraseña:" style="width:100%">
                 </div>
             <!--       ****************** Combobox perfil *************************************     -->
         
@@ -60,16 +61,13 @@
                 </div>
 
             </form>
-
-            <!--   *********** Botones de formulario *********************     -->
-
+            
+            <div id="dlgUsuario-buttons">
+                <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUsuario()" style="width:90px">Guardar</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgUsuario').dialog('close')" style="width:90px">Cancelar</a>
+            </div>
+            
         </div>
-        <div id="dlgUsuario-buttons">
-            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUsuario()" style="width:90px">Guardar</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgUsuario').dialog('close')" style="width:90px">Cancelar</a>
-        </div>
-
-        <!--  **********************************************************************-->
 
 
 
@@ -82,7 +80,7 @@
                 $('#perfilusuario_id').combobox('reload', urlTiposPerfil); //cada vez que agrega un nuevo cliente recarga los datos 
                 $('#dlgUsuario').dialog('open').dialog('center').dialog('setTitle', 'Nuevo Usuario');
                 $('#fmUsuario').form('clear');
-//                url = 'usuarios/usuario_save.php';
+                url = 'usuarios/usuario_save.php';
             }
             
           
@@ -95,7 +93,7 @@
                     //...y en el formulario hago un load(cargar) ese registro o fila. Se autocompletan los campos 
                     $('#fmUsuario').form('load', row);
                     //...ahora la url va a ser esa ruta, donde le voy a mandar por GET el id 
-//                    url = 'usuarios/usuario_update.php?id=' + row.id;
+                    url = 'usuarios/usuario_update.php?id=' + row.id;
                 }
             }
 
@@ -125,28 +123,29 @@
 
 
 
-//                function eliminarUsuario() {
-//                var row = $('#dgUsuarios').datagrid('getSelected');
-//                if (row) {
-//                    $.messager.confirm('Confirmar', '¿Està seguro que desea eliminar?', function (r) {
-//                        if (r) {
-//                            //le estoy mandando el id por POST
-//                            $.post('usuarios/usuario_destroy.php', {id: row.id}, function (result) {
-//                                if (result.errorMsg) {
-//                                    $.messager.show({
-//                                        title: 'Error',
-//                                        msg: result.errorMsg
-//                                    });
-//                                } else {
-//                                    $('#dgUsuarios').datagrid('reload');    // reload the cliente data
-//                                }
-//                            }, 'json');
-//                        }
-//                    });
-//                }
-//            }
-//
-            
+                function eliminarUsuario() {
+                var row = $('#dgUsuarios').datagrid('getSelected');
+                if (row) {
+                    $.messager.confirm('Confirmar', '¿Està seguro que desea eliminar?', function (r) {
+                        if (r) {
+                            //le estoy mandando el id por POST
+                            $.post('usuarios/usuario_destroy.php', {id: row.id}, function (result) {
+                                if (result.errorMsg) {
+                                    $.messager.show({
+                                        title: 'Error',
+                                        msg: result.errorMsg
+                                    });
+                                } else {
+                                    $('#dgUsuarios').datagrid('reload');    // reload the cliente data
+                                }
+                            }, 'json');
+                        }
+                    });
+                }
+            }
+
+
+
             $('#perfilusuario_id').combobox({
                 url: urlTiposPerfil, 
                 valueField: 'id', //LO QUE VA A MANDAR AL SERVIDOR: lo que va a guardar 
@@ -188,8 +187,7 @@
 
             });
             
-        
-
+          
     </script>
     
     </body>

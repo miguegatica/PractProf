@@ -8,11 +8,11 @@ include_once '../lib/connections/conn.php';
 
 include_once '../lib/utils.php'; //no entender utils.php
 
-$namePost = empty($_POST['namePost']) ? exit() : $_POST['namePost']; 
-$surnamePost = empty($_POST['surnamePost']) ? exit() : $_POST['surnamePost'];
-$userPost= empty($_POST['userPost']) ? exit() : $_POST['userPost'];//COMPROBAR QUE EL NICK SEA DE TIPO UNIQUE
-$passPost = empty($_POST['passPost']) ? exit() : $_POST['passPost'];
-$perfilPost = empty($_POST['perfilPost']) ? exit() : $_POST['perfilPost']; //COMPROBAR QUE EXISTE EL TIPO DE PERFIL EN LA BASE DE DATOS 
+$nombre = empty($_POST['nombre']) ? exit() : $_POST['nombre']; 
+$apellido = empty($_POST['apellido']) ? exit() : $_POST['apellido'];
+$nick= empty($_POST['nick']) ? exit() : $_POST['nick'];//COMPROBAR QUE EL NICK SEA DE TIPO UNIQUE
+$contrasenia = empty($_POST['contrasenia']) ? exit() : $_POST['contrasenia'];
+$perfilusuario_id = empty($_POST['perfilusuario_id']) ? exit() : $_POST['perfilusuario_id']; //COMPROBAR QUE EXISTE EL TIPO DE PERFIL EN LA BASE DE DATOS 
 
 
 //DETALLE, si me esta man
@@ -45,15 +45,33 @@ $conn = null;
 $row_cnt = 0; 
 if (crearConexion($conn)){
     
-     $query = "insert into usuario (nombre, apellido, nick, contrasenia, id_perfilUsuario) VALUES ('$namePost', '$surnamePost', '$userPost', '$passPost', $perfilPost)";
-      if(!$resultQuery = $conn->query($query)){ 
-           exit(json_response($conn->errno,422));
-      }
-     else {
-           $row_cnt = $resultQuery->num_rows;  
-     }
-     
-    $resultQuery->close();  
+//    $contrasenia = md5($contrasenia);
+    $query = "insert into usuario (nombre, apellido, nick, contrasenia, perfilusuario_id) VALUES ('$nombre', '$apellido', '$nick', '$contrasenia', $perfilusuario_id)";
+      
+  
+        if(!$resultQuery = $conn->query($query)){ 
+            //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
+
+            switch ($conn->errno) {
+                case 1054:
+
+                    exit(json_response("El tipo de perfil NO existe",422));
+                    break;
+                case 1062:
+                    exit(json_response("Esta intentando cargar un dato duplicado. (Revisar nick)",422));
+                   break;
+
+
+               default:
+                    exit(json_response($conn->errno,422));
+            }
+        }
+        
     $conn->close();
-}     
+    exit(json_response("",200));
+   }
+
+
+
+
 
