@@ -25,7 +25,7 @@ $conn = null;
 $row_cnt = 0; 
 if (crearConexion($conn)){
     
-     $query = "Select perfil from perfilusuario INNER JOIN usuario ON (perfilusuario.id = usuario.id_perfilUsuario) where nick='$userPost' and contrasenia='$passPost' ";
+     $query = "Select perfil from perfilusuario INNER JOIN usuario ON (perfilusuario.id = usuario.perfilusuario_id) where nick='$userPost' and contrasenia='$passPost' ";
      $resultQuery = $conn->query($query);
      $perfil = $resultQuery->fetch_object()->perfil;
 

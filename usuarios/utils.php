@@ -11,8 +11,8 @@ $items = array();
 switch ($metodo) {
     
     case 'tipoPerfil':
-
-        $query = " select perfil as text from perfilusuario ";
+        
+        $query = " select id, perfil as text from perfilusuario ";
     default:
         break;
 }
