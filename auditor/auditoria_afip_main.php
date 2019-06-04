@@ -15,10 +15,8 @@
             
    
             <thead>
-           
-                <tr>
-                    
-                    <th field="id" width="50" hidden=true sortable="true">ID</th>
+             <tr>
+                <th field="id" width="50" hidden=true sortable="true">ID</th>
                     <th field="nro_afipOld" width="35" sortable="true" formatter="ColorRed">nro_afipOld</th>
                     <th field="descripcionOld" width="50" sortable="true" formatter="ColorRed">descripcionOld</th>
                     <th field="siglaOld" width="50" sortable="true" formatter="ColorRed">siglaOld</th>
@@ -32,8 +30,17 @@
                     <th field="hora" width="50" sortable="true">hora</th>
                 </tr> 
             </thead>
+            <br>
+             <div id="tb" style="padding:3px">
+                <span>Accion:</span>
+                <input id="accion" style="line-height:26px;border:1px solid #ccc">
+      
+                <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">Search</a>
+                </div>
+             <br>
         </table>
         
+       
 
         
         <script type="text/javascript">  
@@ -54,7 +61,19 @@
                         return '<span style="color:blue;">'+val+'</span>';
                     
                 }
-        </script>
+                
+                
+                
+//          ****************************  FILTRO ********************************************      
+                
+     function doSearch(){
+    $('#dgAuditoria').datagrid('load',{
+        accion: $('#accion').val(),
+       
+        });
+    }
+     
+    </script>
          
    
     </body>

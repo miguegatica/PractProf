@@ -67,9 +67,38 @@ echo json_encode($result);
 
 
 
+//********************************** FILTRO **********************************************
 
 
-
+//
+//
+////$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+////$rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
+////$accion = isset($_POST['accion']) ? mysql_real_escape_string($_POST['accion']) : '';
+//
+//$page = isset($_POST['page']) ? $_POST['page'] : 1;
+//$rows = isset($_POST['rows']) ? $_POST['rows'] : 10;
+//$accion = isset($_POST['accion']) ? $_POST['accion'] : '';
+//
+////$cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
+//$cuantos_saltearse = ($page-1)*$rows;
+// 
+//$result = array();
+// 
+//$where = "accion like '$accion%'";
+//$rs = mysql_query("select count(*) from auditoriatipodocumento where " . $where);
+//$row = mysql_fetch_row($rs);
+//$result["total"] = $row[0];
+// 
+//$rs = mysql_query("select * from auditoriatipodocumento where " . $where . " limit $cuantos_saltearse,$rows");
+// 
+//$items = array()7while($row = mysql_fetch_object($rs)){
+//    array_push($items, $row);
+//}
+//$result["rows"] = $items;
+// 
+//echo json_encode($result);
+//
 
 
 
