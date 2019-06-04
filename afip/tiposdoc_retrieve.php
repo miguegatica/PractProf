@@ -3,9 +3,7 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 
 include_once '../lib/connections/conn.php';
 
-
 $result = array();
-
 $page="";
 $rows="";
 
@@ -29,6 +27,8 @@ $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
 
 
 ///////////////////////////////// 2) REALIZAR QUERY PARA RECUPERAR LOS TIPOS DOCUMENTOS /////////////////////////////////////////
+
+
 
 $query = " select SQL_CALC_FOUND_ROWS tipodocumento.* from tipodocumento ";
 

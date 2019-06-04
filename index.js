@@ -88,4 +88,40 @@ function agregarTabPermisos(){
 
 
 
+function agregarTabAuditoriaClient(){
+    
+    var exist='Auditoria Cliente'; 
+    
+    
+    if ($('#maintab').tabs('exists', exist)){ 
+        $('#maintab').tabs('select',exist); 
+    }else{
+        $('#maintab').tabs('add',{ 
+                id:'Auditoria',
+                title:'Auditoria Cliente',  
+                closable:true,
+                href: 'auditor/auditoria_cliente_main.php'   
+        });
+            
+    }
+}
+
+
+function agregarTabAuditoriaDoc(){
+    
+    var exist='Auditoria Doc'; 
+    
+    
+    if ($('#maintab').tabs('exists', exist)){ 
+        $('#maintab').tabs('select',exist); 
+    }else{
+        $('#maintab').tabs('add',{ 
+                id:'Auditoria',
+                title:'Auditoria Doc',  
+                closable:true,
+                href: 'auditor/auditoria_afip_main.php'  
+        });
+            
+    }
+}
 

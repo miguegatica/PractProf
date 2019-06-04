@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/migue/supervisor/loginUser/login_main.php</file>
-            <file>file:/C:/xampp/htdocs/migue/cliente/cliente_main.php</file>
-            <file>file:/C:/xampp/htdocs/migue/cliente/cliente_retrieve.php</file>
+            <file>file:/C:/xampp/htdocs/migue/usuarios/usuario_main.php</file>
+            <file>file:/C:/xampp/htdocs/migue/indexAuditor.php</file>
             <file>file:/C:/xampp/htdocs/migue/index.js</file>
-            <file>file:/C:/xampp/htdocs/migue/indexSupervisor.php</file>
-            <file>file:/C:/xampp/htdocs/migue/supervisor/permisos/permisos_main.php</file>
-            <file>file:/C:/xampp/htdocs/migue/lib/connections/config.php</file>
+            <file>file:/C:/xampp/htdocs/migue/supervisor/login_main.php</file>
+            <file>file:/C:/xampp/htdocs/migue/auditor/auditoria_main.php</file>
         </group>
     </open-files>
 </project-private>

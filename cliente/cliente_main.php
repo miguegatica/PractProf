@@ -30,8 +30,9 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarCliente()">Eliminar Cliente</a>
         </div>
 
-        <div id="dlgCliente" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgCliente-buttons'">
 
+        
+        <div id="dlgCliente" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgCliente-buttons'">
 
             <form id="fmCliente" method="post" novalidate style="margin:0;padding:20px 50px">
                 <h3>Información de Cliente</h3>
@@ -56,19 +57,12 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
                     <input name="tipodocumento_id" id="tipodocumento_id" style="width:100%">
                 </div>
 
+                <div id="dlgCliente-buttons">
+                     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">Guardar</a>
+                     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCliente').dialog('close')" style="width:90px">Cancelar</a>
+                </div>
+            
             </form>
-
-
-            <!--   *********** Botones de formulario *********************     -->
-
-        </div>
-        <div id="dlgCliente-buttons">
-            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">Guardar</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCliente').dialog('close')" style="width:90px">Cancelar</a>
-        </div>
-
-        <!--  **********************************************************************-->
-
 
 
         <script type="text/javascript">
