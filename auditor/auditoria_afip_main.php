@@ -7,7 +7,9 @@
 <!DOCTYPE html>
 <html>
     <body>
-
+        <div style="margin:20px 0;">
+        <a href="javascript:;" class="easyui-linkbutton" onclick="toPdf()">ExportToPDF</a>
+        </div>
         <table id="dgAuditoria" title="Operaciones sobre Cliente" class="easyui-datagrid" style="width:1500px;height:450px"
                url="auditor/auditoria_afip_retrieve.php"
                toolbar="#toolbarAuditoria" pagination="true"
@@ -30,14 +32,14 @@
                     <th field="hora" width="50" sortable="true">hora</th>
                 </tr> 
             </thead>
-            <br>
+<!--            <br>
              <div id="tb" style="padding:3px">
                 <span>Accion:</span>
                 <input id="accion" style="line-height:26px;border:1px solid #ccc">
       
                 <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">Search</a>
                 </div>
-             <br>
+             <br>-->
         </table>
         
        
@@ -64,14 +66,32 @@
                 
                 
                 
+                
+                
+                
+                function toPdf(){
+                            var body = $('#dgAuditoria').datagrid('toArray');
+                            var docDefinition = {
+                                content: [{
+                                    table: {
+                                        headerRows: 1,
+                                        widths: ['*','*','*','*','auto','*'],
+                                        body: body
+                                    }
+                                }]
+                            };
+                            pdfMake.createPdf(docDefinition).open();
+                        }
+
+                
 //          ****************************  FILTRO ********************************************      
                 
-     function doSearch(){
-    $('#dgAuditoria').datagrid('load',{
-        accion: $('#accion').val(),
-       
-        });
-    }
+//     function doSearch(){
+//    $('#dgAuditoria').datagrid('load',{
+//        accion: $('#accion').val(),
+//       
+//        });
+//    }
      
     </script>
          

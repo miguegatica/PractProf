@@ -6,7 +6,7 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 
 include_once '../lib/connections/conn.php';
 
-include_once '../lib/utils.php'; //no entender utils.php
+include_once '../lib/utils.php';
 
 //$id = isset($_GET["id"]) ? $_GET["id"] : "";
 //if(empty($id)){
