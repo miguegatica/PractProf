@@ -6,7 +6,7 @@
 // if no esta iniciada que lo mande al login 
 
 
-include_once(dirname(__FILE__).'/login/loginok.php');
+//include_once(dirname(__FILE__).'/login/loginok.php');
 
 //Con simplemente agregar la linea anterior en todos los archivos, ya seabemos si existe o no existe
 //Si tienes dos pestañas abiertas del mismo navegador, no deja hacer amb si en algunas de las pesatañas cerre sesion 

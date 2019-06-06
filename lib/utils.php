@@ -2,6 +2,7 @@
 
 
 
+
 function is_session_started()
 {
     if ( php_sapi_name() !== 'cli' ) {

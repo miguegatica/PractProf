@@ -3,10 +3,23 @@
 include_once(dirname(__FILE__).'/../login/loginok.php');
 
 
+
 include_once '../lib/connections/conn.php';
 
-include_once '../lib/utils.php'; //no entender utils.php
-// isset = "establecido"
+include_once '../lib/utils.php'; 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // empty = "vacío"
 
 //IF de 1 sola linea... analizar_booleano ? true : false
@@ -15,16 +28,6 @@ $descripcion = isset($_REQUEST["descripcion"]) ? $_REQUEST["descripcion"] : "";
 $sigla = isset($_REQUEST["sigla"]) ? $_REQUEST["sigla"] : ""; 
 
 
-
-
-//////////////////// PARA VALIDAR DESDE EL back /////////////////////////
-
-
-// TUVE QUE IDENTAR PARA QUE ME DEJE INGRESAR EL CERO, PORQUE EMPTY LO TOMA COMO VACIO 
-
-//if(isset($nro_afip)){
-//    exit(json_response('Nro Afip Obligatorio',422));
-//}
 
 if(!is_numeric($nro_afip)){
     exit(json_response('Nro Afip Debe ser un numero',422));
