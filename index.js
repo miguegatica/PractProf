@@ -1,8 +1,6 @@
 
 
 
-
-
 function agregarTabTiposDocs(){
     
     var exist='Tipos Documento AFIP'; 

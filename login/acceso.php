@@ -6,11 +6,6 @@ include_once '../lib/connections/conn.php';
 include_once '../lib/utils.php'; 
 
 
-date_default_timezone_set('America/Argentina/Buenos_Aires');
-$date=date("Y-m-d");
-$time=date("H:i:s");
-
-
 $userPost = empty($_POST['userPost']) ? exit() : $_POST['userPost'];
 $passPost = empty($_POST['passPost']) ? exit() : $_POST['passPost'];
  
@@ -36,14 +31,13 @@ if (crearConexion($conn)){
 
      if(!$resultQuery){ 
            exit(json_response($conn->errno,422));
+           
           
       }
      else {
      
         $row_cnt = $resultQuery->num_rows;  
-        
-        
-        
+ 
      }
      
     $resultQuery->close();  
@@ -60,14 +54,14 @@ if (crearConexion($conn)){
 
 
 if($existeEnLaBD){
-   
+$_SESSION['usuario'] = $userPost; 
+$_SESSION['date'] = $date;
+$_SESSION['time'] = $time;
+    
+    
     switch ($perfil) {
         case 'auditor':
                 $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
-                $_SESSION['date'] = $date;
-                $_SESSION['time'] = $time;
-            
-                
                 header("Location: ../indexAuditor.php");
                 exit();
             break;
@@ -85,6 +79,8 @@ if($existeEnLaBD){
     
     
 }
+
+
 header("location: ../login.php");
 exit();
 

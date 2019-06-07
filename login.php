@@ -2,12 +2,16 @@
 
 include_once(dirname(__FILE__).'/lib/utils.php');
 
+
 if(is_session_started() == false){
     //Si esta apagada la session la enscendemos
     session_start();
+    ob_start();
 }
 
 $_SESSION['usuario'] = ""; 
+
+
 
 
 ?>
@@ -45,6 +49,7 @@ $_SESSION['usuario'] = "";
             <div style="text-align:center;padding:5px 0">
                 <input type="submit" class="easyui-linkbutton c6" value="Login" style="width:30%;height:40px;">
             </div>     
+           
         </form>
         
     </div>
