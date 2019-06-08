@@ -19,21 +19,21 @@
                 <tr>
                     
                     <th field="id" width="50" hidden=true sortable="true">ID</th>
-                    <th field="num_clienteOld" width="35" sortable="true" formatter="ColorRed">num_clienteOld</th>
-                    <th field="apellidoOld" width="50" sortable="true" formatter="ColorRed">apellidoOld</th>
-                    <th field="nombreOld" width="50" sortable="true" formatter="ColorRed">nombreOld</th>
-                    <th field="nro_documentoOld" width="50" sortable="true" formatter="ColorRed">nro_documentoOld</th>
-                    <th field="tipodocumento_idOld" width="50" sortable="true" formatter="ColorRed">tipodocumento_idOld</th>
-                    <th field="num_clienteNew" width="50" sortable="true" formatter="ColorGreen">num_clienteNew</th> 
-                    <th field="apellidoNew" width="50" sortable="true" formatter="ColorGreen">apellidoNew</th>
-                    <th field="nombreNew" width="50" sortable="true" formatter="ColorGreen">nombreNew</th>
-                    <th field="nro_documentoNew" width="50" sortable="true" formatter="ColorGreen">nro_documentoNew</th>
-                    <th field="tipodocumento_idNew" width="50" sortable="true" formatter="ColorGreen">tipodocumento_idNew</th>
-                    <th field="usuario" width="50" sortable="true">usuario</th>
-                    <th field="accion" width="50" sortable="true" formatter="ColorBlue">accion</th>
-                    <th field="modulo" width="50" sortable="true">modulo</th>
-                    <th field="fecha" width="50" sortable="true">fecha</th>
-                    <th field="hora" width="50" sortable="true">hora</th>
+                    <th field="num_clienteOld" width="35" sortable="true" formatter="ColorRed">NumCliente</th>
+                    <th field="apellidoOld" width="50" sortable="true" formatter="ColorRed">Apellido</th>
+                    <th field="nombreOld" width="50" sortable="true" formatter="ColorRed">Nombre</th>
+                    <th field="nro_documentoOld" width="50" sortable="true" formatter="ColorRed">NroDoc</th>
+                    <th field="tipodocumento_idOld" width="50" sortable="true" formatter="ColorRed">TipoDoc</th>
+                    <th field="num_clienteNew" width="50" sortable="true" formatter="ColorGreen">NumCliente</th> 
+                    <th field="apellidoNew" width="50" sortable="true" formatter="ColorGreen">Apellido</th>
+                    <th field="nombreNew" width="50" sortable="true" formatter="ColorGreen">Nombre</th>
+                    <th field="nro_documentoNew" width="50" sortable="true" formatter="ColorGreen">NroDoc</th>
+                    <th field="tipodocumento_idNew" width="50" sortable="true" formatter="ColorGreen">TipoDoc</th>
+                    <th field="usuario" width="50" sortable="true">Usuario</th>
+                    <th field="accion" width="50" sortable="true" formatter="ColorBlue">Acción</th>
+                    <!--<th field="modulo" width="50" sortable="true">Modulo</th>-->
+                    <th field="fecha" width="50" sortable="true">Fecha</th>
+                    <th field="hora" width="50" sortable="true">Hora</th>
                 </tr> 
             </thead>
         </table>

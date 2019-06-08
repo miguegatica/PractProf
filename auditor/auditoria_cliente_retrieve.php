@@ -20,7 +20,9 @@ if (isset($_POST['rows'])==true){
 }       
 
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
-$query = " Select * from auditoriacliente ";       
+$query = " select auditoriacliente.*, 
+(select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=auditoriacliente.tipodocumento_idOld) as tipodocumento_idOld, (select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=auditoriacliente.tipodocumento_idNew) as tipodocumento_idNew
+from auditoriacliente   ";       
 
 if (isset($_POST['sort'])){
     $sort=$_POST['sort'];//Columna

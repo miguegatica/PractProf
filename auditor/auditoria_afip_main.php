@@ -21,15 +21,15 @@
             <thead>
              <tr>
                 <th field="id" width="50" hidden=true sortable="true">ID</th>
-                    <th field="nro_afipOld" width="35" sortable="true" formatter="ColorRed">nro_afipOld</th>
-                    <th field="descripcionOld" width="50" sortable="true" formatter="ColorRed">descripcionOld</th>
-                    <th field="siglaOld" width="50" sortable="true" formatter="ColorRed">siglaOld</th>
-                    <th field="nro_afipNew" width="50" sortable="true" formatter="ColorGreen">nro_afipNew</th>
-                    <th field="descripcionNew" width="50" sortable="true" formatter="ColorGreen">descripcionNew</th>
-                    <th field="siglaNew" width="50" sortable="true" formatter="ColorGreen">siglaNew</th> 
-                    <th field="usuario" width="50" sortable="true">usuario</th>
-                    <th field="accion" width="50" sortable="true" formatter="ColorBlue">accion</th>
-                    <th field="modulo" width="50" sortable="true">modulo</th>
+                    <th field="nro_afipOld" width="35" sortable="true" formatter="ColorRed">NroAfip</th>
+                    <th field="descripcionOld" width="50" sortable="true" formatter="ColorRed">Descripción</th>
+                    <th field="siglaOld" width="50" sortable="true" formatter="ColorRed">Sigla</th>
+                    <th field="nro_afipNew" width="50" sortable="true" formatter="ColorGreen">NroAfip</th>
+                    <th field="descripcionNew" width="50" sortable="true" formatter="ColorGreen">Descripción</th>
+                    <th field="siglaNew" width="50" sortable="true" formatter="ColorGreen">Sigla</th> 
+                    <th field="usuario" width="50" sortable="true">Usuario</th>
+                    <th field="accion" width="50" sortable="true" formatter="ColorBlue">Acción</th>
+                    <!--<th field="modulo" width="50" sortable="true">modulo</th>-->
                     <th field="fecha" width="50" sortable="true">fecha</th>
                     <th field="hora" width="50" sortable="true">hora</th>
                 </tr> 
