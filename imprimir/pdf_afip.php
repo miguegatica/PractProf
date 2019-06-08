@@ -5,20 +5,20 @@ require('../lib_pdf/fpdf.php');
 
 class PDF extends FPDF
 {
-    // Cabecera de página
+    // Cabecera de pï¿½gina
     function Header()
     {
         // Logo
-        $this->Image('logo.png',10,8,33);
+       //Aca lo activan solo si tienen un logo, y cambian logo.png por el archivo de su logo -->  $this->Image('logo.png',10,8,33);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Movernos a la derecha
         $this->Cell(60);
-        // Título
+        // Tï¿½tulo
         $this->Ln(10);
         $this->Cell(60);
         $this->Cell(120,10,'LISTADO DE PDV - SiGeUsu v2',1,0,'C');
-        // Salto de línea
+        // Salto de lï¿½nea
         $this->Cell(60);
         #$this->Cell(120,10,'FECHA: '.date('d/m/Y'),1,0,'C');
         #$this->Cell(120,10,'HORA: '.date('H:m:s'),1,0,'C');
@@ -27,10 +27,10 @@ class PDF extends FPDF
 
     }
 
-    // Pie de página
+    // Pie de pï¿½gina
     function Footer()
     {
-        // Posición: a 1,5 cm del final
+        // Posiciï¿½n: a 1,5 cm del final
         $this->SetY(-15);
         // Arial italic 8
         $this->SetFont('Arial','I',8);
@@ -54,12 +54,12 @@ class PDF extends FPDF
         $this->Cell($w[5],6,$row['descripcionOld'],'LR');
         $this->Ln();
          }
-        // Línea de cierre
+        // Lï¿½nea de cierre
         $this->Cell(175,0,'','T');
 }
 }
 
-// Creación del objeto de la clase heredada
+// Creaciï¿½n del objeto de la clase heredada
 $pdf= new PDF('P','mm','A4');
 $pdf->AliasNbPages();
 $pdf->AddPage();
