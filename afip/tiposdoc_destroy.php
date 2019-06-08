@@ -29,6 +29,9 @@ if (crearConexion($conn)){
         exit(json_response($conn->error,422));
         
     }
+    
+    $movement = 'inicio sesion';
+    insert_log($movement);
 
     $conn->close();
     exit(json_response("",200));

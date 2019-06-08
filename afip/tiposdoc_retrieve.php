@@ -88,7 +88,8 @@ if (crearConexion($conn)){
                    array_push($items, $row); 
         }
     }
-
+    
+   
 
     $resultQuery->close();  
     $conn->close();

@@ -52,8 +52,8 @@ if (crearConexion($conn)){
         }
              
     }
-    
-    insert_log();
+    $movement = 'insertar';
+    insert_log($movement); // aca inserto datos en la tabla probandoauditoria
 
     $conn->close();
     exit(json_response("",200));

@@ -76,7 +76,9 @@ $_SESSION['time'] = $time;
                 exit();
             break;
     }
-    
+ 
+ $movement = 'inicio sesion';
+ insert_log($movement);
     
 }
 

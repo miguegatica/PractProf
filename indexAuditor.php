@@ -25,7 +25,7 @@ include_once(dirname(__FILE__).'/login/loginok.php');
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
     </head>
-   <body>
+    <body>
     <div>  
       <nav style="padding:10px 0px;border:1px solid #ddd;position: fixed;top: 0;left: 0;z-index: 1050;width: 100%;" >
             <a onclick="agregarTabAuditoriaClient()" href="#" class="easyui-linkbutton" data-options="plain:true">Auditoria Cliente</a>

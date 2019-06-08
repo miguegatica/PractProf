@@ -45,10 +45,13 @@ function json_response($message = null, $code = 200)
 
 
 
-function insert_log(){
+
+
+
+function insert_log($movement){
     if(session_status() == PHP_SESSION_NONE){
         session_start(); 
-        ob_start();    
+//        ob_start();    
     }
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -58,11 +61,11 @@ function insert_log(){
       
     $userPost = $_SESSION['usuario'];
     
-//    $ip = $_SERVER["REMOTE_ADDR"];
+    $ip = $_SERVER["REMOTE_ADDR"];
 
     $conn = null;
     if (crearConexion($conn)){
-        $queryAuditor = "INSERT INTO probandoauditoria (user, date, time, movement) VALUES ('$userPost', '$date', '$time', 'insertar')";
+        $queryAuditor = "INSERT INTO probandoauditoria (user, date, time, movement) VALUES ('$userPost', '$date', '$time', '$movement')";
         $conn->query($queryAuditor);
 
          $conn->close();
