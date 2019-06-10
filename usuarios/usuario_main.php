@@ -1,5 +1,8 @@
 <?php
-
+    include_once(dirname(__FILE__).'/../login/loginok.php');
+    //LA SIGUIENTE VARIABLE ES OBLIGATORIA PARA CHEQUEAR QUE COLUMNAS UTILIZA EL OPERADOR!
+    $module_name = 'USUARIOS';
+    include_once(dirname(__FILE__).'/../lib/buttons_retrieve.php');
 
 ?>
 
@@ -26,9 +29,10 @@
         </table>
 
         <div id="toolbarUsuarios">
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoUsuario()">Nuevo Usuario</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarUsuario()">Editar Usuario</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarUsuario()">Eliminar Usuario</a>
+            <?php 
+            foreach($buttons as $button){
+                echo $button['html'];
+            }?>
         </div>
 
         

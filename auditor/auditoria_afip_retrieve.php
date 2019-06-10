@@ -20,7 +20,7 @@ if (isset($_POST['rows'])==true){
 }       
 
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
-$query = " Select * from auditoriatipodocumento ";       
+$query = " Select * from afipauditoria ";       
 
 if (isset($_POST['sort'])){
     $sort=$_POST['sort'];//Columna

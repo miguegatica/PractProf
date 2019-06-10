@@ -1,6 +1,10 @@
 <?php
-include_once(dirname(__FILE__).'/../login/loginok.php');
+    include_once(dirname(__FILE__).'/../login/loginok.php');
+    //LA SIGUIENTE VARIABLE ES OBLIGATORIA PARA CHEQUEAR QUE COLUMNAS UTILIZA EL OPERADOR!
+    $module_name = 'CLIENTES';
+    include_once(dirname(__FILE__).'/../lib/buttons_retrieve.php');
 
+    /////////////////////////////////////////////////////////////////////////////////////
 ?><!DOCTYPE html>
 <html>
     <body>
@@ -25,9 +29,10 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
         </table>
 
         <div id="toolbarClientes">
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoCliente()">Nuevo Cliente</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarCliente()">Editar Cliente</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarCliente()">Eliminar Cliente</a>
+            <?php 
+            foreach($buttons as $button){
+                echo $button['html'];
+            }?>
         </div>
 
 
@@ -64,7 +69,20 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
             
             </form>
 
-
+                
+        </div> 
+        
+        <div id="wCustomerFilter" class="easyui-window windowCust" title='Filtrar Clientes' data-options="modal:true,closed:true,iconCls:'icon-filter',collapsible:false, minimizable:false, maximizable:false,resizable:false" style="width:412px;height:700px;"> 
+        
+             <div style="margin-left: 10px;margin-top: 10px;">
+                Tipo Documento <br> <input id="ftipodocumento_id" class="easyui-combobox"  style="width:380px;" name="tipodocumento_id" > <br>  
+               
+              <!--  <input id="ccBlockDateF" class="easyui-combobox"  style="width:380px;" name="cBlockDateF" > <br> --><br>
+                <a href="#" class="easyui-linkbutton" style="width: 40%; margin-top: 15px;" data-options="iconCls:'icon-filter'" onclick="doCustFilter()" >Filtrar</a>
+                <a href="#" class="easyui-linkbutton" style="width: 40%; margin-top: 15px;margin-left: 15%;" data-options="iconCls:'icon-cancel'" onclick="$('#wCustomerFilter').window('close');">Cancelar</a>
+            </div>
+    
+        </div>
         <script type="text/javascript">
 
             var url;
@@ -182,8 +200,39 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 
             });
 
+            function filtrarCliente(){
+
+                //$('#ftipodocumento_id').combobox('reload', urlTiposDoc); 
+                $('#ftipodocumento_id').combobox({
+                    url: urlTiposDoc, 
+                    valueField: 'id', //LO QUE VA A MANDAR AL SERVIDOR: lo que va a guardar 
+                    textField: 'text', //VISUAL: el concatenado
+                    label: 'Tipo Doc:'
+                });
+                $('#wCustomerFilter').window('open');
+            }
+            function doCustFilter() {
+                //Se asigna el valor a variables para analizar si estan vacias
+                var ftipodocumento_id = $('#ftipodocumento_id').combobox('getValue');
+                console.log(ftipodocumento_id);
+                //Si cualquiera de las variables contiene algo es porque quizo filtrar
+                if (ftipodocumento_id !== '') {
+                    $.messager.progress();
+                    //Se vuelve a llamar al evento load del datatable para que este se conecte al servidor solicitando de nuevo los datos pero ya con un filtro
+                    console.log('Filtrara');
+                    $('#dgClientes').datagrid('load',{
+                        ftipodocumento_id: ftipodocumento_id
+                    }); 
+       
+                    console.log('Filtro');
+                    
+                    $.messager.progress('close');
+                }
+
+                $('#wCustomerFilter').window('close');
 
 
+            }
         </script>
     </body>
 </html>

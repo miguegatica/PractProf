@@ -1,6 +1,20 @@
 
 
 
+ 
+
+var datamodulesperms = [
+    {label:'GENERAL',value:'GENERAL',selected:true},  
+    {label:'CLIENTES',value:'CLIENTES'},
+    {label:'USUARIOS',value:'USUARIOS'},
+    {label:'TIPOS DOCUMENTOS',value:'TIPOSDOCUMENTOS'},
+    {label:'AUDITORIA CLIENTES',value:'AUDITORIACLIENTES'},
+    {label:'AUDITORIA AFIP',value:'AUDITORIAAFIP'}
+
+];
+
+
+
 function agregarTabTiposDocs(){
     
     var exist='Tipos Documento AFIP'; 
@@ -78,7 +92,7 @@ function agregarTabPermisos(){
                 id:'Permisos',
                 title:'Permisos',  
                 closable:true,
-                href: 'supervisor/permisos_main.php'  
+                href: 'setup/setup_buttons.php'  
         });
             
     }

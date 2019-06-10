@@ -1,8 +1,8 @@
 <?php
 
 
-include_once '../lib/connections/config.php';
 
+include_once(dirname(__FILE__).'/config.php');
 
 function crearConexion(&$conn){ 
     

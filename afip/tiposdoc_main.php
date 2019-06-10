@@ -1,7 +1,8 @@
-<?php 
-
-include_once(dirname(__FILE__).'/../login/loginok.php');
-
+<?php
+    include_once(dirname(__FILE__).'/../login/loginok.php');
+    //LA SIGUIENTE VARIABLE ES OBLIGATORIA PARA CHEQUEAR QUE COLUMNAS UTILIZA EL OPERADOR!
+    $module_name = 'TIPOSDOCUMENTOS';
+    include_once(dirname(__FILE__).'/../lib/buttons_retrieve.php');
 ?>
 
 <!DOCTYPE html>
@@ -25,9 +26,10 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 
     
     <div id="toolbarDocumentos">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoDocumento()">Nuevo Documento</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarDocumento()">Editar Documento</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarDocumento()">Eliminar Documento</a>
+        <?php 
+            foreach($buttons as $button){
+                echo $button['html'];
+            }?>
     </div>
     
   
