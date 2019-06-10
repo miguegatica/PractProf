@@ -7,9 +7,9 @@ var datamodulesperms = [
     {label:'GENERAL',value:'GENERAL',selected:true},  
     {label:'CLIENTES',value:'CLIENTES'},
     {label:'USUARIOS',value:'USUARIOS'},
-    {label:'TIPOS DOCUMENTOS',value:'TIPOSDOCUMENTOS'},
-    {label:'AUDITORIA CLIENTES',value:'AUDITORIACLIENTES'},
-    {label:'AUDITORIA AFIP',value:'AUDITORIAAFIP'}
+    {label:'TIPOS DOCUMENTOS',value:'TIPOSDOCUMENTOS'}
+//    {label:'AUDITORIA CLIENTES',value:'AUDITORIACLIENTES'},
+//    {label:'AUDITORIA AFIP',value:'AUDITORIAAFIP'}
 
 ];
 

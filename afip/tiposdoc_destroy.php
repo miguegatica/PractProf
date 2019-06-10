@@ -13,8 +13,24 @@ if(empty($id)){
 }
 
 
+
+    
+//BUSCO SI NO EXISTE ALGUN CLIENTE QUE TIENE ESE ID A ELIMINAR 
+
+    $cant = verSiHayClientes($id);
+    if ($cant == 0 ){
+      datosafipOld ($id);
+    
+      $movement = 'ELIMINAR';
+            
+      insert_auditoriaDoc($movement);       
+     
+    }
+            
+
+
 $conn = null;
-if (crearConexion($conn)){
+if (crearConexion($conn)){      
     $query = "DELETE FROM tipodocumento  WHERE id='$id' ";
     
     if(!$resultQuery = $conn->query($query)){
@@ -29,9 +45,6 @@ if (crearConexion($conn)){
         exit(json_response($conn->error,422));
         
     }
-    
-    $movement = 'inicio sesion';
-    insert_log($movement);
 
     $conn->close();
     exit(json_response("",200));

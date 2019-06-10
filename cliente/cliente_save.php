@@ -8,10 +8,12 @@ include_once '../lib/connections/conn.php';
 
 include_once '../lib/utils.php';
 
+
 //$id = isset($_GET["id"]) ? $_GET["id"] : "";
 //if(empty($id)){
 //    exit(json_response("El cliente ya existe!",422));
 //}
+
 
 $num_cliente = isset($_REQUEST["num_cliente"]) ? $_REQUEST["num_cliente"] : ""; 
 $apellido = isset($_REQUEST["apellido"]) ? $_REQUEST["apellido"] : ""; 
@@ -49,7 +51,7 @@ $conn = null;
 if (crearConexion($conn)){
     $query = "INSERT INTO cliente (num_cliente, apellido, nombre, nro_documento, tipodocumento_id) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_documento', '$tipodocumento_id')";
 
-    
+    $id = $conn->insert_id;
     
     if(!$resultQuery = $conn->query($query)){ 
         //Observar que arriba dice ! ese signfica SI NO SE PUDO HACER LA QUERY...
@@ -62,6 +64,9 @@ if (crearConexion($conn)){
             case 1062:
                 exit(json_response("Esta intentando cargar un dato duplicado. (Revisar Nro Doc o Nro Cliente.)",422));
                break;
+           case 1054:
+                exit(json_response($conn->error,422));
+               break;
            
            
            default:
@@ -69,6 +74,17 @@ if (crearConexion($conn)){
         }
     }
 
+
+    
+
+    $id = devolverIdCustomer($num_cliente);
+    
+    datoscustormerNew ($id);
+    
+    $movement = 'INSERTAR';
+            
+    insert_auditoriaCustomer($movement);
+    
     $conn->close();
     exit(json_response("",200));
 }

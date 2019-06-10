@@ -34,8 +34,13 @@ if(empty($sigla)){
     exit(json_response('Sigla Afip Obligatorio',422));
 }
 
+
+ datosafipOld ($id);  
+
+
 $conn = null;
 if (crearConexion($conn)){
+    
     $query = "UPDATE tipodocumento SET nro_afip = '$nro_afip', descripcion = '$descripcion', sigla = '$sigla'  WHERE id='$id' ";
 
 
@@ -53,8 +58,10 @@ if (crearConexion($conn)){
              
     }
     
-    $movement = 'actualizar';
-    insert_log($movement); 
+datosafipNew ($id);
+    
+$movement = 'ACTUALIZAR';
+insert_auditoriaDoc($movement); 
 
     $conn->close();
     exit(json_response("",200));

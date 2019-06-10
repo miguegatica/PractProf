@@ -9,8 +9,8 @@
     <body>
         <div style="margin:20px 0;">
             <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('imprimir/imprimir_customer.php', '_blank');">IMPRIMIR</a>
-            <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('imprimir/excel_customer.php', '_blank');">EXCEL</a>
-            <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('imprimir/pdf_customer.php', '_blank');">PDF</a>
+            <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('excel/excel_customer.php', '_blank');">EXCEL</a>
+            <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('pdf/pdf_customer.php', '_blank');">PDF</a>
         </div>
         <table id="dgAuditoria" title="Operaciones sobre Cliente" class="easyui-datagrid" style="width:1500px;height:450px"
                url="auditor/auditoria_cliente_retrieve.php"

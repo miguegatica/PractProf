@@ -41,6 +41,7 @@ $tipodocumento_id = isset($_REQUEST["tipodocumento_id"]) ? $_REQUEST["tipodocume
 
 //////////////////////// CREAMOS LA CONEXION //////////////////////////////////
 
+datoscustormerOld($id);
 
 $conn = null;
 if (crearConexion($conn)){
@@ -51,6 +52,11 @@ if (crearConexion($conn)){
         exit(json_response($conn->error,422));
     }
 
+datoscustormerNew($id);
+    
+$movement = 'ACTUALIZAR';
+insert_auditoriaCustomer($movement);    
+    
     $conn->close();
     exit(json_response("",200));
 }

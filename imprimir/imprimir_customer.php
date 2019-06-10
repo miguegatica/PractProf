@@ -6,7 +6,7 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 
 $conexion = new PDO('mysql:host=localhost;dbname=proyectopp1','root','');
  
-$result=$conexion->query("SELECT * from auditoriacliente");
+$result=$conexion->query("SELECT * from clienteauditoria");
 
 
 ?>
@@ -30,7 +30,6 @@ $result=$conexion->query("SELECT * from auditoriacliente");
                     <th style="width: 40%;">tipodocumento_idNew</th>
                     <th style="width: 40%;">usuario</th>
                     <th style="width: 40%;">accion</th>
-                    <th style="width: 40%;">modulo</th>
                     <th style="width: 40%;">fecha</th>
                     <th style="width: 40%;">hora</th>
                     
@@ -50,7 +49,6 @@ $result=$conexion->query("SELECT * from auditoriacliente");
                         <td><?php echo $User['tipodocumento_idNew'];?></td>
                         <td><?php echo $User['usuario'];?></td>
                         <td><?php echo $User['accion'];?></td>
-                        <td><?php echo $User['modulo'];?></td>
                         <td><?php echo $User['fecha'];?></td>
                         <td><?php echo $User['hora'];?></td>
                         

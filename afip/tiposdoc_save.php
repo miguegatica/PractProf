@@ -52,8 +52,16 @@ if (crearConexion($conn)){
         }
              
     }
-    $movement = 'insertar';
-    insert_log($movement); // aca inserto datos en la tabla probandoauditoria
+    
+    $id = devolverIdAfip($nro_afip);
+    
+    datosafipNew ($id);
+    
+    $movement = 'INSERTAR';
+            
+    insert_auditoriaDoc($movement);
+    
+    
 
     $conn->close();
     exit(json_response("",200));

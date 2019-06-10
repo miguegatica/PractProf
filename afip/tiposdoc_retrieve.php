@@ -59,11 +59,7 @@ $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
 
 
 $result["total"] = "500"; 
-
 $items = array();
-
-
-
 
 ////////////////////////////////////// 3) ANALIZAR SI HAY RESULTADOS (creamdo conexion) /////////////////////////////////////////////////////
 

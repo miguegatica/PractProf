@@ -1,5 +1,8 @@
 <?php
 
+//Usa la función substr(0,NUMERO DE CARACTERES,$variable);
+
+
 
 require('../lib_pdf/fpdf.php');
 
@@ -42,40 +45,38 @@ class PDF extends FPDF
         // Anchuras de las columnas
         $w = array(20, 35, 25, 10, 43, 150);
         // Cabeceras
-        $this->Cell($w[2],7,'id',1,0,'C');
-        $this->Cell($w[2],7,'nro_afipOld',1,0,'C');
-        $this->Cell($w[2],7,'descripcionOld',1,0,'C');
-        $this->Cell($w[2],7,'siglaOld',1,0,'C');
-        $this->Cell($w[2],7,'nro_afipNew',1,0,'C');
-        $this->Cell($w[2],7,'descripcionNew',1,0,'C');
-        $this->Cell($w[2],7,'siglaNew',1,0,'C');
-        $this->Cell($w[2],7,'usuario',1,0,'C');
-        $this->Cell($w[2],7,'accion',1,0,'C');
-        $this->Cell($w[2],7,'modulo',1,0,'C');
-        $this->Cell($w[2],7,'fecha',1,0,'C');
-        $this->Cell($w[2],7,'hora',1,0,'C');
+        $this->Cell($w[3],7,'id',1,0,'C');
+        $this->Cell($w[0],7,'NroAfip',1,0,'C');
+        $this->Cell($w[0],7,'Descripcion',1,0,'C');
+        $this->Cell($w[0],7,'Sigla',1,0,'C');
+        $this->Cell($w[0],7,'NroAfip',1,0,'C');
+        $this->Cell($w[0],7,'Descripcion',1,0,'C');
+        $this->Cell($w[0],7,'Sigla',1,0,'C');
+        $this->Cell($w[0],7,'usuario',1,0,'C');
+        $this->Cell($w[0],7,'accion',1,0,'C');
+        $this->Cell($w[0],7,'fecha',1,0,'C');
+        $this->Cell($w[0],7,'hora',1,0,'C');
         $this->Ln();
         // Datos
         $conexion = new PDO('mysql:host=localhost;dbname=proyectopp1','root','');
-        $data=$conexion->query("SELECT * from auditoriatipodocumento");
+        $data=$conexion->query("SELECT * from afipauditoria");
         foreach($data as $row)
          {
-        $this->Cell($w[2],6,$row['id'],'LR');
-        $this->Cell($w[2],6,$row['nro_afipOld'],'LR');
-        $this->Cell($w[2],6,$row['descripcionOld'],'LR');
-        $this->Cell($w[2],6,$row['siglaOld'],'LR');
-        $this->Cell($w[2],6,$row['nro_afipNew'],'LR');
-        $this->Cell($w[2],6,$row['descripcionNew'],'LR');
-        $this->Cell($w[2],6,$row['siglaNew'],'LR');
-        $this->Cell($w[2],6,$row['usuario'],'LR');
-        $this->Cell($w[2],6,$row['accion'],'LR');
-        $this->Cell($w[2],6,$row['modulo'],'LR');
-        $this->Cell($w[2],6,$row['fecha'],'LR');
-        $this->Cell($w[2],6,$row['hora'],'LR');
+        $this->Cell($w[3],6,$row['id'],'LR');
+        $this->Cell($w[0],6,$row['nro_afipOld'],'LR');
+        $this->Cell($w[0],6,$row['descripcionOld'],'LR');
+        $this->Cell($w[0],6,$row['siglaOld'],'LR');
+        $this->Cell($w[0],6,$row['nro_afipNew'],'LR');
+        $this->Cell($w[0],6,$row['descripcionNew'],'LR');
+        $this->Cell($w[0],6,$row['siglaNew'],'LR');
+        $this->Cell($w[0],6,$row['usuario'],'LR');
+        $this->Cell($w[0],6,$row['accion'],'LR');
+        $this->Cell($w[0],6,$row['fecha'],'LR');
+        $this->Cell($w[0],6,$row['hora'],'LR');
         $this->Ln();
          }
      // L�nea de cierre
-        $this->Cell(175,0,'','T');
+        $this->Cell(190,0,'','T');
 }
 }
 

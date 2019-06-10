@@ -12,7 +12,7 @@ header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
 $conexion = new PDO('mysql:host=localhost;dbname=proyectopp1','root','');
  
-$result=$conexion->query("SELECT * from auditoriatipodocumento");
+$result=$conexion->query("SELECT * from afipauditoria");
 
 
 ?>
