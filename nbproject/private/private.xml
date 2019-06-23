@@ -2,21 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/migue/lib/buttons_retrieve.php</file>
-            <file>file:/C:/xampp/htdocs/migue/login/acceso.php</file>
-            <file>file:/C:/xampp/htdocs/migue/lib/connections/conn.php</file>
-            <file>file:/C:/xampp/htdocs/migue/setup/setup_buttons.js</file>
-            <file>file:/C:/xampp/htdocs/migue/lib/migrations.php</file>
-            <file>file:/C:/xampp/htdocs/migue/setup/buttons_utils.php</file>
-            <file>file:/C:/xampp/htdocs/migue/setup/setup_buttons.php</file>
-            <file>file:/C:/xampp/htdocs/migue/cliente/cliente_main.php</file>
-            <file>file:/C:/xampp/htdocs/migue/index.js</file>
-            <file>file:/C:/xampp/htdocs/migue/index.php</file>
-            <file>file:/C:/xampp/htdocs/migue/login.php</file>
-            <file>file:/C:/xampp/htdocs/migue/lib/utils.php</file>
-            <file>file:/C:/xampp/htdocs/migue/lang.php</file>
-            <file>file:/C:/xampp/htdocs/migue/setup/profiles_retrieve.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

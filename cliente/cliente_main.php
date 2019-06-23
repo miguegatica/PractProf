@@ -77,12 +77,13 @@
              <div style="margin-left: 10px;margin-top: 10px;">
                 Tipo Documento <br> <input id="ftipodocumento_id" class="easyui-combobox"  style="width:380px;" name="tipodocumento_id" > <br>  
                
-              <!--  <input id="ccBlockDateF" class="easyui-combobox"  style="width:380px;" name="cBlockDateF" > <br> --><br>
+                <input id="ccBlockDateF" class="easyui-combobox"  style="width:380px;" name="cBlockDateF" > <br> <br>
                 <a href="#" class="easyui-linkbutton" style="width: 40%; margin-top: 15px;" data-options="iconCls:'icon-filter'" onclick="doCustFilter()" >Filtrar</a>
                 <a href="#" class="easyui-linkbutton" style="width: 40%; margin-top: 15px;margin-left: 15%;" data-options="iconCls:'icon-cancel'" onclick="$('#wCustomerFilter').window('close');">Cancelar</a>
             </div>
     
         </div>
+        
         <script type="text/javascript">
 
             var url;
@@ -200,6 +201,8 @@
 
             });
 
+
+
             function filtrarCliente(){
 
                 //$('#ftipodocumento_id').combobox('reload', urlTiposDoc); 
@@ -211,6 +214,8 @@
                 });
                 $('#wCustomerFilter').window('open');
             }
+            
+            
             function doCustFilter() {
                 //Se asigna el valor a variables para analizar si estan vacias
                 var ftipodocumento_id = $('#ftipodocumento_id').combobox('getValue');
