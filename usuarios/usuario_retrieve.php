@@ -51,7 +51,7 @@ if (crearConexion($conn)){
     }      
     else{
      $result["total"] = $conn->query("SELECT FOUND_ROWS() as cant;")->fetch_object()->cant;
-       
+
             while($row = $resultQuery->fetch_object()) { 
                    array_push($items, $row); 
         }
