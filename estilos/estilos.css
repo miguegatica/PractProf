@@ -48,6 +48,10 @@ input[type="password"]{
     text-align: center;
     color: #999;
 }
+
+
+
+/**** BOTONES ****************************************************/
 .button{
     border: none;
     width: 100%;
@@ -61,6 +65,11 @@ input[type="password"]{
 .button:hover{
     background: cadetblue;
 }
+
+
+/*************************************************************/
+
+
 p{
     text-align: center;
 }
