@@ -7,9 +7,9 @@ $time=date("H:i:s");
 
 
 if(is_session_started() == false){
-    //Si esta apagada la session la enscendemos
     session_start();
 }
+
 
 
 if(empty($_SESSION['usuario'])){ //si esta la sesion vacia lo redirige a login 

@@ -1,4 +1,7 @@
 <?php
+
+
+include_once(dirname(__FILE__) . '/login/empresaok.php');
 include_once(dirname(__FILE__) . '/login/loginok.php');
 include_once(dirname(__FILE__) . '/lib/migrations.php');
 

@@ -1,5 +1,7 @@
 
 <?php
+
+
 session_start();
 
 $con2 = new PDO ('mysql:host=localhost;dbname=sistemas_3','root','');
@@ -13,34 +15,46 @@ if(isset($_POST['ingresar'])){
     $_SESSION['empresa.db'] = $bd; 
     header('Location: ../index.php');
 }
+else{
+    $_SESSION['empresa.db'] = ""; 
+}
 
 
 
 ?>
     
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Seleccionar empresas</title> 
+        <link rel="stylesheet" href="../estilos/estilos.css">
+       
 
-
-
-<!<html>
-    <head>
-        <title>Seleccionar empresas</title>
-    </head>
+</head>
     <body>
         <div>
-            <form action="empresas.php" method="POST">
-                <select name="empresa">
-                <?php foreach ($query2 as $array){ ?>
-                    <option value="<?php echo $array['bd']; ?>"><?php echo $array['nombre']; ?></option>
-                
-                
-                <?php }?>
-                </select>   
-                <input type="submit" value="Ingresar" name="ingresar">
-            </form>              
-            
+            <form class="formulario" action="empresas.php" method="POST">
+                <h1>Seleccionar empresa</h1> 
+                <div class="contenedor">
+                    <div class="input-contenedor">
+                        <select name="empresa" class="contenedor">
+                        <?php foreach ($query2 as $array){ ?>
+                            <option value="<?php echo $array['bd']; ?>"><?php echo $array['nombre']; ?></option>    
+                        <?php }?>
+                        </select>
+                    </div>
+                <input type="submit" class="button" value="Ingresar" name="ingresar">
+                </div>
+            </form>          
         </div>
         
-        <a href="nuevaempresa.php"><input type="button" value="Nueva Empresa"></a>
+        <form class="formulario">
+           
+                 <a href="nuevaempresa.php"><input type="button" class="button" value="Nueva Empresa"></a>
+ 
+            
+        </form>
+        
     </body>
 </html>
 

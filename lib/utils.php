@@ -3,7 +3,6 @@
 
 
 
-
 function is_session_started()
 {
     if ( php_sapi_name() !== 'cli' ) {
@@ -49,7 +48,10 @@ function json_response($message = null, $code = 200)
 
     
 //***************** AFIP ACTULIZAR ***************************** //
+
+
 function datosafipOld ($id){
+
 $conn = null;
     if (crearConexion($conn)){
         $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
@@ -62,12 +64,48 @@ $conn = null;
     
         $conn->close();
 
-    }    
+    } 
+//  $bd = $_SESSION['empresa.db']; 
+//    
+//  $conn = new PDO ("mysql:host=localhost;dbname=$bd",'root','');
+//    
+//    
+//    $rows = null;
+//    $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
+//    $statement = $conn->prepare($query);
+//    $statement->execute();
+//    while($result = $statement->fetch()){
+//        $rows[] = $result;
+//    }
+//    $_SESSION['nro_afipOld'] = $rows['nro_afip'];
+//    $_SESSION['descripcionOld'] = $rows['descripcion'];
+//    $_SESSION['siglaOld'] = $rows['descripcion'];
+    
+   
 }
 
 
 
+
+
 function datosafipNew ($id){
+    
+//  $bd = $_SESSION['empresa.db']; 
+//    
+//  $conn = new PDO ("mysql:host=localhost;dbname=$bd",'root','');
+//    
+//  
+//  $rows = null;
+//    $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
+//    $statement = $conn->prepare($query);
+//    $statement->execute();
+//    while($result = $statement->fetch()){
+//        $rows[] = $result;
+//    }
+//    $_SESSION['nro_afipNew'] = $rows['nro_afip'];
+//    $_SESSION['descripcionNew'] = $rows['descripcion'];
+//    $_SESSION['siglaNew'] = $rows['descripcion'];
+    
 $conn = null;
     if (crearConexion($conn)){
         $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
@@ -128,8 +166,7 @@ $conn = null;
 
 function insert_auditoriaDoc($movement){
     if(session_status() == PHP_SESSION_NONE){
-        session_start(); 
-//        ob_start();    
+        session_start();     
     }
 
     date_default_timezone_set('America/Argentina/Buenos_Aires');

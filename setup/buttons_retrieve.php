@@ -22,7 +22,6 @@ $db = null;
 if (crearConexion($db)) {
     $db->query("set NAMES utf8;");
 
-
     //Obtengo todos los Hie para armar la query
     $query = "select permisos.title, ";
 
@@ -30,7 +29,8 @@ if (crearConexion($db)) {
     while ($row = $hies->fetch_object()) {
         //Lo que concateno en la query es el "value" de cada row, de esta forma por javascript hago un split por el punto y coma y obtengo los valores de cada celda como idHie, idButton, module, etc.
         //Para entender observar el split que hago en myformatterChecked (buscar la funcion en el proyecto)
-        $query .= "(SELECT CONCAT(permisos_perfiles.can,';',permisos_perfiles.perfil_id,';',permisos.idselector,';','$type') from permisos_perfiles where permisos_perfiles.permiso_id=permisos.id and permisos_perfiles.perfil_id='$row->id') as '$row->perfil' ,";
+        $query .= "(SELECT CONCAT(permisos_perfiles.can,';',permisos_perfiles.perfil_id,';',permisos.idselector,';','$type') 
+        from permisos_perfiles where permisos_perfiles.permiso_id=permisos.id and permisos_perfiles.perfil_id='$row->id') as '$row->perfil' ,";
     }
     //Quito la ultima coma.
     $query = substr($query, 0, -1);

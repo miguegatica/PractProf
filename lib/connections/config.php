@@ -1,7 +1,6 @@
 <?php
 
-function is_session_started2()
-{
+function is_session_started2(){
     if ( php_sapi_name() !== 'cli' ) {
         if ( version_compare(phpversion(), '5.4.0', '>=') ) {
             return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
@@ -30,7 +29,8 @@ if(is_session_started2() == false){
 $server="127.0.0.1"; //es la IP
 $user="root"; //es el que te pone xampp por defecto
 $pass="";
-$database=$_SESSION['empresa.db']; 
+$database=$_SESSION['empresa.db'];
+//$database='proyectopp1';
 $port="3306"; //es el puerto virtual que viene por defecto  
 
 

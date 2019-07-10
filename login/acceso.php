@@ -69,28 +69,9 @@ if($userPost === 'soporte' and $passPost==='333'){
         $_SESSION['time'] = $time;
         $_SESSION['operator_profile'] = $perfilId;
         $_SESSION['SESS_MEMBER_ID'] = $userId;
-
-
-            /*switch ($perfil) {
-                case 'auditor':
-                        $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
-                        header("Location: ../indexAuditor.php");
-                        exit();
-                    break;
-                case 'supervisor':
-                        $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
-                        header("Location: ../indexSupervisor.php");
-                        exit();
-                    break;
-                  case 'usuario':
-                  case 'superadmin':
-                        $_SESSION['usuario'] = $userPost; // gracias a esta linea el usuario puede usar el sistema 
-                        header("Location: ../index.php");
-                        exit();
-                    break;
-            }*/
-         header("Location: ../index.php");
-         exit();
+        
+        header("Location: ../index.php");
+        exit();
 
 //         $movement = 'inicio sesion';
 //         insert_log($movement);
@@ -99,10 +80,7 @@ if($userPost === 'soporte' and $passPost==='333'){
 
 }
 
-
-
-
-header("location: ../login.php");
+header("Location: ../login.php");
 exit();
 
 

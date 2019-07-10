@@ -1,13 +1,14 @@
 <?php 
 
-include_once(dirname(__FILE__).'/lib/utils.php');
 
+include_once(dirname(__FILE__).'/lib/utils.php');
 
 if(is_session_started() == false){
     //Si esta apagada la session la enscendemos
     session_start();
     ob_start();
 }
+
 
 $_SESSION['usuario'] = ""; 
 
@@ -26,34 +27,104 @@ $_SESSION['usuario'] = "";
         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+        <link rel="stylesheet" href="estilos/estilos.css">
         
-        
-    </head>
-   <body>
-  <h2>Login</h2>
-    <p>Ingrese sus datos</p>
-    <div style="margin:20px 0;"></div>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+   
+        <style>
     
-    <div class="easyui-panel" title="Iniciar sesión" style="width:100%;max-width:400px;padding:30px 60px;">
+            body{
+                padding: 15px;
+            }
+            
+            #menu{ 
+                background-color: #000; 
+                overflow: hidden;
+            }
+            
+            #menu ul{
+            list-style: none; /*le saco las bolitas a los link*/
+            margin: 0;
+            padding: 0;
+            }
+
+            #menu ul li{
+                display: inline-block; 
+            }
+            
+            #menu ul li a{
+                color: white; 
+                display: block; /*permite que el padding tambien funcione hacia arriba. Sin display: block, solo funciona el padding hacia los lados*/
+                padding: 20px 20px; 
+                text-decoration: none; /*le quita el subrayado*/
+            }
+            
+            #menu ul li a:hover{
+                background-color: #75ACEC; 
+            }
+            
+            .item-r{
+                float: right;
+            }
+        </style>
+    
+
+    
+    </head>
+
+   <body>
+       <nav id="menu">
+           <ul>
+               <li><a href="#">Backup</a></li>
+               <li><a href="respaldos/index.php">Restaurar</a></li>
+               <li class="item-r"><a href="empresas/empresas.php">Volver a Empresas</a></li> 
+           </ul>
+      </nav>
+   
+   <form action="login/acceso.php" method="post" class="formulario">
+    <h1>Iniciar sesión</h1> 
      
-      
-        <form id="ff" method="post" action="login/acceso.php">
-            <div style="margin-bottom:20px">
-                <input class="easyui-textbox" name="userPost" style="width:100%" data-options="label:'Usuario:',required:true" required>
-            </div>
-          
-            <div style="margin-bottom:20px">
-                <input class="easyui-passwordbox" prompt="Password" name="passPost" style="width:100%" data-options="label:'Contraseña:',required:true" required>
-            </div>
-                   
-            <div style="text-align:center;padding:5px 0">
-                <input type="submit" class="easyui-linkbutton c6" value="Login" style="width:30%;height:40px;">
-            </div>     
-           
-        </form>
-        
+    <div class="contenedor">
+
+        <div class="input-contenedor">
+            <i class="fas fa-user icon"></i>
+            <input type="text" placeholder="Usuario" name="userPost" required>
+        </div>
+
+        <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+		<input type="password" placeholder="Contraseña" name="passPost" required>
+		<span id="show-hide-passwd" action="hide" class="input-group-addon glyphicon glyphicon glyphicon-eye-open"></span>
+	</div>
+
+        <input type="submit" class="button" value="Ingresar">
     </div>
-      
+ </form>
+       
+ <script>
+		$(document).on('ready', function() {
+			$('#show-hide-passwd').on('click', function(e) {
+				e.preventDefault();
+				var current = $(this).attr('action');
+				if (current == 'hide') {
+					$(this).prev().attr('type','text');
+					$(this).removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close').attr('action','show');
+				}
+				if (current == 'show') {
+					$(this).prev().attr('type','password');
+					$(this).removeClass('glyphicon-eye-close').addClass('glyphicon-eye-open').attr('action','hide');
+				}
+			})
+		})
+	</script>      
+       
+       
+       
+       
+       
+       
 </body>
 </html>
 
