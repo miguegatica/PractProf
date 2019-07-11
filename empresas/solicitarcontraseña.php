@@ -28,7 +28,22 @@ if(isset($_POST['enviar'])){
  //Luego comparar la contrasenia que ingresa con la bbdd 'clave' en la talba 'clave' 
     
     $contrasenia = mt_rand(3333,9999);
+    $uso = 'true';
     
+    
+//     $insertarempresa = $conn->prepare('INSERT INTO empresas (nombre, bd, contrasenia) VALUES (:nombre, :bd, :contrasenia) ');
+//        $insertarempresa->bindParam(':nombre', $companyname);
+//        $insertarempresa->bindParam(':bd', $bd_name);
+//        $insertarempresa->bindParam(':contrasenia', $contrasenia);
+//        $insertarempresa->execute();
+//    
+    
+    $conn = new PDO ('mysql:host=localhost;dbname=claves','root','');
+    $insertPassword = $conn->prepare('INSERT INTO claves (contrasenia, uso) VALUES (:contrasenia, :uso) ');
+    $insertPassword->bindParam(':contrasenia', $contrasenia);
+    $insertPassword->bindParam(':uso', $uso);
+    $insertPassword->execute(); 
+      
     
     $mail = new PHPMailer(true);
 
@@ -56,7 +71,7 @@ if(isset($_POST['enviar'])){
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Respuesta a la solicitud de contrasenia';
-        $mail->Body    = 'Estimado '.$name.', en respuesta a la solicitud de contraseña, ingrese esta contraseña única: '.$contrasenia;
+        $mail->Body    = 'Estimado '.$name.', en respuesta a la solicitud de clave para Crear Empresa, ingrese esta clave única: '.$contrasenia.' . Proteja esta contraseña, con la misma podrá realizar copias de seguridad y restauración. Si desea crear otra empresa, volver a solicitar una nueva clave';
 
 //        aca podria dejarle el enlace para que valla directamente a ingresar la contraseña
         

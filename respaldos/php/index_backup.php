@@ -27,7 +27,7 @@
                 </div>
 
                  <!--<input type="submit" class="button" value="Crear" name="crear">-->
-                 <input type="submit" class="button" value="Realizar copia de seguridad"/>
+                <input type="submit" class="button" value="Realizar copia de seguridad" name="backup"/>
                  <p>Para hacer backup, ingrese la contraseña que se le solicito al Crear Empresa.</p>
             </div>
         </form>

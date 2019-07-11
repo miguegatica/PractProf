@@ -4,10 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/miguel/empresas/empresas.php</file>
-            <file>file:/C:/xampp/htdocs/miguel/empresas/solicitarcontraseña.php</file>
-            <file>file:/C:/xampp/htdocs/miguel/lib/connections/conn.php</file>
-            <file>file:/C:/xampp/htdocs/miguel/respaldos/index.php</file>
-            <file>file:/C:/xampp/htdocs/miguel/empresas/nuevaempresa.php</file>
+            <file>file:/C:/xampp/htdocs/miguel/respaldos/php/Restore.php</file>
+            <file>file:/C:/xampp/htdocs/miguel/respaldos/php/index_restore.php</file>
         </group>
     </open-files>
 </project-private>

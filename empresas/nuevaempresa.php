@@ -5,17 +5,38 @@
 
 if(isset($_POST['crear'])){
 
-    $conn = new PDO ('mysql:host=localhost;dbname=sistemas_3','root','');
-
     $contrasenia = $_POST['contrasenia'];
+    
+
+     $uso = 'false';
+        
      
-    $statement=$conn->query("SELECT count(*) from empresas where contrasenia = $contrasenia");
+    //VOY A REVISAR SI LA CLAVE TIENE PERMISOS  
+    $conn = new PDO ('mysql:host=localhost;dbname=claves','root','');
+    
+    $uso = $conn->prepare('SELECT uso FROM claves where contrasenia = :contrasenia');
+    $uso->bindParam(':contrasenia', $contrasenia);
+    $uso->execute();
+    
+    $resultUso = $uso->fetch(); 
+    
+    $esteUso = $resultUso[0];
+    
+    //VOY A REVISAR SI EXISTE LA CLAVE
+    $statement = $conn->prepare('SELECT count(*) FROM claves WHERE contrasenia = :contrasenia');
+    $statement->bindParam(':contrasenia', $contrasenia);
+    $statement->execute();
     
     $result = $statement->fetch(); 
     
     $count = $result[0];
     
+    
     if ($count == 0){
+        echo '<script>alert("Contraseña no existe. Solicitar nueva contraseña.");</script>';
+    } elseif ($esteUso == 'false'){
+        echo '<script>alert("Contraseña no tiene permiso de uso! Solicitar nueva contraseña.");</script>';
+    } else{
         
         $companyname = $_POST['name'];
 
@@ -26,15 +47,28 @@ if(isset($_POST['crear'])){
         $bd_name=str_replace('ñ','n',$bd_name);
         $bd_name=str_replace('Ñ','N',$bd_name);
 
-    //    $conn = new PDO ('mysql:host=localhost;dbname=sistemas_3','root','');
+        
 
+        // INSERTO EN LA TABLA GENERAL
+        
+        $conn = new PDO ('mysql:host=localhost;dbname=sistemas_3','root','');
+        
         $insertarempresa = $conn->prepare('INSERT INTO empresas (nombre, bd, contrasenia) VALUES (:nombre, :bd, :contrasenia) ');
         $insertarempresa->bindParam(':nombre', $companyname);
         $insertarempresa->bindParam(':bd', $bd_name);
         $insertarempresa->bindParam(':contrasenia', $contrasenia);
         $insertarempresa->execute();
+        
+        //ACTUALIZO EN LA BASE DE DATOS DE CLAVES PARA DARLA A USO = FALSE
+        $uso = 'false';
+        
+        $conn = new PDO ('mysql:host=localhost;dbname=claves','root','');
+        $insertPassword = $conn->prepare('UPDATE claves SET uso =:uso WHERE contrasenia=:contrasenia');
+        $insertPassword->bindParam(':uso', $uso);
+        $insertPassword->bindParam(':contrasenia', $contrasenia);
+        $insertPassword->execute(); 
 
-        //**** YA INSERTE EN LA TABLA GENERAL **********
+        //**** CREO LA BASE DE DATOS FUERA DEL SISTEMA **********
 
         $conexion = new PDO('mysql:host=localhost','root','');//Conexion al servidor, sin seleccionar ninguna base de datos
 
@@ -274,18 +308,13 @@ if(isset($_POST['crear'])){
 
 
         echo '<script>alert("La empresa ha sida creada. Ir a empresas");</script>';
+    }
+        
 
-//            header('empresas.php'); 
-    }
-    
-    else
-    {
-         echo '<script>alert("Contraseña no válida! Solicitar contraseña.");</script>';
+}        
         
-    }
-        
-}
-    
+
+
 
 
 
