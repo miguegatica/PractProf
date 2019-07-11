@@ -8,11 +8,21 @@ $con2 = new PDO ('mysql:host=localhost;dbname=sistemas_3','root','');
 
 $query2 = $con2->query('SELECT * FROM empresas');
 
+
 if(isset($_POST['ingresar'])){
-    $bd = $_POST['empresa'];
+    $bd = $_POST['empresa'];//aca seleccione del select box el nombre de la base de datos  
 //    echo $bd; 
     
     $_SESSION['empresa.db'] = $bd; 
+    
+    $nombreEmpresa = $con2->prepare('SELECT * FROM empresas WHERE bd =:nombre');
+    $nombreEmpresa->bindParam(':nombre', $bd);
+    $nombreEmpresa->execute(); 
+    
+    foreach ($nombreEmpresa as $datos) {
+        $_SESSION['empresa.nombre'] = $datos['nombre'];//aca obtengo el nombre de la empresa
+    }
+    
     header('Location: ../index.php');
 }
 else{

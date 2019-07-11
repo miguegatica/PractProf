@@ -1,6 +1,7 @@
 
 
 body {
+    padding: 15px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     background: url(../imagenes/imagen.jpg);
@@ -10,6 +11,46 @@ body {
 * {
     box-sizing: border-box;
 }
+
+
+.menu{
+    background-color: #000; 
+    overflow: hidden;
+}
+
+.menu ul{
+list-style: none; /*le saco las bolitas a los link*/
+margin: 0;
+padding: 0;
+}
+
+.menu ul li{
+    display: inline-block; 
+}
+
+.menu ul li a{
+    color: white; 
+    display: block; /*permite que el padding tambien funcione hacia arriba. Sin display: block, solo funciona el padding hacia los lados*/
+    padding: 20px 20px; 
+    text-decoration: none; /*le quita el subrayado*/
+}
+
+.menu ul li a:hover{
+    background-color: #75ACEC; 
+}
+
+.item-r{
+    float: right;
+}
+
+
+
+
+
+
+
+
+
 
 
 .contenedor{
@@ -25,13 +66,20 @@ body {
     padding: 3px;
 }
 
-
-
-h1{
+h1 {
     text-align: center;
     color: #1a2537;
     font-size: 40px;
 }
+
+/*h1, h2{
+    text-align: center;
+    color: #1a2537;
+    font-size: 40px;
+}*/
+
+
+
 input[type="text"],
 input[type="password"]{
     font-size: 20px;
@@ -43,6 +91,15 @@ input[type="password"]{
     margin-bottom: 15px;
     border: 1px solid #aaa;
 }
+
+h3{
+    text-align: center;
+    color: #1a2537;
+    font-size: 20px;
+}
+
+
+
 .icon{
     min-width: 50px;
     text-align: center;

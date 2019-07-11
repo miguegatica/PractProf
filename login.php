@@ -21,9 +21,9 @@ $_SESSION['usuario'] = "";
     <head>
         <meta charset="UTF-8">
         <title>Sistema Práctica Profesional</title>
-        <link rel="stylesheet" type="text/css" href="lib/easyui/themes/default/easyui.css">
+<!--        <link rel="stylesheet" type="text/css" href="lib/easyui/themes/default/easyui.css">
         <link rel="stylesheet" type="text/css" href="lib/easyui/themes/icon.css">
-        <link rel="stylesheet" type="text/css" href="lib/easyui/demo/demo.css">
+        <link rel="stylesheet" type="text/css" href="lib/easyui/demo/demo.css">-->
         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
@@ -33,52 +33,13 @@ $_SESSION['usuario'] = "";
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
    
-        <style>
-    
-            body{
-                padding: 15px;
-            }
-            
-            #menu{ 
-                background-color: #000; 
-                overflow: hidden;
-            }
-            
-            #menu ul{
-            list-style: none; /*le saco las bolitas a los link*/
-            margin: 0;
-            padding: 0;
-            }
-
-            #menu ul li{
-                display: inline-block; 
-            }
-            
-            #menu ul li a{
-                color: white; 
-                display: block; /*permite que el padding tambien funcione hacia arriba. Sin display: block, solo funciona el padding hacia los lados*/
-                padding: 20px 20px; 
-                text-decoration: none; /*le quita el subrayado*/
-            }
-            
-            #menu ul li a:hover{
-                background-color: #75ACEC; 
-            }
-            
-            .item-r{
-                float: right;
-            }
-        </style>
-    
-
-    
     </head>
 
    <body>
-       <nav id="menu">
+       <nav class="menu">
            <ul>
-               <li><a href="#">Backup</a></li>
-               <li><a href="respaldos/index.php">Restaurar</a></li>
+               <li><a href="respaldos/php/index_backup.php">Backup</a></li>
+               <li><a href="respaldos/php/index_restore.php">Restaurar</a></li>
                <li class="item-r"><a href="empresas/empresas.php">Volver a Empresas</a></li> 
            </ul>
       </nav>

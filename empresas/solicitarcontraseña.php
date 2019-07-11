@@ -16,6 +16,17 @@ if(isset($_POST['enviar'])){
     
     $name = $_POST['name'];
     $correo = $_POST['correo'];
+    
+ //insertar esta contrasenia en la base de datos 'claves' en la tabla 'claves' 
+ //crear la tabla 'informacion' dentro de cada base de datos con los campos:
+        //*nombre
+        //*bd
+        //*CUIT
+        //*Sit IVA
+        //*Domicilio 
+ 
+ //Luego comparar la contrasenia que ingresa con la bbdd 'clave' en la talba 'clave' 
+    
     $contrasenia = mt_rand(3333,9999);
     
     

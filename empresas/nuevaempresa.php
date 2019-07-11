@@ -3,16 +3,13 @@
 //require_once '../class.consultas.php';
 
 
-
-
-
 if(isset($_POST['crear'])){
 
     $conn = new PDO ('mysql:host=localhost;dbname=sistemas_3','root','');
 
     $contrasenia = $_POST['contrasenia'];
      
-    $statement=$conn->query("SELECT count(*) from empresas where contrasenia = 6566");
+    $statement=$conn->query("SELECT count(*) from empresas where contrasenia = $contrasenia");
     
     $result = $statement->fetch(); 
     
@@ -303,48 +300,11 @@ if(isset($_POST['crear'])){
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
         <link rel="stylesheet" href="../estilos/estilos.css">
-
         
-        <style>
-    
-            body{
-                padding: 15px;
-            }
-            
-            #menu{ 
-                background-color: #000; 
-                overflow: hidden;
-            }
-            
-            #menu ul{
-            list-style: none; /*le saco las bolitas a los link*/
-            margin: 0;
-            padding: 0;
-            }
-
-            #menu ul li{
-                display: inline-block; 
-            }
-            
-            #menu ul li a{
-                color: white; 
-                display: block; /*permite que el padding tambien funcione hacia arriba. Sin display: block, solo funciona el padding hacia los lados*/
-                padding: 20px 20px; 
-                text-decoration: none; /*le quita el subrayado*/
-            }
-            
-            #menu ul li a:hover{
-                background-color: #75ACEC; 
-            }
-            
-            .item-r{
-                float: right;
-            }
-        </style>
 </head>  
 <body>
     
- <nav id="menu">
+ <nav class="menu">
            <ul>
                <li class="item-r"><a href="../empresas/empresas.php">Volver a Empresas</a></li> 
            </ul>
