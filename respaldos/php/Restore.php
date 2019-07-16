@@ -11,7 +11,7 @@ $nombreBD = $_SESSION['empresa.db'];
 
 $contrasenia = $_POST['contrasenia'];
 
-$company_backup = $_POST['company_backup'];
+//$company_backup = $_POST['company_backup'];
 
 
 

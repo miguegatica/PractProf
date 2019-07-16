@@ -79,11 +79,13 @@ if (crearConexion($conn)){
 
     $id = devolverIdCustomer($num_cliente);
     
-    datoscustormerNew ($id);
+    datoscustormer($id);
     
     $movement = 'INSERTAR';
             
     insert_auditoriaCustomer($movement);
+    
+ 
     
     $conn->close();
     exit(json_response("",200));

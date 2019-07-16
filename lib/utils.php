@@ -2,7 +2,6 @@
 <?php
 
 
-
 function is_session_started()
 {
     if ( php_sapi_name() !== 'cli' ) {
@@ -43,14 +42,19 @@ function json_response($message = null, $code = 200)
 
 
 
-// ************** ESTA PARTE LA HICE YO *********************************************************
+  function actualizarAudClientes() {        
+  "<script>
+      url='auditor/auditoria_cliente_retrieve.php';
 
+</script>";     
+ 
+}
 
     
 //***************** AFIP ACTULIZAR ***************************** //
 
 
-function datosafipOld ($id){
+function datosafip ($id){
 
 $conn = null;
     if (crearConexion($conn)){
@@ -58,82 +62,31 @@ $conn = null;
         $result = $conn->query($query);
         $resultObj = $result->fetch_object();
         
-        $_SESSION['nro_afipOld']= $resultObj->nro_afip;
-        $_SESSION['descripcionOld']= $resultObj->descripcion;
-        $_SESSION['siglaOld']= $resultObj->sigla;
+        $_SESSION['nro_afip']= $resultObj->nro_afip;
+        $_SESSION['descripcion']= $resultObj->descripcion;
+        $_SESSION['sigla']= $resultObj->sigla;
     
         $conn->close();
 
     } 
-//  $bd = $_SESSION['empresa.db']; 
-//    
-//  $conn = new PDO ("mysql:host=localhost;dbname=$bd",'root','');
-//    
-//    
-//    $rows = null;
-//    $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
-//    $statement = $conn->prepare($query);
-//    $statement->execute();
-//    while($result = $statement->fetch()){
-//        $rows[] = $result;
-//    }
-//    $_SESSION['nro_afipOld'] = $rows['nro_afip'];
-//    $_SESSION['descripcionOld'] = $rows['descripcion'];
-//    $_SESSION['siglaOld'] = $rows['descripcion'];
-    
-   
 }
 
 
-
-
-
-function datosafipNew ($id){
-    
-//  $bd = $_SESSION['empresa.db']; 
-//    
-//  $conn = new PDO ("mysql:host=localhost;dbname=$bd",'root','');
-//    
-//  
-//  $rows = null;
-//    $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
-//    $statement = $conn->prepare($query);
-//    $statement->execute();
-//    while($result = $statement->fetch()){
-//        $rows[] = $result;
-//    }
-//    $_SESSION['nro_afipNew'] = $rows['nro_afip'];
-//    $_SESSION['descripcionNew'] = $rows['descripcion'];
-//    $_SESSION['siglaNew'] = $rows['descripcion'];
-    
-$conn = null;
-    if (crearConexion($conn)){
-        $query = "Select nro_afip, descripcion, sigla from tipodocumento where id = '$id'";
-        $result = $conn->query($query);
-        $resultObj = $result->fetch_object();
-        $_SESSION['nro_afipNew']= $resultObj->nro_afip;
-        $_SESSION['descripcionNew']= $resultObj->descripcion;
-        $_SESSION['siglaNew']= $resultObj->sigla;
-    
-        $conn->close();
-
-    }    
-}
 
 //************* CLIENTE ACTUALIZAR **************************
 
-function datoscustormerOld ($id){
+function datoscustormer ($id){
 $conn = null;
     if (crearConexion($conn)){
         $query = "Select num_cliente, apellido, nombre, nro_documento, tipodocumento_id  from cliente where id = '$id'";
         $result = $conn->query($query);
         $resultObj = $result->fetch_object();
         
-        $_SESSION['num_clienteOld']= $resultObj->num_cliente;
-        $_SESSION['apellidoOld']= $resultObj->apellido;
-        $_SESSION['nombreOld']= $resultObj->nombre;
-        $_SESSION['nro_documentoOld']= $resultObj->nro_documento;
-        $_SESSION['tipodocumento_idOld']= $resultObj->tipodocumento_id;
+        $_SESSION['num_cliente']= $resultObj->num_cliente;
+        $_SESSION['apellido']= $resultObj->apellido;
+        $_SESSION['nombre']= $resultObj->nombre;
+        $_SESSION['nro_documento']= $resultObj->nro_documento;
+        $_SESSION['tipodocumento_id']= $resultObj->tipodocumento_id;
     
         $conn->close();
 
@@ -141,25 +94,6 @@ $conn = null;
 }
 
 
-
-
-function datoscustormerNew ($id){
-$conn = null;
-    if (crearConexion($conn)){
-        $query = "Select num_cliente, apellido, nombre, nro_documento, tipodocumento_id  from cliente where id = '$id'";
-        $result = $conn->query($query);
-        $resultObj = $result->fetch_object();
-        
-        $_SESSION['num_clienteNew']= $resultObj->num_cliente;
-        $_SESSION['apellidoNew']= $resultObj->apellido;
-        $_SESSION['nombreNew']= $resultObj->nombre;
-        $_SESSION['nro_documentoNew']= $resultObj->nro_documento;
-        $_SESSION['tipodocumento_idNew']= $resultObj->tipodocumento_id;
-    
-        $conn->close();
-
-    }    
-}
 
 
 //************** INSERT INTO afipauditoria ****************** //
@@ -175,48 +109,16 @@ function insert_auditoriaDoc($movement){
     $time=date("H:i:s");   
       
     $userPost = $_SESSION['usuario'];
-    
-    
-//    $ip = $_SERVER["REMOTE_ADDR"];
+
 
     $conn = null;
     if (crearConexion($conn)){
-        
-        switch ($movement) {
-            case 'ACTUALIZAR':
-                    $nro_afipOld = $_SESSION['nro_afipOld'];
-                    $descripcionOld = $_SESSION['descripcionOld'];
-                    $siglaOld = $_SESSION['siglaOld'];
+    
+        $nro_afip = $_SESSION['nro_afip'];
+        $descripcion = $_SESSION['descripcion'];
+        $sigla = $_SESSION['sigla'];
 
-                    $nro_afipNew = $_SESSION['nro_afipNew'];
-                    $descripcionNew = $_SESSION['descripcionNew'];
-                    $siglaNew = $_SESSION['siglaNew'];
-
-                
-                  $queryAuditor = "INSERT INTO afipauditoria (nro_afipOld, descripcionOld, siglaOld, nro_afipNew, descripcionNew, siglaNew, usuario, accion, fecha, hora) VALUES ('$nro_afipOld', '$descripcionOld', '$siglaOld', '$nro_afipNew', '$descripcionNew', '$siglaNew', '$userPost', '$movement', '$date', '$time')";
-
-                break;
-            case 'ELIMINAR':
-                
-                  $nro_afipOld = $_SESSION['nro_afipOld'];
-                  $descripcionOld = $_SESSION['descripcionOld'];
-                  $siglaOld = $_SESSION['siglaOld'];
-               
-                  $queryAuditor = "INSERT INTO afipauditoria (nro_afipOld, descripcionOld, siglaOld, usuario, accion, fecha, hora) VALUES ('$nro_afipOld', '$descripcionOld', '$siglaOld', '$userPost', '$movement', '$date', '$time')";
-
-                break;
-            case 'INSERTAR':
-                  $nro_afipNew = $_SESSION['nro_afipNew'];
-                  $descripcionNew = $_SESSION['descripcionNew'];
-                  $siglaNew = $_SESSION['siglaNew'];
-                
-                  $queryAuditor = "INSERT INTO afipauditoria (nro_afipNew, descripcionNew, siglaNew, usuario, accion, fecha, hora) VALUES ('$nro_afipNew', '$descripcionNew', '$siglaNew', '$userPost', '$movement', '$date', '$time')";
-
-                break;
-
-            default:
-                break;
-        }  
+        $queryAuditor = "INSERT INTO afipauditoria (nro_afip, descripcion, sigla, usuario, accion, fecha, hora) VALUES ('$nro_afip', '$descripcion', '$sigla', '$userPost', '$movement', '$date', '$time')";
 
         
         $conn->query($queryAuditor);
@@ -252,49 +154,15 @@ function insert_auditoriaCustomer($movement){
     $conn = null;
     if (crearConexion($conn)){
 
-        switch ($movement) {
-            case 'ACTUALIZAR':
-                $num_clienteOld =  $_SESSION['num_clienteOld']; 
-                $apellidoOld = $_SESSION['apellidoOld'];
-                $nombreOld = $_SESSION['nombreOld'];
-                $nro_documentoOld = $_SESSION['nro_documentoOld'];
-                $tipodocumento_idOld = $_SESSION['tipodocumento_idOld'];
+        $num_cliente =  $_SESSION['num_cliente']; 
+        $apellido = $_SESSION['apellido'];
+        $nombre = $_SESSION['nombre'];
+        $nro_documento = $_SESSION['nro_documento'];
+        $tipodocumento_id = $_SESSION['tipodocumento_id'];                
 
-                $num_clienteNew =  $_SESSION['num_clienteNew']; 
-                $apellidoNew = $_SESSION['apellidoNew'];
-                $nombreNew = $_SESSION['nombreNew'];
-                $nro_documentoNew = $_SESSION['nro_documentoNew'];
-                $tipodocumento_idNew = $_SESSION['tipodocumento_idNew'];                
-                
-                
-                $queryAuditor = "INSERT INTO clienteauditoria (num_clienteOld, apellidoOld, nombreOld, nro_documentoOld, tipodocumento_idOld, num_clienteNew, apellidoNew, nombreNew, nro_documentoNew, tipodocumento_idNew, usuario, accion, fecha, hora) VALUES ('$num_clienteOld', '$apellidoOld', '$nombreOld', '$nro_documentoOld', '$tipodocumento_idOld', '$num_clienteNew', '$apellidoNew', '$nombreNew', '$nro_documentoNew', '$tipodocumento_idNew', '$userPost', '$movement', '$date', '$time')";
-                break;
-         
-            case 'ELIMINAR':
-                $num_clienteOld =  $_SESSION['num_clienteOld']; 
-                $apellidoOld = $_SESSION['apellidoOld'];
-                $nombreOld = $_SESSION['nombreOld'];
-                $nro_documentoOld = $_SESSION['nro_documentoOld'];
-                $tipodocumento_idOld = $_SESSION['tipodocumento_idOld'];               
-                
-              $queryAuditor = "INSERT INTO clienteauditoria (num_clienteOld, apellidoOld, nombreOld, nro_documentoOld, tipodocumento_idOld, usuario, accion, fecha, hora) VALUES ('$num_clienteOld', '$apellidoOld', '$nombreOld', '$nro_documentoOld', '$tipodocumento_idOld', '$userPost', '$movement', '$date', '$time')";
-              break;
-            
-            
-            case 'INSERTAR':
-                $num_clienteNew =  $_SESSION['num_clienteNew']; 
-                $apellidoNew = $_SESSION['apellidoNew'];
-                $nombreNew = $_SESSION['nombreNew'];
-                $nro_documentoNew = $_SESSION['nro_documentoNew'];
-                $tipodocumento_idNew = $_SESSION['tipodocumento_idNew'];  
-                
-                $queryAuditor = "INSERT INTO clienteauditoria (num_clienteNew, apellidoNew, nombreNew, nro_documentoNew, tipodocumento_idNew, usuario, accion, fecha, hora) VALUES ('$num_clienteNew', '$apellidoNew', '$nombreNew', '$nro_documentoNew', '$tipodocumento_idNew', '$userPost', '$movement', '$date', '$time')";
-                break;
 
-            default:
-                break;
-        }
- 
+        $queryAuditor = "INSERT INTO clienteauditoria (num_cliente, apellido, nombre, nro_documento, tipodocumento_id, usuario, accion, fecha, hora) VALUES ('$num_cliente', '$apellido', '$nombre', '$nro_documento', '$tipodocumento_id', '$userPost', '$movement', '$date', '$time')";
+
         $conn->query($queryAuditor);
 
         $conn->close();

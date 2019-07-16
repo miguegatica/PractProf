@@ -98,15 +98,15 @@ if(isset($_POST['enviar'])){
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
         <link rel="stylesheet" href="../estilos/estilos.css">
+        
 </head>  
-
-<body>
+<body class="mainBody">
     
-<!--<script type="text/javascript">
-    function ConfirmEnvio(){
-        var rta = confirm('La contraseña ha sida enviada. Revise su gmail');
-    }
-</script>-->
+    <div id="header">
+               <ul class="nav">
+                    <li><a href="../empresas/empresas.php">Volver a Empresas</a></li> 
+                </ul>
+    </div>    
     
  <form class="formulario" action="solicitarcontraseña.php" method="POST">
     <h1>Solicitar contraseña</h1> 
@@ -123,7 +123,7 @@ if(isset($_POST['enviar'])){
         </div>
 
          <input type="submit" class="button" value="Enviar" name="enviar">
-         <p>¿Ya tienes contraseña?<a class="link" href="nuevaempresa.php"> Crear Empresa</a></p>
+         <p>¿Ya tienes contraseña?<a class="referencia" href="nuevaempresa.php"> Crear Empresa</a></p>
     </div>
 
  </form>

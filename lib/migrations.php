@@ -33,7 +33,7 @@ if (crearConexion($db)) {
 
         createRowsGeneralButtons($db, $module, $prefix . "usuarios",        "Usuarios",         "agregarTabUsuario()",      "icon-man",         "easyui-linkbutton", "mm1", "a");
         createRowsGeneralButtons($db, $module, $prefix . "permisos",        "Permisos",         "agregarTabPermisos()",     "icon-hlock",       "easyui-linkbutton", "mm1", "a");
-        createRowsGeneralButtons($db, $module, $prefix . "tiposdocumentos", "Tipos Documento",  "agregarTabTiposDocs()",    "icon-record2",     "easyui-linkbutton", "mm1", "a");
+        createRowsGeneralButtons($db, $module, $prefix . "tiposdocumentos", "Tipos Documentos",  "agregarTabTiposDocs()",    "icon-record2",     "easyui-linkbutton", "mm1", "a");
         createRowsGeneralButtons($db, $module, $prefix . "clientes",        "Clientes",         "agregarTabCliente()",      "icon-man",         "easyui-linkbutton", "mm1", "a");
         createRowsGeneralButtons($db, $module, $prefix . "auditoriaclientes", "Auditoria Clientes",  "agregarTabAuditoriaClient()",    "icon-record2",     "easyui-linkbutton", "mm1", "a");
         createRowsGeneralButtons($db, $module, $prefix . "auditoriaafip", "Auditoria Afip",  "agregarTabAuditoriaDoc()",    "icon-record2",     "easyui-linkbutton", "mm1", "a");    

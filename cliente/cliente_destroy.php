@@ -13,7 +13,7 @@ $id = isset($_REQUEST["id"])? $_REQUEST["id"] :"";
 //}
 
 
-    datoscustormerOld ($id);
+    datoscustormer($id);
 
     $movement = 'ELIMINAR';
 

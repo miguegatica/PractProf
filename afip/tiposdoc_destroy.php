@@ -19,7 +19,7 @@ if(empty($id)){
 
     $cant = verSiHayClientes($id);
     if ($cant == 0 ){
-      datosafipOld ($id);
+      datosafip ($id);
     
       $movement = 'ELIMINAR';
             

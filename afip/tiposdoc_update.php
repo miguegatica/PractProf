@@ -35,7 +35,7 @@ if(empty($sigla)){
 }
 
 
- datosafipOld ($id);  
+ datosafip ($id);  
 
 
 $conn = null;
@@ -58,7 +58,7 @@ if (crearConexion($conn)){
              
     }
     
-datosafipNew ($id);
+datosafip ($id);
     
 $movement = 'ACTUALIZAR';
 insert_auditoriaDoc($movement); 

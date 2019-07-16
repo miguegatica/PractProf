@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+//session_start();
 
 
 //$BD = $_SESSION['empresa.db']; 

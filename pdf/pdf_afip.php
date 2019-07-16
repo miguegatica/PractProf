@@ -6,6 +6,8 @@
 
 require('../lib_pdf/fpdf.php');
 
+session_start(); 
+
 class PDF extends FPDF
 {
     // Cabecera de p�gina
@@ -20,7 +22,7 @@ class PDF extends FPDF
         // T�tulo
         $this->Ln(10);
         $this->Cell(60);
-        $this->Cell(120,10,'LISTADO DE AFIP',1,0,'C');
+        $this->Cell(120,10,'AUDITORIA AFIP',1,0,'C');
         // Salto de l�nea
         $this->Cell(60);
         #$this->Cell(120,10,'FECHA: '.date('d/m/Y'),1,0,'C');
@@ -42,13 +44,11 @@ class PDF extends FPDF
     // Una tabla
     function Tabla()
     {
+        $dbname = $_SESSION['empresa.db']; 
         // Anchuras de las columnas
         $w = array(20, 35, 25, 10, 43, 150);
         // Cabeceras
         $this->Cell($w[3],7,'id',1,0,'C');
-        $this->Cell($w[0],7,'NroAfip',1,0,'C');
-        $this->Cell($w[0],7,'Descripcion',1,0,'C');
-        $this->Cell($w[0],7,'Sigla',1,0,'C');
         $this->Cell($w[0],7,'NroAfip',1,0,'C');
         $this->Cell($w[0],7,'Descripcion',1,0,'C');
         $this->Cell($w[0],7,'Sigla',1,0,'C');
@@ -58,17 +58,14 @@ class PDF extends FPDF
         $this->Cell($w[0],7,'hora',1,0,'C');
         $this->Ln();
         // Datos
-        $conexion = new PDO('mysql:host=localhost;dbname=proyectopp1','root','');
+        $conexion = new PDO('mysql:host=localhost;dbname='.$dbname,'root','');
         $data=$conexion->query("SELECT * from afipauditoria");
         foreach($data as $row)
          {
         $this->Cell($w[3],6,$row['id'],'LR');
-        $this->Cell($w[0],6,$row['nro_afipOld'],'LR');
-        $this->Cell($w[0],6,$row['descripcionOld'],'LR');
-        $this->Cell($w[0],6,$row['siglaOld'],'LR');
-        $this->Cell($w[0],6,$row['nro_afipNew'],'LR');
-        $this->Cell($w[0],6,$row['descripcionNew'],'LR');
-        $this->Cell($w[0],6,$row['siglaNew'],'LR');
+        $this->Cell($w[0],6,$row['nro_afip'],'LR');
+        $this->Cell($w[0],6,$row['descripcion'],'LR');
+        $this->Cell($w[0],6,$row['sigla'],'LR');
         $this->Cell($w[0],6,$row['usuario'],'LR');
         $this->Cell($w[0],6,$row['accion'],'LR');
         $this->Cell($w[0],6,$row['fecha'],'LR');

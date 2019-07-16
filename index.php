@@ -22,10 +22,22 @@ include_once(dirname(__FILE__) . '/lib/buttons_retrieve.php');
         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
+        <link rel="stylesheet" href="estilos/estilos.css">
     </head>
-    <body>
+    <body class="whiteBody">
+        <div class="logoContorno">
+            <div class="logo">
+                <div class="nombreEmpresa">
+                    <?php echo 'EMPRESA: '.'"'.$_SESSION['empresa.nombre'].'"';?>
+                    <br>
+                    <br>
+                    <?php echo 'USUARIO: '.'"'.$_SESSION['usuario'].'"';?>
+                    
+                </div>
+            </div>
+        </div>
         <div>  
-            <nav style="padding:10px 0px;border:1px solid #ddd;position: fixed;top: 0;left: 0;z-index: 1050;width: 100%;" >
+            <nav style="padding:10px 0px;border:1px solid #ddd;top: 400;left: 0;z-index: 1050;width: 100%;" >
                 <?php writeButtons("mm1", $buttons, $mm1); ?>
                 <a href="login.php" class="easyui-linkbutton" data-options="plain:true" iconcls="icon-cancel">Salir</a>
             </nav>

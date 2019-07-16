@@ -27,15 +27,15 @@ if (isset($_POST['sort'])){
     $order=$_POST['order']; //Asc o DESC 
     
     switch ($sort) {
-        case 'nro_afipOld':
-            $query.="order by CAST(nro_afipOld as unsigned) $order ";
+        case 'nro_afip':
+            $query.="order by CAST(nro_afip as unsigned) $order ";
             break;
         default:
             $query.=" order by $sort  $order ";
             break;
     }
 }else{
-    $query .= "order by CAST(siglaOld as unsigned) ASC ";
+    $query .= "order by CAST(sigla as unsigned) ASC ";
 }
 
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";

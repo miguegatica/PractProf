@@ -55,7 +55,7 @@ if (crearConexion($conn)){
     
     $id = devolverIdAfip($nro_afip);
     
-    datosafipNew ($id);
+    datosafip ($id);
     
     $movement = 'INSERTAR';
             

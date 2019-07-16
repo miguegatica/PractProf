@@ -1,10 +1,10 @@
 
 
-body {
+.generalBody {
     padding: 15px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    /*background: url(../imagenes/imagen.jpg);*/
+    background: url(../imagenes/imagen.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -12,39 +12,111 @@ body {
     box-sizing: border-box;
 }
 
-
-.menu{
-    background-color: #000; 
-    overflow: hidden;
+.mainBody{
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: url(../imagenes/naturaleza.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    
 }
 
-.menu ul{
-list-style: none; /*le saco las bolitas a los link*/
-margin: 0;
-padding: 0;
-}
-
-.menu ul li{
-    display: inline-block; 
-}
-
-.menu ul li a{
-    color: white; 
-    display: block; /*permite que el padding tambien funcione hacia arriba. Sin display: block, solo funciona el padding hacia los lados*/
-    padding: 20px 20px; 
-    text-decoration: none; /*le quita el subrayado*/
-}
-
-.menu ul li a:hover{
-    background-color: #75ACEC; 
-}
-
-.item-r{
-    float: right;
+.whiteBody{
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: url(../imagenes/white.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    
 }
 
 
+.logoContorno{
+    width: 250px;
+    height: 100px;
+    background: #ffffff;
+    position: relative;  
+}
 
+.logo{
+    /*padding: 15px;*/
+    position: absolute;
+    top:5px;
+    bottom:0;
+    right:0;
+    left: 5px;
+    width: 240px;
+    height: 90px;
+    background: url(../imagenes/imagen.jpg);
+    /*margin: 0;*/
+    background-size:270px 90px;
+    background-attachment: fixed;
+    color: #ffffff; 
+}
+
+
+.nombreEmpresa{
+    position: absolute;
+    top:5px;
+    left: 5px;
+    font-size: 20px;
+    
+}
+
+/*div*/
+#header{
+    position: absolute;
+    top:0px;
+    bottom:0;
+    right:10px;
+    padding: 10px;
+    /*left:970px;*/
+    /*left: 550px;*/
+    margin: auto; 
+    /*width: 500px;*/
+    font-family: Arial, Helvetica, sans-serif; 
+    float: left;
+}
+
+ul {
+    list-style: none; 
+}
+
+.a{
+    /*font-size: 20px;*/
+    text-decoration: none;
+    /*margin: 10px 20px 10px 0px;*/ 
+    background: #3BA7E1;
+    box-shadow: 0px 5px 0px #1a1010;
+}
+
+
+/*caja*/
+.nav li a{
+    background-color: #010103; 
+    color: #fff;
+    text-decoration: none; 
+    padding: 15px 10px; 
+    display:block; 
+}
+
+.nav li a:hover{
+    background-color: #4f2f2f;
+    box-shadow: 0px 2px 0px #1a1010;
+    color: black;
+}
+
+.nav li a:active{
+  background-color: #1a1010;
+  box-shadow: none; 
+
+}
+
+.nav > li{
+    float:left; 
+}
 
 
 
@@ -130,12 +202,12 @@ h3{
 p{
     text-align: center;
 }
-.link{
+.referencia{
     text-decoration: none;
-      color: #1a2537;
+    color: #1a2537;
     font-weight: 600;
 }
-.link:hover{
+.referencia:hover{
      color: cadetblue;
 }
 @media(min-width:768px)
@@ -147,11 +219,6 @@ p{
         border-radius: 2%;
     }
 }
-
-
-
-
-
 
 
 

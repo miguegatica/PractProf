@@ -41,7 +41,7 @@ else{
        
 
 </head>
-    <body>
+    <body class="generalBody">
         <div>
             <form class="formulario" action="empresas.php" method="POST">
                 <h1>Seleccionar empresa</h1> 

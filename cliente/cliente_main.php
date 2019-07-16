@@ -11,6 +11,7 @@
 
         <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:300px"
                url="cliente/cliente_retrieve.php"
+               url="auditor/auditoria_cliente_retrieve.php"
                toolbar="#toolbarClientes" pagination="true"
                rownumbers="true" fitColumns="true" singleSelect="true">
             <thead>

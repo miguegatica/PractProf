@@ -15,6 +15,29 @@ var datamodulesperms = [
 
 
 
+
+$(document).on('ready', function() {
+        $('#show-hide-passwd').on('click', function(e) {
+                e.preventDefault();
+                var current = $(this).attr('action');
+                if (current == 'hide') {
+                        $(this).prev().attr('type','text');
+                        $(this).removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close').attr('action','show');
+                }
+                if (current == 'show') {
+                        $(this).prev().attr('type','password');
+                        $(this).removeClass('glyphicon-eye-close').addClass('glyphicon-eye-open').attr('action','hide');
+                }
+        })
+})
+
+
+
+
+
+
+
+
 function agregarTabTiposDocs(){
     
     var exist='Tipos Documento AFIP'; 
@@ -27,7 +50,7 @@ function agregarTabTiposDocs(){
         //SI NO existe lo agrega...por eso llama a la funcion "add" = agregar.
             $('#maintab').tabs('add',{ 
                     id:'tiposDoc',
-                    title:'Tipos Documento AFIP',  
+                    title:'Tipos Documentos AFIP',  
                     closable:true,//Cerrable...
                     href: 'afip/tiposdoc_main.php' //Y esta es la URL que indica el contenido.
                     //Dicha URL si la colocamos en el navegador tiene que mostrar algo...
@@ -111,12 +134,25 @@ function agregarTabAuditoriaClient(){
         $('#maintab').tabs('add',{ 
                 id:'Auditoria',
                 title:'Auditoria Cliente',  
-                closable:true,
+                closable:true, 
                 href: 'auditor/auditoria_cliente_main.php'   
         });
-            
+        actualizarAudClientes();        
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function agregarTabAuditoriaDoc(){

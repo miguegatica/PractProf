@@ -21,26 +21,27 @@ if (isset($_POST['rows'])==true){
 
 $cuantos_saltearse = ($pagina_seleccionada-1)*$cantidad_a_ver;
 $query = " select clienteauditoria.*, 
-(select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=clienteauditoria.tipodocumento_idOld) as tipodocumento_idOld, (select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=clienteauditoria.tipodocumento_idNew) as tipodocumento_idNew
-from clienteauditoria   ";       
+(select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=clienteauditoria.tipodocumento_id) as tipodocumento_id, (select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=clienteauditoria.tipodocumento_id) as tipodocumento_id
+from clienteauditoria";          
 
-if (isset($_POST['sort'])){
-    $sort=$_POST['sort'];//Columna
-    $order=$_POST['order']; //Asc o DESC 
-    
-    switch ($sort) {
-        case 'num_clienteOld':
-            $query.="order by CAST(num_clienteOld as unsigned) $order ";
-            break;
-        default:
-            $query.=" order by $sort  $order ";
-            break;
-    }
-}else{
-    $query .= "order by CAST(nombreOld as unsigned) ASC ";
-}
+//if (isset($_POST['sort'])){
+//    $sort=$_POST['sort'];//Columna
+//    $order=$_POST['order']; //Asc o DESC 
+//    
+//    switch ($sort) {
+//        case 'nro_afip':
+//            $query.="order by CAST(num_cliente as unsigned) $order ";
+//            break;
+//        default:
+//            $query.=" order by $sort  $order ";
+//            break;
+//    }
+//}else{
+//    $query .= "order by CAST(num_cliente as unsigned) ASC ";
+//}
 
 $query .=" limit $cuantos_saltearse, $cantidad_a_ver";
+
     
 
 $result["total"] = "500"; 

@@ -3,6 +3,9 @@
 
 require('../lib_pdf/fpdf.php');
 
+session_start(); 
+
+
 class PDF extends FPDF
 {
     // Cabecera de p�gina
@@ -17,7 +20,7 @@ class PDF extends FPDF
         // T�tulo
         $this->Ln(10);
         $this->Cell(60);
-        $this->Cell(120,10,'LISTADO DE CLIENTE',1,0,'C');
+        $this->Cell(120,10,'AUDITORIA CLIENTE',1,0,'C');
         // Salto de l�nea
         $this->Cell(60);
         #$this->Cell(120,10,'FECHA: '.date('d/m/Y'),1,0,'C');
@@ -39,15 +42,12 @@ class PDF extends FPDF
     // Una tabla
     function Tabla()
     {
+        
+        $dbname = $_SESSION['empresa.db']; 
         // Anchuras de las columnas
         $w = array(20, 35, 25, 10, 43, 150);
         // Cabeceras
         $this->Cell($w[3],7,'id',1,0,'C');
-        $this->Cell($w[0],7,'NumCliente',1,0,'C');
-        $this->Cell($w[0],7,'Apellido',1,0,'C');
-        $this->Cell($w[0],7,'Nombre',1,0,'C');
-        $this->Cell($w[0],7,'NroDoc',1,0,'C');
-        $this->Cell($w[0],7,'TipoDoc',1,0,'C');
         $this->Cell($w[0],7,'NumCliente',1,0,'C');
         $this->Cell($w[0],7,'Apellido',1,0,'C');
         $this->Cell($w[0],7,'Nombre',1,0,'C');
@@ -59,21 +59,18 @@ class PDF extends FPDF
         $this->Cell($w[0],7,'hora',1,0,'C');
         $this->Ln();
         // Datos
-        $conexion = new PDO('mysql:host=localhost;dbname=proyectopp1','root','');
-        $data=$conexion->query("SELECT * from clienteauditoria");
+        $conexion = new PDO('mysql:host=localhost;dbname='.$dbname,'root','');
+        $data=$conexion->query("select clienteauditoria.*, 
+        (select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=clienteauditoria.tipodocumento_id) as tipodocumento_id, (select CONCAT(sigla,' (',nro_afip,')')  from tipodocumento where tipodocumento.id=clienteauditoria.tipodocumento_id) as tipodocumento_id
+        from clienteauditoria");
         foreach($data as $row)
          {
         $this->Cell($w[3],6,$row['id'],'LR');
-        $this->Cell($w[0],6,$row['num_clienteOld'],'LR');
-        $this->Cell($w[0],6,$row['apellidoOld'],'LR');
-        $this->Cell($w[0],6,$row['nombreOld'],'LR');
-        $this->Cell($w[0],6,$row['nro_documentoOld'],'LR');
-        $this->Cell($w[0],6,$row['tipodocumento_idOld'],'LR');
-        $this->Cell($w[0],6,$row['num_clienteNew'],'LR');
-        $this->Cell($w[0],6,$row['apellidoNew'],'LR');
-        $this->Cell($w[0],6,$row['nombreNew'],'LR');
-        $this->Cell($w[0],6,$row['nro_documentoNew'],'LR');
-        $this->Cell($w[0],6,$row['tipodocumento_idNew'],'LR');
+        $this->Cell($w[0],6,$row['num_cliente'],'LR');
+        $this->Cell($w[0],6,$row['apellido'],'LR');
+        $this->Cell($w[0],6,$row['nombre'],'LR');
+        $this->Cell($w[0],6,$row['nro_documento'],'LR');
+        $this->Cell($w[0],6,$row['tipodocumento_id'],'LR');
         $this->Cell($w[0],6,$row['usuario'],'LR');
         $this->Cell($w[0],6,$row['accion'],'LR');
         $this->Cell($w[0],6,$row['fecha'],'LR');

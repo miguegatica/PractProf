@@ -11,8 +11,9 @@
             <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('imprimir/imprimir_afip.php', '_blank');">IMPRIMIR</a>
             <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('excel/excel_afip.php', '_blank');">EXCEL</a>
             <a href="javascript:;" class="easyui-linkbutton" onclick="window.open('pdf/pdf_afip.php', '_blank');">PDF</a>
+            <a href="javascript:;" class="easyui-linkbutton" onclick="reloadAudAfip();">ACTUALIZAR AUDITORIA</a>
         </div>
-        <table id="dgAuditoria" title="Operaciones sobre Cliente" class="easyui-datagrid" style="width:1500px;height:450px"
+        <table id="dgAuditoriaAfip" title="Operaciones sobre Afip" class="easyui-datagrid" style="width:1200px;height:450px"
                url="auditor/auditoria_afip_retrieve.php"
                toolbar="#toolbarAuditoria" pagination="true"
                rownumbers="true" fitColumns="true" singleSelect="true">
@@ -20,45 +21,30 @@
    
             <thead>
              <tr>
-                <th field="id" width="50" hidden=true sortable="true">ID</th>
-                    <th field="nro_afipOld" width="35" sortable="true" formatter="ColorRed">NroAfip</th>
-                    <th field="descripcionOld" width="50" sortable="true" formatter="ColorRed">Descripción</th>
-                    <th field="siglaOld" width="50" sortable="true" formatter="ColorRed">Sigla</th>
-                    <th field="nro_afipNew" width="50" sortable="true" formatter="ColorGreen">NroAfip</th>
-                    <th field="descripcionNew" width="50" sortable="true" formatter="ColorGreen">Descripción</th>
-                    <th field="siglaNew" width="50" sortable="true" formatter="ColorGreen">Sigla</th> 
-                    <th field="usuario" width="50" sortable="true">Usuario</th>
-                    <th field="accion" width="50" sortable="true" formatter="ColorBlue">Acción</th>
-                    <!--<th field="modulo" width="50" sortable="true">modulo</th>-->
-                    <th field="fecha" width="50" sortable="true">fecha</th>
-                    <th field="hora" width="50" sortable="true">hora</th>
+                <th field="id" width="15" hidden=true sortable="true">ID</th>
+                    <th field="fecha" width="15" sortable="true">FECHA</th>
+                    <th field="usuario" width="15" sortable="true">USUARIO</th>  
+                    <th field="accion" width="15" sortable="true">ACCIÓN</th>     
+                    <th field="hora" width="15" sortable="true">HORA</th>
+                    <th field="nro_afip" width="10" sortable="true" formatter="Style">NroAfip</th>
+                    <th field="descripcion" width="20" sortable="true" formatter="Style">Descripción</th>
+                    <th field="sigla" width="15" sortable="true" formatter="Style">Sigla</th>              
                 </tr> 
             </thead>
         </table>
         
-      
-        <script type="text/javascript">  
-                function ColorRed(val,row){
-                    
-                        return '<span style="color:red;">'+val+'</span>';
-                    
-                }
-                
-                function ColorGreen(val,row){
-                    
-                        return '<span style="color:green;">'+val+'</span>';
-                    
-                }
-                
-                function ColorBlue(val,row){
-                    
-                        return '<span style="color:blue;">'+val+'</span>';
-                    
-                }
-              
+        
+    <script type="text/javascript">
+        
+        function reloadAudAfip() {
+            $('#dgAuditoriaAfip').datagrid('reload');    // reload the cliente data
+            }  
+            
+        function Style(val,row){
 
-    </script>
-         
+                    return '<span style="font-weight: bold;">'+val+'</span>';
+        }
+    </script>      
    
     </body>
 </html>

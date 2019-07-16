@@ -13,17 +13,17 @@ if(is_session_started() == false){
 $_SESSION['usuario'] = ""; 
 
 
-
-
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Sistema Práctica Profesional</title>
+        
 <!--        <link rel="stylesheet" type="text/css" href="lib/easyui/themes/default/easyui.css">
         <link rel="stylesheet" type="text/css" href="lib/easyui/themes/icon.css">
         <link rel="stylesheet" type="text/css" href="lib/easyui/demo/demo.css">-->
+
         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
@@ -35,14 +35,32 @@ $_SESSION['usuario'] = "";
    
     </head>
 
-   <body>
-       <nav class="menu">
-           <ul>
-               <li><a href="respaldos/php/index_backup.php">Backup</a></li>
-               <li><a href="respaldos/php/index_restore.php">Restaurar</a></li>
-               <li class="item-r"><a href="empresas/empresas.php">Volver a Empresas</a></li> 
-           </ul>
-      </nav>
+    <body class="mainBody">
+    <header>
+        
+        <div class="logoContorno">
+            <div class="logo">
+                <div class="nombreEmpresa">
+                    <?php echo 'Empresa '.'"'.$_SESSION['empresa.nombre'].'"';?>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="header">
+            <ul class="nav">
+                     <li><a class="a" href="respaldos/php/index_backup.php">Backup</a></li>
+                     <li><a class="a" href="respaldos/php/index_restore.php">Restaurar</a></li>
+                     <li><a class="a" href="empresas/empresas.php">Volver a Empresas</a></li> 
+            </ul>
+        </div>
+
+
+    </header>   
+       
+       
+       
    
    <form action="login/acceso.php" method="post" class="formulario">
     <h1>Iniciar sesión</h1> 
@@ -64,28 +82,8 @@ $_SESSION['usuario'] = "";
     </div>
  </form>
        
- <script>
-		$(document).on('ready', function() {
-			$('#show-hide-passwd').on('click', function(e) {
-				e.preventDefault();
-				var current = $(this).attr('action');
-				if (current == 'hide') {
-					$(this).prev().attr('type','text');
-					$(this).removeClass('glyphicon-eye-open').addClass('glyphicon-eye-close').attr('action','show');
-				}
-				if (current == 'show') {
-					$(this).prev().attr('type','password');
-					$(this).removeClass('glyphicon-eye-close').addClass('glyphicon-eye-open').attr('action','hide');
-				}
-			})
-		})
-	</script>      
-       
-       
-       
-       
-       
-       
+        <script src="index.js"></script>  
+
 </body>
 </html>
 

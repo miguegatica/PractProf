@@ -3,11 +3,6 @@
 //require_once '../class.consultas.php';
 
 
-
-
-
-
-
 if(isset($_POST['crear'])){
 
     $contrasenia = $_POST['contrasenia'];
@@ -43,6 +38,8 @@ if(isset($_POST['crear'])){
         echo '<script>alert("Contraseña no tiene permiso de uso! Solicitar nueva contraseña.");</script>';
     } else{
         
+        
+        
         $companyname = $_POST['name'];
 
         
@@ -56,6 +53,8 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
         
         $companyname=trim($companyname);
         $companyname=str_replace($invalid,'',$companyname);
+  
+
 //        $bd_name=str_replace('*','',$bd_name);
 //        $bd_name=str_replace('+','',$bd_name);
 //        $bd_name=str_replace('/','',$bd_name);
@@ -152,16 +151,11 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
         //**** creando tabla clienteauditoria
         $CreateTables=$conexion2->query("CREATE TABLE clienteauditoria (
         id INT(11) AUTO_INCREMENT PRIMARY KEY,
-        num_clienteOld VARCHAR(255), 
-        apellidoOld VARCHAR(255), 
-        nombreOld VARCHAR(255), 
-        nro_documentoOld VARCHAR(255), 
-        tipodocumento_idOld INT(11), 
-        num_clienteNew VARCHAR(255), 
-        apellidoNew VARCHAR(255), 
-        nombreNew VARCHAR(255), 
-        nro_documentoNew VARCHAR(255), 
-        tipodocumento_idNew INT(11),
+        num_cliente VARCHAR(255), 
+        apellido VARCHAR(255), 
+        nombre VARCHAR(255), 
+        nro_documento VARCHAR(255), 
+        tipodocumento_id INT(11), 
         usuario VARCHAR(255), 
         accion VARCHAR(255), 
         fecha DATE, hora TIME)");
@@ -171,12 +165,9 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
         //**** creando tabla afipauditoria
         $CreateTables=$conexion2->query("CREATE TABLE afipauditoria (
         id INT(11) AUTO_INCREMENT PRIMARY KEY,
-        nro_afipOld VARCHAR(255), 
-        descripcionOld VARCHAR(255), 
-        siglaOld VARCHAR(255), 
-        nro_afipNew VARCHAR(255), 
-        descripcionNew VARCHAR(255), 
-        siglaNew VARCHAR(255), 
+        nro_afip VARCHAR(255), 
+        descripcion VARCHAR(255), 
+        sigla VARCHAR(255),  
         usuario VARCHAR(255), 
         accion VARCHAR(255), 
         fecha DATE, 
@@ -346,18 +337,25 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
 <head>
 	<meta charset="UTF-8">
 	<title></title> 
-	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
         <link rel="stylesheet" href="../estilos/estilos.css">
         
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        
 </head>  
-<body>
+<body class="mainBody">
     
- <nav class="menu">
-           <ul>
-               <li class="item-r"><a href="../empresas/empresas.php">Volver a Empresas</a></li> 
-           </ul>
-      </nav>
+    <div id="header">
+               <ul class="nav">
+                    <li><a href="../empresas/empresas.php">Volver a Empresas</a></li> 
+                </ul>
+    </div>    
+    
+
  <form class="formulario" action="nuevaempresa.php" method="POST">
     <h1>Registrar empresa</h1> 
      
@@ -370,6 +368,7 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
         <div class="input-contenedor">
             <i class="fas fa-key icon"></i>
             <input type="text" placeholder="Contraseña" required name="contrasenia">
+            <span id="show-hide-passwd" action="hide" class="input-group-addon glyphicon glyphicon glyphicon-eye-open"></span>
         </div>
 
 
@@ -385,10 +384,15 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
 
          <input type="submit" class="button" value="Crear" name="crear">
          <p>Al crear una nueva empresa, asegurate de ingresar los datos correctamente.</p>
-         <p>¿No tienes contraseña?<a class="link" href="solicitarcontraseña.php"> Solicitar contraseña</a></p>
+         <p>¿No tienes contraseña?<a class="referencia" href="solicitarcontraseña.php"> Solicitar contraseña</a></p>
     </div>
 
  </form>
+
+    <script src="../index.js"></script>  
+    
+    
+    
 </body>
 </html>
 
