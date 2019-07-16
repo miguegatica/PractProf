@@ -30,17 +30,17 @@
 			<option value="" disabled="" selected="">Seleccionar punto de restauración</option>
 			<?php
 				include_once './Connet.php';
-				$ruta=BACKUP_PATH;
+				$ruta=BACKUP_PATH."/".$_SESSION['empresa.db'];
 				if(is_dir($ruta)){
 				    if($aux=opendir($ruta)){
 				        while(($archivo = readdir($aux)) !== false){
 				            if($archivo!="."&&$archivo!=".."){
-				                $nombrearchivo=str_replace(".sql", "", $archivo);
-				                $nombrearchivo=str_replace("-", ":", $nombrearchivo);
+				                //$nombrearchivo=str_replace(".sql", "", $archivo);
+				                //$nombrearchivo=str_replace("-", ":", $nombrearchivo);
 				                $ruta_completa=$ruta.$archivo;
 				                if(is_dir($ruta_completa)){
 				                }else{
-				                    echo '<option value="'.$ruta_completa.'">'.$nombrearchivo.'</option>';
+				                    echo '<option value="'.$ruta_completa.'">'.$archivo.'</option>';
 				                }
 				            }
 				        }

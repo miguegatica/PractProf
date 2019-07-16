@@ -4,7 +4,7 @@ body {
     padding: 15px;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background: url(../imagenes/imagen.jpg);
+    /*background: url(../imagenes/imagen.jpg);*/
     background-size: cover;
     background-attachment: fixed;
 }

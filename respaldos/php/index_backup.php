@@ -1,4 +1,3 @@
-
 <?php 
 
 
@@ -8,7 +7,7 @@ session_start();
 
 $nombreEmpresa = $_SESSION['empresa.nombre']; 
 
-
+$downloadFile = 0;
 
 
 if (isset($_POST['backup'])){
@@ -34,12 +33,35 @@ if (isset($_POST['backup'])){
                         window.location= '../php/index_backup.php'
                     </script>";
     }else{
-    
+        
+
+
+         
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        
+        $date=date("Y-m-d");
+        $time=date("H.i.s"); 
+        $dir=dirname( __FILE__ ) . '/../clientes/'.$_SESSION['empresa.db'];
+        $fileName = $date."...".$time.".sql";
+        if (!is_dir($dir)) {
+            if(!mkdir($dir, 0777, true)){
+                die("No se pudo crear el directorio!".PHP_EOL);
+            }
+
+            //Creo un archivo de prueba
+            /*$myfile = fopen("$dir/testfile.txt", "w") or die("Unable to open file!");
+            $txt = "Testing...\n";
+            fwrite($myfile, $txt);
+            $txt = "Testing...2\n";
+            fwrite($myfile, $txt);
+            fclose($myfile);*/
+        }
+        
     define("DB_USER", 'root');
     define("DB_PASSWORD", '');
     define("DB_NAME", $_SESSION['empresa.db']);
     define("DB_HOST", 'localhost');
-    define("BACKUP_DIR", 'C:\Users\migue\Downloads\backup'); // Comment this line to use same script's directory ('.')
+    define("BACKUP_DIR", $dir); // Comment this line to use same script's directory ('.')
     define("TABLES", '*'); // Full backup
     //define("TABLES", 'table1, table2, table3'); // Partial backup
     define("CHARSET", 'utf8');
@@ -116,7 +138,7 @@ if (isset($_POST['backup'])){
          * Constructor initializes database
          */
         public function __construct($host, $username, $passwd, $dbName, $charset = 'utf8') {
-       
+        global $fileName;
         date_default_timezone_set('America/Argentina/Buenos_Aires');
 
         $date=date("Y-m-d");
@@ -129,7 +151,7 @@ if (isset($_POST['backup'])){
             $this->charset                 = $charset;
             $this->conn                    = $this->initializeDatabase();
             $this->backupDir               = BACKUP_DIR ? BACKUP_DIR : '.';
-            $this->backupFile              = 'name_db-'.$this->dbName.'-'.date("Y-m-d", date("H:i:s")).'.sql';
+            $this->backupFile              = $fileName;
 //            $this->backupFile              = 'name_db'.$this->dbName.'-'.$date.'-'.$time.'.sql';
             $this->gzipBackupFile          = defined('GZIP_BACKUP_FILE') ? GZIP_BACKUP_FILE : true;
             $this->disableForeignKeyChecks = defined('DISABLE_FOREIGN_KEY_CHECKS') ? DISABLE_FOREIGN_KEY_CHECKS : true;
@@ -189,7 +211,7 @@ if (isset($_POST['backup'])){
                  * Iterate tables
                  */
                 foreach($tables as $table) {
-                    $this->obfPrint("Backing up `".$table."` table...".str_repeat('.', 50-strlen($table)), 0, 0);
+//                    $this->obfPrint("Backing up `".$table."` table...".str_repeat('.', 50-strlen($table)), 0, 0);
 
                     /**
                      * CREATE TABLE
@@ -291,7 +313,7 @@ if (isset($_POST['backup'])){
 
                     $sql.="\n\n";
 
-                    $this->obfPrint('OK');
+//                    $this->obfPrint('OK');
                 }
 
                 /**
@@ -353,7 +375,7 @@ if (isset($_POST['backup'])){
             $source = $this->backupDir . '/' . $this->backupFile;
             $dest =  $source . '.gz';
 
-            $this->obfPrint('Gzipping backup file to ' . $dest . '... ', 1, 0);
+//            $this->obfPrint('Gzipping backup file to ' . $dest . '... ', 1, 0);
 
             $mode = 'wb' . $level;
             if ($fpOut = gzopen($dest, $mode)) {
@@ -373,7 +395,7 @@ if (isset($_POST['backup'])){
                 return false;
             }
 
-            $this->obfPrint('OK');
+//            $this->obfPrint('OK');
             return $dest;
         }
 
@@ -453,7 +475,11 @@ if (isset($_POST['backup'])){
 
     $backupDatabase = new Backup_Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, CHARSET);
     $result = $backupDatabase->backupTables(TABLES, BACKUP_DIR) ? 'OK' : 'KO';
-    $backupDatabase->obfPrint('Backup result: ' . $result, 1);
+//    $backupDatabase->obfPrint('Backup result: ' . $result, 1);
+    
+    if($result == 'OK'){
+        $downloadFile = 1;
+    }
 
     // Use $output variable for further processing, for example to send it by email
     $output = $backupDatabase->getOutput();
@@ -461,8 +487,8 @@ if (isset($_POST['backup'])){
     if (php_sapi_name() != "cli") {
         echo '</div>';
     }
-    
-    
+$path=dirname( __FILE__ ) . '/../clientes/'.$_SESSION['empresa.db'];
+        //header("Location: ".$path."/".$fileName.'.gz');  
 //    $filename = "AFIP-Auditoria.xls";
 ////    header("Content-type: application/x-msdownload");
 //    header("Content-Disposition: attachment; filename=$filename");
@@ -471,7 +497,12 @@ if (isset($_POST['backup'])){
 }
 
 
+
+
 }
+
+
+
 
 
 ?>
@@ -503,5 +534,22 @@ if (isset($_POST['backup'])){
                  <p>Para hacer backup, ingrese la contraseña que se le solicito al Crear Empresa.</p>
             </div>
         </form>
+    
+<script type="text/javascript">
+    
+   alert('Respaldo realizado con èxito!.');
+   window.location= '../php/index_backup.php';
+   
+var downloadFile = <?php echo empty($downloadFile) ? 'false' : 'true'; ?>;
+
+if(downloadFile){
+    window.location.href = "donwload_backup.php?id=<?php echo $fileName.'.gz' ?>";
+}
+
+</script>
+
 </body>
 </html>
+
+ 
+

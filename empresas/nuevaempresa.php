@@ -3,6 +3,11 @@
 //require_once '../class.consultas.php';
 
 
+
+
+
+
+
 if(isset($_POST['crear'])){
 
     $contrasenia = $_POST['contrasenia'];
@@ -40,12 +45,27 @@ if(isset($_POST['crear'])){
         
         $companyname = $_POST['name'];
 
+        
+        
+$invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', '"', '·', '%', '&', '/', '(', ')', '=', '¿', '?', '¡', '!', '€', '[', ']', '+', '-', 'ñ', 'Ñ', 'ç', 'á', 'Á', 'é', 'É', 'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'à', 'À', 'è', 'È', 'ì', 'Ì', 'ò', 'Ò', 'ù', 'Ù', "'", '"', '*'); 
+
+   
+        
         $bd_name=trim($companyname);
-        $bd_name=str_replace(' ','',$bd_name);
-        $bd_name=str_replace('/','',$bd_name);
-        $bd_name=str_replace('.','',$bd_name);
-        $bd_name=str_replace('ñ','n',$bd_name);
-        $bd_name=str_replace('Ñ','N',$bd_name);
+        $bd_name=str_replace($invalid,'',$bd_name);
+        
+        $companyname=trim($companyname);
+        $companyname=str_replace($invalid,'',$companyname);
+//        $bd_name=str_replace('*','',$bd_name);
+//        $bd_name=str_replace('+','',$bd_name);
+//        $bd_name=str_replace('/','',$bd_name);
+//        $bd_name=str_replace('.','',$bd_name);
+//        $bd_name=str_replace(',','',$bd_name);
+//        $bd_name=str_replace(';','',$bd_name);
+//        $bd_name=str_replace('(','',$bd_name);
+//        $bd_name=str_replace(')','',$bd_name);
+//        $bd_name=str_replace('ñ','n',$bd_name);
+//        $bd_name=str_replace('Ñ','N',$bd_name);
 
         
 
