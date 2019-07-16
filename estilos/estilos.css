@@ -40,6 +40,13 @@
     position: relative;  
 }
 
+.logoContornoWhite{
+    width: 250px;
+    height: 100px;
+    background: #6fa2f2;
+    position: relative;  
+}
+
 .logo{
     /*padding: 15px;*/
     position: absolute;

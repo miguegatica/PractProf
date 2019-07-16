@@ -95,9 +95,17 @@ if(isset($_POST['enviar'])){
 <head>
 	<meta charset="UTF-8">
 	<title></title> 
-	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+<!--	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+        <link rel="stylesheet" href="../estilos/estilos.css">-->
+        <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
         <link rel="stylesheet" href="../estilos/estilos.css">
+        
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
         
 </head>  
 <body class="mainBody">

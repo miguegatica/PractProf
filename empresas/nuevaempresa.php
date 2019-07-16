@@ -337,7 +337,7 @@ $invalid = array('-', '—', '_', ' ', '.', ',', ':', ';', '<', '>', '»', '|', 
 <head>
 	<meta charset="UTF-8">
 	<title></title> 
-         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >

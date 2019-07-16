@@ -25,7 +25,7 @@ include_once(dirname(__FILE__) . '/lib/buttons_retrieve.php');
         <link rel="stylesheet" href="estilos/estilos.css">
     </head>
     <body class="whiteBody">
-        <div class="logoContorno">
+        <div class="logoContornoWhite">
             <div class="logo">
                 <div class="nombreEmpresa">
                     <?php echo 'EMPRESA: '.'"'.$_SESSION['empresa.nombre'].'"';?>
