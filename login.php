@@ -1,11 +1,14 @@
 <?php 
 
+
 include_once(dirname(__FILE__).'/lib/utils.php');
 
 if(is_session_started() == false){
     //Si esta apagada la session la enscendemos
     session_start();
+    ob_start();
 }
+
 
 $_SESSION['usuario'] = ""; 
 
@@ -16,50 +19,71 @@ $_SESSION['usuario'] = "";
     <head>
         <meta charset="UTF-8">
         <title>Sistema Práctica Profesional</title>
-        <link rel="stylesheet" type="text/css" href="lib/easyui/themes/default/easyui.css">
+        
+<!--        <link rel="stylesheet" type="text/css" href="lib/easyui/themes/default/easyui.css">
         <link rel="stylesheet" type="text/css" href="lib/easyui/themes/icon.css">
-        <link rel="stylesheet" type="text/css" href="lib/easyui/demo/demo.css">
+        <link rel="stylesheet" type="text/css" href="lib/easyui/demo/demo.css">-->
+
         <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="lib/easyui/jquery.edatagrid.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+        <link rel="stylesheet" href="estilos/estilos.css">
         
-        
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+   
     </head>
-   <body>
-  <h2>Login</h2>
-    <p>Ingrese sus datos</p>
-    <div style="margin:20px 0;"></div>
-    <div class="easyui-panel" title="Iniciar sesión" style="width:100%;max-width:400px;padding:30px 60px;">
-     
-      
-        <form id="ff" method="post" action="login/acceso.php">
-            <div style="margin-bottom:20px">
-                <input class="easyui-textbox" name="userPost" style="width:100%" data-options="label:'Usuario:',required:true" required>
-            </div>
-          
-            <div style="margin-bottom:20px">
-                <input class="easyui-passwordbox" prompt="Password" name="passPost" style="width:100%" data-options="label:'Contraseña:',required:true" required>
-            </div>
-       
-            
-            <div style="text-align:center;padding:5px 0">
-                <input type="submit" value="Login">
-            </div>      
-        </form>
+
+    <body class="mainBody">
+    <header>
         
+        <div class="logoContorno">
+            <div class="logo">
+                <div class="nombreEmpresa">
+                    <?php echo 'Empresa '.'"'.$_SESSION['empresa.nombre'].'"';?>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <div id="header">
+            <ul class="nav">
+                     <li><a class="a" href="respaldos/php/index_backup.php">Backup</a></li>
+                     <li><a class="a" href="respaldos/php/index_restore.php">Restaurar</a></li>
+                     <li><a class="a" href="empresas/empresas.php">Volver a Empresas</a></li> 
+            </ul>
+        </div>
+
+
+    </header>   
+       
+       
+       
+   
+   <form action="login/acceso.php" method="post" class="formulario">
+    <h1>Iniciar sesión</h1> 
+     
+    <div class="contenedor">
+
+        <div class="input-contenedor">
+            <i class="fas fa-user icon"></i>
+            <input type="text" placeholder="Usuario" name="userPost" required>
+        </div>
+
+        <div class="input-contenedor">
+                <i class="fas fa-key icon"></i>
+		<input type="password" placeholder="Contraseña" name="passPost" required>
+		<span id="show-hide-passwd" action="hide" class="input-group-addon glyphicon glyphicon glyphicon-eye-open"></span>
+	</div>
+
+        <input type="submit" class="button" value="Ingresar">
     </div>
-    
+ </form>
+       
+        <script src="index.js"></script>  
+
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-<!-- imput type="submit" me manda todos los datos del formulario al direcctioro de action = ""-->
-<!--value="Login" es el nombre del boton-->
-<!--lo que tiene name = "" es lo que va a enviar al servidor  por el metodo "get" o "post"--> 

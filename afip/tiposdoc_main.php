@@ -1,8 +1,11 @@
-<?php 
+<?php
+    include_once(dirname(__FILE__).'/../login/loginok.php');
+    //LA SIGUIENTE VARIABLE ES OBLIGATORIA PARA CHEQUEAR QUE COLUMNAS UTILIZA EL OPERADOR!
+    $module_name = 'TIPOSDOCUMENTOS';
+    include_once(dirname(__FILE__).'/../lib/buttons_retrieve.php');
+?>
 
-include_once(dirname(__FILE__).'/../login/loginok.php');
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <body>
     
@@ -23,9 +26,10 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
 
     
     <div id="toolbarDocumentos">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoDocumento()">Nuevo Documento</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarDocumento()">Editar Documento</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarDocumento()">Eliminar Documento</a>
+        <?php 
+            foreach($buttons as $button){
+                echo $button['html'];
+            }?>
     </div>
     
   
@@ -42,17 +46,17 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
             <div style="margin-bottom:10px">
                 <input name="sigla" class="easyui-textbox" required="true" label="sigla:" style="width:100%">
             </div>
+            
+            <div id="dlgDocumentos-buttons">
+               <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveDocumento()" style="width:90px">Guardar</a>
+               <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgDocumentos').dialog('close')" style="width:90px">Cancelar</a>
+            </div>
+            
         </form>
     </div>
-        
-        
+       
+
    
-<!--    no entiendo este div de a continuacion     -->
-    </div> 
-     <div id="dlgDocumentos-buttons">
-            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveDocumento()" style="width:90px">Guardar</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgDocumentos').dialog('close')" style="width:90px">Cancelar</a>
-     </div>
   
 
    

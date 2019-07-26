@@ -1,13 +1,17 @@
 <?php
-include_once(dirname(__FILE__).'/../login/loginok.php');
+    include_once(dirname(__FILE__).'/../login/loginok.php');
+    //LA SIGUIENTE VARIABLE ES OBLIGATORIA PARA CHEQUEAR QUE COLUMNAS UTILIZA EL OPERADOR!
+    $module_name = 'CLIENTES';
+    include_once(dirname(__FILE__).'/../lib/buttons_retrieve.php');
 
+    /////////////////////////////////////////////////////////////////////////////////////
 ?><!DOCTYPE html>
 <html>
     <body>
 
-<!--    <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:250px"  -->
         <table id="dgClientes" title="Clientes" class="easyui-datagrid" style="width:700px;height:300px"
                url="cliente/cliente_retrieve.php"
+               url="auditor/auditoria_cliente_retrieve.php"
                toolbar="#toolbarClientes" pagination="true"
                rownumbers="true" fitColumns="true" singleSelect="true">
             <thead>
@@ -17,31 +21,24 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
                     <th field="apellido" width="50" sortable="true">Apellido</th>
                     <th field="nombre" width="50"sortable="true">Nombre</th>
                     <th field="nro_documento" width="50" sortable="true">Numero documento</th>
-
                     <th field="tipodocumento_id" width="50" hidden="true" sortable="true">Tipo documento</th>
                     <th field="tipodoc_descripcion" width="50" sortable="true" >Tipo documento</th> 
 
-<!--                    <th field="zonaventa_id" width="50" hidden="true" sortable="true">Tipo zona</th> 
-                    <th field="zonaventa_descripcion" width="50" sortable="true" >Tipo zona</th>-->
 
                 </tr>
             </thead>
         </table>
 
         <div id="toolbarClientes">
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="nuevoCliente()">Nuevo Cliente</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editarCliente()">Editar Cliente</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="eliminarCliente()">Eliminar Cliente</a>
+            <?php 
+            foreach($buttons as $button){
+                echo $button['html'];
+            }?>
         </div>
 
-        <!--El name es lo que le va a llegar al PHP.., con el name php va a reconocer el REQUEST, por el campo name-->
-        <!--    el id es para el front-->
-        <!--    el name es para el backend-->
-        <!--Cuando el usuario apreta el tipodocumento_id (fk) entonces le salta el nro_afip-->
 
-
+        
         <div id="dlgCliente" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlgCliente-buttons'">
-
 
             <form id="fmCliente" method="post" novalidate style="margin:0;padding:20px 50px">
                 <h3>Información de Cliente</h3>
@@ -66,44 +63,39 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
                     <input name="tipodocumento_id" id="tipodocumento_id" style="width:100%">
                 </div>
 
-
-                <!--        ***************** Combobox zonaventa *****************************************    -->
-
-<!--
-                <div style="margin-bottom:10px">  
-                    <input name="zonaventa_id" id="zonaventa_id" style="width:100%">
-                </div>-->
-
-
+                <div id="dlgCliente-buttons">
+                     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">Guardar</a>
+                     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCliente').dialog('close')" style="width:90px">Cancelar</a>
+                </div>
+            
             </form>
 
-
-
-
-            <!--   *********** Botones de formulario *********************     -->
-
+                
+        </div> 
+        
+        <div id="wCustomerFilter" class="easyui-window windowCust" title='Filtrar Clientes' data-options="modal:true,closed:true,iconCls:'icon-filter',collapsible:false, minimizable:false, maximizable:false,resizable:false" style="width:412px;height:700px;"> 
+        
+             <div style="margin-left: 10px;margin-top: 10px;">
+                Tipo Documento <br> <input id="ftipodocumento_id" class="easyui-combobox"  style="width:380px;" name="tipodocumento_id" > <br>  
+               
+                <input id="ccBlockDateF" class="easyui-combobox"  style="width:380px;" name="cBlockDateF" > <br> <br>
+                <a href="#" class="easyui-linkbutton" style="width: 40%; margin-top: 15px;" data-options="iconCls:'icon-filter'" onclick="doCustFilter()" >Filtrar</a>
+                <a href="#" class="easyui-linkbutton" style="width: 40%; margin-top: 15px;margin-left: 15%;" data-options="iconCls:'icon-cancel'" onclick="$('#wCustomerFilter').window('close');">Cancelar</a>
+            </div>
+    
         </div>
-        <div id="dlgCliente-buttons">
-            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveCliente()" style="width:90px">Guardar</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgCliente').dialog('close')" style="width:90px">Cancelar</a>
-        </div>
-
-        <!--  **********************************************************************-->
-
-
-
+        
         <script type="text/javascript">
 
             var url;
             var urlTiposDoc = 'cliente/utils.php?metodo=tiposdoclist';//desde el front estoy mandando los datos al backend por el metodo get
-            var urlZonasVentas = 'cliente/utils.php?metodo=zonasVentas';
+
 
 
 
 
             function nuevoCliente() {
                 $('#tipodocumento_id').combobox('reload', urlTiposDoc); //cada vez que agrega un nuevo cliente recarga los datos 
-                $('#zonaventa_id').combobox('reload', urlZonasVentas);
                 $('#dlgCliente').dialog('open').dialog('center').dialog('setTitle', 'Nuevo Cliente');
                 $('#fmCliente').form('clear');
                 url = 'cliente/cliente_save.php';
@@ -211,51 +203,42 @@ include_once(dirname(__FILE__).'/../login/loginok.php');
             });
 
 
-//
-//            $('#zonaventa_id').combobox({
-//                url: urlZonasVentas,
-//                valueField: 'id',
-//                textField: 'text',
-//                required: true,
-//                label: 'Zona de venta:',
-//                onChange: myKeyUpZona
-//            });
-//
-//
-//            function myKeyUpZona() {
-//                var cc = $('#zonaventa_id');
-//                var cantElementosVisibles = cc.combobox('panel').find('div').length;
-//                var cantElementosOcultos = cc.combobox('panel').find('div:hidden').length;
-//                var difVisiblesOcultos = Number(cantElementosVisibles) - Number(cantElementosOcultos);
-//                console.log("cantElementosVisibles", cantElementosVisibles);
-//                console.log("cantElementosOcultos", cantElementosOcultos);
-//                console.log("difVisiblesOcultos", difVisiblesOcultos);
-//                if (difVisiblesOcultos == 0) {
-//                    $('#zonaventa_id').combobox('panel').find('div:hidden').css('display', 'block');
-//                }
-//
-//            }
-//
-//
-//            var zonaventa_id = $('#zonaventa_id').combobox('textbox');
-//            zonaventa_id.bind('keydown', function (e) {
-//                var cc = $('#zonaventa_id');
-//                if (e.key == 'F1' || e.key == 'OS') {
-//                    if (cc.combobox('panel').parent().css('display') === 'none') {
-//                        cc.combobox('showPanel');
-//                    } else {
-//                        cc.combobox('hidePanel');
-//                    }
-//                }
-//
-//            });
-//
+
+            function filtrarCliente(){
+
+                //$('#ftipodocumento_id').combobox('reload', urlTiposDoc); 
+                $('#ftipodocumento_id').combobox({
+                    url: urlTiposDoc, 
+                    valueField: 'id', //LO QUE VA A MANDAR AL SERVIDOR: lo que va a guardar 
+                    textField: 'text', //VISUAL: el concatenado
+                    label: 'Tipo Doc:'
+                });
+                $('#wCustomerFilter').window('open');
+            }
+            
+            
+            function doCustFilter() {
+                //Se asigna el valor a variables para analizar si estan vacias
+                var ftipodocumento_id = $('#ftipodocumento_id').combobox('getValue');
+                console.log(ftipodocumento_id);
+                //Si cualquiera de las variables contiene algo es porque quizo filtrar
+                if (ftipodocumento_id !== '') {
+                    $.messager.progress();
+                    //Se vuelve a llamar al evento load del datatable para que este se conecte al servidor solicitando de nuevo los datos pero ya con un filtro
+                    console.log('Filtrara');
+                    $('#dgClientes').datagrid('load',{
+                        ftipodocumento_id: ftipodocumento_id
+                    }); 
+       
+                    console.log('Filtro');
+                    
+                    $.messager.progress('close');
+                }
+
+                $('#wCustomerFilter').window('close');
 
 
-
-
-
-
+            }
         </script>
     </body>
 </html>

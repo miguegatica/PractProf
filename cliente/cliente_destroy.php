@@ -13,9 +13,18 @@ $id = isset($_REQUEST["id"])? $_REQUEST["id"] :"";
 //}
 
 
+    datoscustormer($id);
+
+    $movement = 'ELIMINAR';
+
+    insert_auditoriaCustomer($movement);
+
+
 $conn = null;
 if (crearConexion($conn)){
     $query = "DELETE FROM cliente  WHERE id='$id' ";
+    
+
     
     if(!$resultQuery = $conn->query($query)){
         $mensajeError = "Error Data Base";
@@ -30,6 +39,7 @@ if (crearConexion($conn)){
         
     }
 
+ 
     $conn->close();
     exit(json_response("",200));
 }
