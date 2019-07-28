@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>Plan de cuenta</title>
+        <title>Plan de xuenta</title>
         <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/alertify.css">
         <link rel="stylesheet" type="text/css" href="../librerias/alertifyjs/css/themes/default.css">
